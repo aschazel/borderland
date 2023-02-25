@@ -1,7 +1,11 @@
 // Author   : Rifqi Candra
 
+using TMPro;
 using UnityEngine;
+using ProjectBorderland.DeveloperTools;
 
+namespace ProjectBorderland.Core
+{
     /// <summary>
     /// Handles player movement.
     /// </summary>
@@ -14,6 +18,10 @@ using UnityEngine;
         private float horizontalAxis;
         private float verticalAxis;
         private Rigidbody rb;
+        private TextMeshProUGUI debugText;
+
+        //DEBUG
+        private int debugger;
 
 
 
@@ -23,7 +31,19 @@ using UnityEngine;
         #region MonoBehaviour methods
         private void Start()
         {
+            debugText = DebugMode.Instance.DebugText.GetComponent<TextMeshProUGUI>();
             rb = gameObject.GetComponent<Rigidbody>();
+        }
+
+
+
+        private void Update()
+        {
+            SetDebugText();
+            
+            //DEBUG
+            debugger++;
+            Debug.Log(debugger);
         }
 
 
@@ -78,4 +98,26 @@ using UnityEngine;
             }
         }
         #endregion
+
+
+
+        #region Debug
+        /// <summary>
+        /// Sets debug text values.
+        /// </summary>
+        private void SetDebugText()
+        {
+            if (DebugMode.Instance.IsDebugMode)
+            {
+                string text = debugText.text;
+
+                text = text.Replace("VERTICALINPUTAXIS", $"{debugger}");
+                text = text.Replace("HORIZONTALINPUTAXIS", $"{horizontalAxis}");
+                text = text.Replace("RIGIDBODYDRAG", $"{rb.drag}");
+
+                debugText.SetText(text);
+            }
+        }
+        #endregion
     }
+}
