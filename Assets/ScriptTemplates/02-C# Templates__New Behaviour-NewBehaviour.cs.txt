@@ -1,0 +1,24 @@
+// Author   : 
+// Date     : 00 Month 202X
+
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+#ROOTNAMESPACEBEGIN#
+    /// <summary>
+    /// This is summary.
+    /// </summary>
+    public class #SCRIPTNAME# : MonoBehaviour
+    {
+        //==============================================================================
+        // Variables
+        //==============================================================================
+        #NOTRIM#
+        #NOTRIM#
+        //==============================================================================
+        // Functions
+        //==============================================================================
+        #NOTRIM#
+    }
+#ROOTNAMESPACEEND#

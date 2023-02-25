@@ -1,0 +1,12 @@
+// Author   : 
+// Date     : 00 Month 202X
+
+#ROOTNAMESPACEBEGIN#
+    /// <summary>
+    /// This is summary.
+    /// </summary>
+    public enum #SCRIPTNAME#
+    {
+        #NOTRIM#
+    }
+#ROOTNAMESPACEEND#
