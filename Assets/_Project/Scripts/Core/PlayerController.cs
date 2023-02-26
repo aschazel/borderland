@@ -13,8 +13,6 @@ using UnityEngine;
         private float horizontalAxis;
         private float verticalAxis;
         private Rigidbody rb;
-<<<<<<< Updated upstream
-=======
         private TextMeshProUGUI debugText;
 
         [Header("Attribute Settings")]
@@ -22,7 +20,6 @@ using UnityEngine;
 
         [Header("Object Attachments")]
         [SerializeField] private Transform orientation;
->>>>>>> Stashed changes
 
 
 
@@ -32,10 +29,7 @@ using UnityEngine;
         #region MonoBehaviour methods
         private void Awake()
         {
-<<<<<<< Updated upstream
-=======
             debugText = DebugController.Instance.DebugText.transform.Find("PlayerController").GetComponent<TextMeshProUGUI>();
->>>>>>> Stashed changes
             rb = gameObject.GetComponent<Rigidbody>();
         }
 
@@ -90,9 +84,6 @@ using UnityEngine;
             }
         }
         #endregion
-<<<<<<< Updated upstream
-    }
-=======
 
 
 
@@ -117,4 +108,3 @@ using UnityEngine;
         #endregion
     }
 }
->>>>>>> Stashed changes
