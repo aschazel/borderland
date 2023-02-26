@@ -1,7 +1,11 @@
 // Author   : Rifqi Candra
 
+using TMPro;
 using UnityEngine;
+using ProjectBorderland.DeveloperTools;
 
+namespace ProjectBorderland.Core
+{
     /// <summary>
     /// Handles player movement.
     /// </summary>
