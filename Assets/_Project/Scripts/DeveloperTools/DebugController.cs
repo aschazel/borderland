@@ -7,26 +7,26 @@ namespace ProjectBorderland.DeveloperTools
     /// <summary>
     /// Handles game debug mode.
     /// </summary>
-    public class DebugMode : MonoBehaviour
+    public class DebugController : MonoBehaviour
     {
         //==============================================================================
         // Variables
         //==============================================================================
         #region singletonDDOL
-        private static DebugMode instance;
-        public static DebugMode Instance
+        private static DebugController instance;
+        public static DebugController Instance
         {
             get
             {
                 if (instance == null)
                 {
-                    instance = FindObjectOfType<DebugMode>();
+                    instance = FindObjectOfType<DebugController>();
 
                     if (instance == null)
                     {
                         GameObject newGameObject = new GameObject();
-                        newGameObject.name = typeof(DebugMode).Name;
-                        instance = newGameObject.AddComponent<DebugMode>();
+                        newGameObject.name = typeof(DebugController).Name;
+                        instance = newGameObject.AddComponent<DebugController>();
                     }
                 }
 
@@ -35,7 +35,10 @@ namespace ProjectBorderland.DeveloperTools
         }
         #endregion
 
+        [Header("Attribute Settings")]
         public bool IsDebugMode = false;
+
+        [Header("Object Attachments")]
         public GameObject DebugText;
 
         
