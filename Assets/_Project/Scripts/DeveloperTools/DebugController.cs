@@ -1,5 +1,3 @@
-// Author   : Rifqi
-
 using UnityEngine;
 
 namespace ProjectBorderland.DeveloperTools

@@ -1,5 +1,3 @@
-// Author   : Rifqi Candra
-
 using UnityEngine;
 
 namespace ProjectBorderland.Core

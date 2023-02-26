@@ -1,5 +1,3 @@
-// Author   : Rifqi Candra
-
 using TMPro;
 using UnityEngine;
 using ProjectBorderland.DeveloperTools;
