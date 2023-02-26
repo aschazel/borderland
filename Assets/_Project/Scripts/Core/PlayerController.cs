@@ -10,10 +10,19 @@ using UnityEngine;
         //==============================================================================
         // Variables
         //==============================================================================
-        [SerializeField] private float movementSpeed;
         private float horizontalAxis;
         private float verticalAxis;
         private Rigidbody rb;
+<<<<<<< Updated upstream
+=======
+        private TextMeshProUGUI debugText;
+
+        [Header("Attribute Settings")]
+        [SerializeField] private float moveSpeed;
+
+        [Header("Object Attachments")]
+        [SerializeField] private Transform orientation;
+>>>>>>> Stashed changes
 
 
 
@@ -21,8 +30,12 @@ using UnityEngine;
         // Functions
         //==============================================================================
         #region MonoBehaviour methods
-        private void Start()
+        private void Awake()
         {
+<<<<<<< Updated upstream
+=======
+            debugText = DebugController.Instance.DebugText.transform.Find("PlayerController").GetComponent<TextMeshProUGUI>();
+>>>>>>> Stashed changes
             rb = gameObject.GetComponent<Rigidbody>();
         }
 
@@ -32,6 +45,7 @@ using UnityEngine;
         {
             GetInput();
             Move();
+            SetDebugText();
         }
         #endregion
 
@@ -50,32 +64,57 @@ using UnityEngine;
 
 
         /// <summary>
-        /// Move player based on received input.
+        /// Adds X, Z force to player based on received input.
         /// </summary>
         private void Move()
         {
-            Vector3 movement = new Vector3(horizontalAxis, 0.0f, verticalAxis).normalized;
-            rb.AddForce(movement * movementSpeed);
+            Vector3 moveDirection = orientation.forward * verticalAxis + orientation.right * horizontalAxis;
+            rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
-            SetDrag();
+            ControlSpeed();
         }
 
 
 
         /// <summary>
-        /// Sets Rigidbody's drag value based on received input.
+        /// Prevents player speed to exceeds moveSpeed value.
         /// </summary>
-        private void SetDrag()
+        private void ControlSpeed()
         {
-            if (Mathf.Approximately(horizontalAxis, 0f) && Mathf.Approximately(verticalAxis, 0f)) 
-            {
-                rb.drag = 10f;
-            }
+            Vector3 flatVelocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
 
-            else 
+            if (flatVelocity.magnitude > moveSpeed)
             {
-                rb.drag = 0f;
+                Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
+                rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
+            }
+        }
+        #endregion
+<<<<<<< Updated upstream
+    }
+=======
+
+
+
+        #region Debug
+        /// <summary>
+        /// Sets debug text.
+        /// </summary>
+        private void SetDebugText()
+        {
+            if (DebugController.Instance.IsDebugMode)
+            {
+                string text;
+
+                text = $"Input keyboard horizontal axis: {horizontalAxis}\n";
+                text += $"Input keyboard vertical axis: {verticalAxis}\n";
+                text += $"Rigidbody velocity: {rb.velocity}\n";
+                text += $"Rigidbody drag: {rb.drag}";
+
+                debugText.SetText(text);
             }
         }
         #endregion
     }
+}
+>>>>>>> Stashed changes
