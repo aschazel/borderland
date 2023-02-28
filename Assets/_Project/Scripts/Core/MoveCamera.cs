@@ -27,7 +27,7 @@ namespace ProjectBorderland.Core
 
 
 
-        #region Project
+        #region ProjectBorderland methods
         /// <summary>
         /// Moves camera to player camera position.
         /// </summary>
