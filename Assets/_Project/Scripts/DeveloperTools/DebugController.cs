@@ -38,11 +38,5 @@ namespace ProjectBorderland.DeveloperTools
 
         [Header("Object Attachments")]
         public GameObject DebugText;
-
-        
-
-        //==============================================================================
-        // Functions
-        //==============================================================================
     }
 }

@@ -53,7 +53,7 @@ namespace ProjectBorderland.Core
 
 
 
-        #region Project
+        #region ProjectBorderland methods
         /// <summary>
         /// Get input from Unity Input Manager.
         /// </summary>
