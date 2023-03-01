@@ -102,7 +102,8 @@ namespace ProjectBorderland.Core
                 text = $"Input keyboard horizontal axis: {horizontalAxis}\n";
                 text += $"Input keyboard vertical axis: {verticalAxis}\n";
                 text += $"Rigidbody velocity: {rb.velocity}\n";
-                text += $"Rigidbody drag: {rb.drag}";
+                text += $"Rigidbody drag: {rb.drag}\n";
+                text += $"Coordinates: {transform.position}";
 
                 debugText.SetText(text);
             }
