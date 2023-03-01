@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -36,6 +37,7 @@ namespace ProjectBorderland.InventorySystem
         }
         #endregion
 
+        public static Action OnInventoryChanged;
         [SerializeField] private List<ItemSO> items = new List<ItemSO>();
         public List<ItemSO> Items { get { return items; } }
         private TextMeshProUGUI debugText;
@@ -69,6 +71,7 @@ namespace ProjectBorderland.InventorySystem
         public void Add(ItemSO item)
         {
             items.Add(item);
+            NotifyOnInventoryChanged();
         }
 
 
@@ -80,7 +83,16 @@ namespace ProjectBorderland.InventorySystem
         public void Remove(ItemSO item)
         {
             items.Remove(item);
+            NotifyOnInventoryChanged();
         }
+        
+
+        #region observer
+        private void NotifyOnInventoryChanged()
+        {
+            OnInventoryChanged?.Invoke();
+        }
+        #endregion
         #endregion
 
 
