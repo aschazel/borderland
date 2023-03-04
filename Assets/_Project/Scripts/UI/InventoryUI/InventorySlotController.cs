@@ -78,10 +78,10 @@ namespace ProjectBorderland.UI
         /// <param name="slot"></param>
         private void AssignSprite(Transform slot, int slotIndex)
         {
-            ItemDisplayController display = slot.gameObject.GetComponent<ItemDisplayController>();
+            ItemDisplayController display = slot.gameObject.GetComponentInChildren<ItemDisplayController>();
             Sprite sprite = InventoryManager.GetSprite(slotIndex);
 
-            display.UpdateSprite(sprite);
+            display.UpdateImage(sprite);
         }
         #endregion
     }

@@ -12,6 +12,6 @@ namespace ProjectBorderland.InventorySystem
         // Variables
         //==============================================================================
         public string Name;
-        public Sprite Sprite;
+        public Sprite sprite;
     }
 }

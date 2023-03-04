@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace ProjectBorderland.UI
 {
@@ -10,7 +11,7 @@ namespace ProjectBorderland.UI
         //==============================================================================
         // Variables
         //==============================================================================
-        private SpriteRenderer spriteRenderer;
+        private Image image;
 
         
 
@@ -20,7 +21,7 @@ namespace ProjectBorderland.UI
         #region MonoBehaviour methods
         private void Awake()
         {
-            spriteRenderer = GetComponent<SpriteRenderer>();
+            image = GetComponent<Image>();
         }
         #endregion
 
@@ -30,10 +31,10 @@ namespace ProjectBorderland.UI
         /// <summary>
         /// Updates self sprite to a new one.
         /// </summary>
-        /// <param name="newSprite"></param>
-        public void UpdateSprite(Sprite newSprite)
+        /// <param name="newImage"></param>
+        public void UpdateImage(Sprite newSprite)
         {
-            spriteRenderer.sprite = newSprite;
+            image.sprite = newSprite;
         }
         #endregion
     }

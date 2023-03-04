@@ -38,9 +38,9 @@ namespace ProjectBorderland.InventorySystem
         #endregion
 
         public static Action OnInventoryChanged;
-        public int EquippedSlotIndex = 0;
-        private List<ItemSO> items = new List<ItemSO>();
-        public List<ItemSO> Items { get { return items; } }
+        public static int EquippedSlotIndex = 0;
+        private static List<ItemSO> items = new List<ItemSO>();
+        public static List<ItemSO> Items { get { return items; } }
         private TextMeshProUGUI debugText;
         
         
@@ -55,6 +55,18 @@ namespace ProjectBorderland.InventorySystem
         #region MonoBehaviour methods
         private void Awake()
         {
+            #region singletonDDOL
+            if (instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            #endregion
+
             debugText = DebugController.Instance.DebugText.transform.Find("Inventory").GetComponent<TextMeshProUGUI>();
         }
 
@@ -75,12 +87,12 @@ namespace ProjectBorderland.InventorySystem
         /// <param name="item"></param>
         public static void Add(ItemSO item)
         {
-            if ((instance.items.Count + 1) < instance.maxCapacity)
+            if (items.Count < instance.maxCapacity)
             {
-                instance.items.Add(item);
+                items.Add(item);
             }
 
-            instance.NotifyOnInventoryChanged();
+            NotifyOnInventoryChanged();
         }
 
 
@@ -91,8 +103,8 @@ namespace ProjectBorderland.InventorySystem
         /// <param name="item"></param>
         public static void Remove(ItemSO item)
         {
-            instance.items.Remove(item);
-            instance.NotifyOnInventoryChanged();
+            items.Remove(item);
+            NotifyOnInventoryChanged();
         }
 
 
@@ -103,8 +115,8 @@ namespace ProjectBorderland.InventorySystem
         /// <param name="item"></param>
         public static void RemoveAtIndex(int index)
         {
-            instance.items.RemoveAt(index);
-            instance.NotifyOnInventoryChanged();
+            items.RemoveAt(index);
+            NotifyOnInventoryChanged();
         }
 
 
@@ -116,14 +128,26 @@ namespace ProjectBorderland.InventorySystem
         {
             RemoveAtIndex(index);
             Add(newItem);
-            instance.NotifyOnInventoryChanged();
+            NotifyOnInventoryChanged();
         }
 
 
 
+        /// <summary>
+        /// Get sprite from item.
+        /// </summary>
+        /// <param name="index"></param>
         public static Sprite GetSprite(int index)
         {
-            return instance.Items[index].Sprite;
+            if (index < items.Count)
+            {
+                return items[index].sprite;
+            }
+
+            else
+            {
+                return null;
+            }
         }
 
 
@@ -132,7 +156,7 @@ namespace ProjectBorderland.InventorySystem
         /// <summary>
         /// Notifies when inventory changed.
         /// </summary>
-        private void NotifyOnInventoryChanged()
+        private static void NotifyOnInventoryChanged()
         {
             OnInventoryChanged?.Invoke();
         }

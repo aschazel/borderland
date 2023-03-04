@@ -38,5 +38,25 @@ namespace ProjectBorderland.DeveloperTools
 
         [Header("Object Attachments")]
         public GameObject DebugText;
+
+
+
+        //==============================================================================
+        // Functions
+        //==============================================================================
+        private void Awake()
+        {
+            #region singletonDDOL
+            if (instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            #endregion
+        }
     }
 }
