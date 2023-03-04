@@ -21,6 +21,7 @@ namespace ProjectBorderland.Core
 
         [Header("Object References")]
         [SerializeField] private Transform orientation;
+        [SerializeField] private Transform mainCamera;
 
 
         
@@ -46,7 +47,7 @@ namespace ProjectBorderland.Core
         private void Update()
         {
             GetInput();
-            RotatePlayer();
+            RotateCamera();
             SetDebugText();
         }
         #endregion
@@ -68,14 +69,14 @@ namespace ProjectBorderland.Core
         /// <summary>
         /// Rotates player around input axis.
         /// </summary>
-        private void RotatePlayer()
+        private void RotateCamera()
         {
             yRotation += horizontalAxis;
             xRotation -= verticalAxis;
 
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            mainCamera.rotation = Quaternion.Euler(xRotation, yRotation, 0);
             orientation.rotation = Quaternion.Euler(0, yRotation, 0);
         }
         #endregion
