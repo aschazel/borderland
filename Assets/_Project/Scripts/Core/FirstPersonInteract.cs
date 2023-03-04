@@ -1,5 +1,7 @@
+using TMPro;
 using UnityEngine;
 using ProjectBorderland.Interactable;
+using ProjectBorderland.DeveloperTools;
 
 namespace ProjectBorderland.Core
 {
@@ -11,6 +13,8 @@ namespace ProjectBorderland.Core
         //==============================================================================
         // Variables
         //==============================================================================
+        private TextMeshProUGUI debugText;
+        
         [Header("Object References")]
         [SerializeField] private Transform cameraTransform;
 
@@ -23,9 +27,17 @@ namespace ProjectBorderland.Core
         // Functions
         //==============================================================================
         #region MonoBehaviour methods
+        private void Awake()
+        {
+            debugText = DebugController.Instance.DebugText.transform.Find("FirstPersonInteract").GetComponent<TextMeshProUGUI>();
+        }
+
+
+
         private void Update()
         {
             Interact();
+            SetDebugText();
         }
         #endregion
 
@@ -39,7 +51,12 @@ namespace ProjectBorderland.Core
         {
             if (Input.GetKeyDown(InputController.Instance.Interact))
             {
-                DetectInteractable();
+                InteractableItem item = DetectInteractable();
+                
+                if (item != null)
+                {
+                    item.Interact();
+                }
             }
         }
 
@@ -48,7 +65,7 @@ namespace ProjectBorderland.Core
         /// <summary>
         /// Detects interactable item on sight.
         /// </summary>
-        private void DetectInteractable()
+        private InteractableItem DetectInteractable()
         {
             RaycastHit hit;
             Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactDistance);
@@ -58,8 +75,43 @@ namespace ProjectBorderland.Core
                 if(hit.collider.gameObject.GetComponent<InteractableItem>() != null)
                 {
                     InteractableItem item = hit.collider.gameObject.GetComponent<InteractableItem>();
-                    item.Interact();
+                    return item;
                 }
+
+                return null;
+            }
+
+            return null;
+        }
+        #endregion
+
+
+
+        #region Debug
+        /// <summary>
+        /// Sets debug text.
+        /// </summary>
+        private void SetDebugText()
+        {
+            if (DebugController.Instance.IsDebugMode)
+            {
+                string text;
+                InteractableItem item = DetectInteractable();
+                string itemName = "";
+
+                if (item != null)
+                {
+                    itemName = item.name;
+                }
+
+                else
+                {
+                    itemName = "None";
+                };
+
+                text = $"Interactable: \"{itemName}\"";
+
+                debugText.SetText(text);
             }
         }
         #endregion

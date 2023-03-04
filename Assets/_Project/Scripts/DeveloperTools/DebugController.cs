@@ -3,7 +3,7 @@ using UnityEngine;
 namespace ProjectBorderland.DeveloperTools
 {
     /// <summary>
-    /// Handles game debug mode.
+    /// Handles game debug.
     /// </summary>
     public class DebugController : MonoBehaviour
     {

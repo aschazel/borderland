@@ -67,7 +67,7 @@ namespace ProjectBorderland.InventorySystem
             }
             #endregion
 
-            debugText = DebugController.Instance.DebugText.transform.Find("Inventory").GetComponent<TextMeshProUGUI>();
+            debugText = DebugController.Instance.DebugText.transform.Find("InventoryManager").GetComponent<TextMeshProUGUI>();
         }
 
 
