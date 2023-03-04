@@ -3,7 +3,7 @@ using UnityEngine;
 namespace ProjectBorderland.DeveloperTools
 {
     /// <summary>
-    /// Handles game debug mode.
+    /// Handles game debug.
     /// </summary>
     public class DebugController : MonoBehaviour
     {
@@ -34,9 +34,29 @@ namespace ProjectBorderland.DeveloperTools
         #endregion
 
         [Header("Attribute Settings")]
-        public bool IsDebugMode = false;
+        public bool IsDebugMode;
 
         [Header("Object Attachments")]
         public GameObject DebugText;
+
+
+
+        //==============================================================================
+        // Functions
+        //==============================================================================
+        private void Awake()
+        {
+            #region singletonDDOL
+            if (instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            #endregion
+        }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -36,9 +37,15 @@ namespace ProjectBorderland.InventorySystem
         }
         #endregion
 
-        [SerializeField] private List<ItemSO> items = new List<ItemSO>();
-        public List<ItemSO> Items { get { return items; } }
+        public static Action OnInventoryChanged;
+        public static int EquippedSlotIndex = 0;
+        private static List<ItemSO> items = new List<ItemSO>();
+        public static List<ItemSO> Items { get { return items; } }
         private TextMeshProUGUI debugText;
+        
+        
+        [Header("Attribute Configurations")]
+        [SerializeField] private int maxCapacity = 8;
         
 
 
@@ -48,7 +55,19 @@ namespace ProjectBorderland.InventorySystem
         #region MonoBehaviour methods
         private void Awake()
         {
-            debugText = DebugController.Instance.DebugText.transform.Find("Inventory").GetComponent<TextMeshProUGUI>();
+            #region singletonDDOL
+            if (instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            #endregion
+
+            debugText = DebugController.Instance.DebugText.transform.Find("InventoryManager").GetComponent<TextMeshProUGUI>();
         }
 
 
@@ -91,9 +110,14 @@ namespace ProjectBorderland.InventorySystem
         /// Adds an item to inventory.
         /// </summary>
         /// <param name="item"></param>
-        public void Add(ItemSO item)
+        public static void Add(ItemSO item)
         {
-            items.Add(item);
+            if (items.Count < instance.maxCapacity)
+            {
+                items.Add(item);
+            }
+
+            NotifyOnInventoryChanged();
         }
 
 
@@ -102,10 +126,66 @@ namespace ProjectBorderland.InventorySystem
         /// Remove an item from inventory.
         /// </summary>
         /// <param name="item"></param>
-        public void Remove(ItemSO item)
+        public static void Remove(ItemSO item)
         {
             items.Remove(item);
+            NotifyOnInventoryChanged();
         }
+
+
+
+        /// <summary>
+        /// Remove an item from inventory by index.
+        /// </summary>
+        /// <param name="item"></param>
+        public static void RemoveAtIndex(int index)
+        {
+            items.RemoveAt(index);
+            NotifyOnInventoryChanged();
+        }
+
+
+
+        /// <summary>
+        /// Removes an item in inventory by index and add a new one.
+        /// </summary>
+        public static void SwapItem(int index, ItemSO newItem)
+        {
+            RemoveAtIndex(index);
+            Add(newItem);
+            NotifyOnInventoryChanged();
+        }
+
+
+
+        /// <summary>
+        /// Get sprite from item.
+        /// </summary>
+        /// <param name="index"></param>
+        public static Sprite GetSprite(int index)
+        {
+            if (index < items.Count)
+            {
+                return items[index].sprite;
+            }
+
+            else
+            {
+                return null;
+            }
+        }
+
+
+
+        #region observer
+        /// <summary>
+        /// Notifies when inventory changed.
+        /// </summary>
+        private static void NotifyOnInventoryChanged()
+        {
+            OnInventoryChanged?.Invoke();
+        }
+        #endregion
         #endregion
 
 

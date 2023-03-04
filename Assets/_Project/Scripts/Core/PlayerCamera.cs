@@ -19,7 +19,7 @@ namespace ProjectBorderland.Core
         private float yRotation;
         private TextMeshProUGUI debugText;
 
-        [Header("Object Attachments")]
+        [Header("Object References")]
         [SerializeField] private Transform orientation;
 
 

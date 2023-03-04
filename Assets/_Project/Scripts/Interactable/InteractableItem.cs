@@ -1,39 +1,44 @@
 using UnityEngine;
 
-namespace ProjectBorderland.Core
+namespace ProjectBorderland.Interactable
 {
     /// <summary>
-    /// Moves camera to player camera position.
+    /// Handles interactable item behaviour.
     /// </summary>
-    public class MoveCamera : MonoBehaviour
+    public class InteractableItem : MonoBehaviour
     {
         //==============================================================================
         // Variables
         //==============================================================================
+        private GiveItemBehaviour giveItemBehaviour;
+
         [Header("Object References")]
-        [SerializeField] private Transform cameraTransform;
+        [SerializeField] private string dialog;
 
-
+        
         
         //==============================================================================
         // Functions
         //==============================================================================
         #region MonoBehaviour methods
-        private void Update()
+        private void Awake()
         {
-            Move();
+            giveItemBehaviour = GetComponent<GiveItemBehaviour>();
         }
         #endregion
 
-
-
+        
+        
         #region ProjectBorderland methods
         /// <summary>
-        /// Moves camera to player camera position.
+        /// Interacts with this item.
         /// </summary>
-        private void Move()
+        public void Interact()
         {
-            transform.position = cameraTransform.position;
+            if (giveItemBehaviour != null)
+            {
+                giveItemBehaviour.Give();
+            }
         }
         #endregion
     }
