@@ -38,11 +38,11 @@ namespace ProjectBorderland.InventorySystem
         #endregion
 
         public static Action OnInventoryChanged;
-
+        public int EquippedSlotIndex = 0;
         private List<ItemSO> items = new List<ItemSO>();
         public List<ItemSO> Items { get { return items; } }
         private TextMeshProUGUI debugText;
-        public int equippedSlotIndex = 0;
+        
         
         [Header("Attribute Configurations")]
         [SerializeField] private int maxCapacity = 8;

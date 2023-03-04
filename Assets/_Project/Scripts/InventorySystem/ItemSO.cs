@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace ProjectBorderland.InventorySystem
@@ -12,7 +11,6 @@ namespace ProjectBorderland.InventorySystem
         //==============================================================================
         // Variables
         //==============================================================================
-        public int Id;
         public string Name;
         public Sprite Sprite;
     }

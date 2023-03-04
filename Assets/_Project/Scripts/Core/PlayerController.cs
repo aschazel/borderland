@@ -17,11 +17,11 @@ namespace ProjectBorderland.Core
         private Rigidbody rb;
         private TextMeshProUGUI debugText;
 
+        [Header("Object References")]
+        [SerializeField] private Transform orientation;
+
         [Header("Attribute Settings")]
         [SerializeField] private float moveSpeed;
-
-        [Header("Object Attachments")]
-        [SerializeField] private Transform orientation;
 
 
 

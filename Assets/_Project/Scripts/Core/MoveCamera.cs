@@ -10,7 +10,7 @@ namespace ProjectBorderland.Core
         //==============================================================================
         // Variables
         //==============================================================================
-        [Header("Object Attachments")]
+        [Header("Object References")]
         [SerializeField] private Transform cameraTransform;
 
 
