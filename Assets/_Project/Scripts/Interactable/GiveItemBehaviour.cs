@@ -11,8 +11,14 @@ namespace ProjectBorderland.Interactable
         //==============================================================================
         // Variables
         //==============================================================================
+        private int giveCount;
+        
         [Header("Object References")]
         [SerializeField] private ItemSO item;
+        
+        [Header("Attribute Configurations")]
+        [SerializeField] private int maxGiveCount = 1;
+        [SerializeField] private bool isInfiniteGive;
 
         
         
@@ -25,7 +31,11 @@ namespace ProjectBorderland.Interactable
         /// </summary>
         public void Give()
         {
-            InventoryManager.Add(item);
+            if (giveCount < maxGiveCount || isInfiniteGive)
+            {
+                InventoryManager.Add(item);
+                giveCount++;
+            }
         }
         #endregion
     }

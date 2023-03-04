@@ -34,7 +34,7 @@ namespace ProjectBorderland.DeveloperTools
         #endregion
 
         [Header("Attribute Settings")]
-        public bool IsDebugMode = false;
+        public bool IsDebugMode;
 
         [Header("Object Attachments")]
         public GameObject DebugText;

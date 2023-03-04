@@ -37,7 +37,7 @@ namespace ProjectBorderland.Core
         /// </summary>
         private void Interact()
         {
-            if (Input.GetKey(InputController.Instance.Interact))
+            if (Input.GetKeyDown(InputController.Instance.Interact))
             {
                 DetectInteractable();
             }
