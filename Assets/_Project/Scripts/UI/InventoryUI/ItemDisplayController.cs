@@ -23,6 +23,13 @@ namespace ProjectBorderland.UI
         {
             image = GetComponent<Image>();
         }
+
+
+
+        private void Update()
+        {
+            HideImage();
+        }
         #endregion
 
 
@@ -35,6 +42,24 @@ namespace ProjectBorderland.UI
         public void UpdateImage(Sprite newSprite)
         {
             image.sprite = newSprite;
+        }
+
+
+
+        /// <summary>
+        /// Hide image if item is empty.
+        /// </summary>
+        private void HideImage()
+        {
+            if (image.sprite == null)
+            {
+                image.enabled = false;
+            }
+
+            else
+            {
+                image.enabled = true;
+            }
         }
         #endregion
     }
