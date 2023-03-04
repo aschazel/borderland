@@ -61,7 +61,27 @@ namespace ProjectBorderland.UI
         /// </summary>
         private void Refresh()
         {
-            
+            int slotIndex = 0;
+
+            foreach (Transform slot in slots)
+            {
+                AssignSprite(slot, slotIndex);
+                slotIndex++;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Updates slot sprite.
+        /// </summary>
+        /// <param name="slot"></param>
+        private void AssignSprite(Transform slot, int slotIndex)
+        {
+            ItemDisplayController display = slot.gameObject.GetComponent<ItemDisplayController>();
+            Sprite sprite = InventoryManager.GetSprite(slotIndex);
+
+            display.UpdateSprite(sprite);
         }
         #endregion
     }

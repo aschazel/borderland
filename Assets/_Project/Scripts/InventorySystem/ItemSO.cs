@@ -14,6 +14,6 @@ namespace ProjectBorderland.InventorySystem
         //==============================================================================
         public int Id;
         public string Name;
-        public Sprite Icon;
+        public Sprite Sprite;
     }
 }

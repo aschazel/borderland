@@ -38,9 +38,14 @@ namespace ProjectBorderland.InventorySystem
         #endregion
 
         public static Action OnInventoryChanged;
-        [SerializeField] private List<ItemSO> items = new List<ItemSO>();
+
+        private List<ItemSO> items = new List<ItemSO>();
         public List<ItemSO> Items { get { return items; } }
         private TextMeshProUGUI debugText;
+        public int equippedSlotIndex = 0;
+        
+        [Header("Attribute Configurations")]
+        [SerializeField] private int maxCapacity = 8;
         
 
 
@@ -68,10 +73,14 @@ namespace ProjectBorderland.InventorySystem
         /// Adds an item to inventory.
         /// </summary>
         /// <param name="item"></param>
-        public void Add(ItemSO item)
+        public static void Add(ItemSO item)
         {
-            items.Add(item);
-            NotifyOnInventoryChanged();
+            if ((instance.items.Count + 1) < instance.maxCapacity)
+            {
+                instance.items.Add(item);
+            }
+
+            instance.NotifyOnInventoryChanged();
         }
 
 
@@ -80,14 +89,49 @@ namespace ProjectBorderland.InventorySystem
         /// Remove an item from inventory.
         /// </summary>
         /// <param name="item"></param>
-        public void Remove(ItemSO item)
+        public static void Remove(ItemSO item)
         {
-            items.Remove(item);
-            NotifyOnInventoryChanged();
+            instance.items.Remove(item);
+            instance.NotifyOnInventoryChanged();
         }
-        
+
+
+
+        /// <summary>
+        /// Remove an item from inventory by index.
+        /// </summary>
+        /// <param name="item"></param>
+        public static void RemoveAtIndex(int index)
+        {
+            instance.items.RemoveAt(index);
+            instance.NotifyOnInventoryChanged();
+        }
+
+
+
+        /// <summary>
+        /// Removes an item in inventory by index and add a new one.
+        /// </summary>
+        public static void SwapItem(int index, ItemSO newItem)
+        {
+            RemoveAtIndex(index);
+            Add(newItem);
+            instance.NotifyOnInventoryChanged();
+        }
+
+
+
+        public static Sprite GetSprite(int index)
+        {
+            return instance.Items[index].Sprite;
+        }
+
+
 
         #region observer
+        /// <summary>
+        /// Notifies when inventory changed.
+        /// </summary>
         private void NotifyOnInventoryChanged()
         {
             OnInventoryChanged?.Invoke();
