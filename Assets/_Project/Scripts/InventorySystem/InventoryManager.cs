@@ -53,6 +53,13 @@ namespace ProjectBorderland.InventorySystem
 
 
 
+        private void Update()
+        {
+            ScrollInventory();
+        }
+
+
+
         private void FixedUpdate()
         {
             SetDebugText();
@@ -62,6 +69,24 @@ namespace ProjectBorderland.InventorySystem
 
 
         #region ProjectBorderland methods
+        /// <summary>
+        /// Scrolls throughout inventory with mouse scroll wheel.
+        /// </summary>
+        private void ScrollInventory()
+        {
+            if (Input.GetAxis("Mouse ScrollWheel") > 0f && EquippedSlotIndex < maxCapacity - 1)
+            {
+                EquippedSlotIndex++;
+            }
+
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0f && EquippedSlotIndex > 0)
+            {
+                EquippedSlotIndex--;
+            }
+        }
+
+
+
         /// <summary>
         /// Adds an item to inventory.
         /// </summary>
@@ -104,7 +129,18 @@ namespace ProjectBorderland.InventorySystem
                     text += $" \"{itemName}\",";
                 }
 
-                text += " }";
+                text += " }\n";
+                text += $"Equipped slot index: {EquippedSlotIndex}\n";
+
+                try
+                {
+                    text += $"Equipped: \"{items[EquippedSlotIndex].name}\"";
+                }
+                
+                catch (ArgumentOutOfRangeException)
+                {
+                    text += $"Equipped: \"None\"";
+                }
                 
                 debugText.SetText(text);
             }
