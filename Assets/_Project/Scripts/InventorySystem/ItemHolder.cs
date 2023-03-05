@@ -97,6 +97,7 @@ namespace ProjectBorderland.InventorySystem
             instantiatedItem.AddComponent<Rigidbody>();
             instantiatedItem.AddComponent<PickableBehaviour>().Item = item;
             instantiatedItem.AddComponent<InteractableItem>();
+            instantiatedItem.name = item.Name;
             
 
             return instantiatedItem;
