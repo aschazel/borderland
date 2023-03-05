@@ -14,6 +14,9 @@ namespace ProjectBorderland.UI
         //==============================================================================
         private List<Transform> slots = new List<Transform>();
 
+        [Header("Object References")]
+        [SerializeField] private RectTransform selectedSlot;
+
         
 
         //==============================================================================
@@ -30,6 +33,7 @@ namespace ProjectBorderland.UI
         private void OnEnable()
         {
             InventoryManager.OnInventoryChanged += Refresh;
+            InventoryManager.OnEquippedChanged += SelectShift;
         }
 
 
@@ -37,6 +41,7 @@ namespace ProjectBorderland.UI
         private void OnDisable()
         {
             InventoryManager.OnInventoryChanged -= Refresh;
+            InventoryManager.OnEquippedChanged -= SelectShift;
         }
         #endregion
 
@@ -82,6 +87,19 @@ namespace ProjectBorderland.UI
             Sprite sprite = InventoryManager.GetSprite(slotIndex);
 
             display.UpdateImage(sprite);
+        }
+
+
+
+        /// <summary>
+        /// Shift the selected slot UI.
+        /// </summary>
+        private void SelectShift()
+        {
+            int equippedSlotIndex = InventoryManager.EquippedSlotIndex;
+            Transform equippedSlot = slots[equippedSlotIndex];
+
+            selectedSlot.anchoredPosition = equippedSlot.gameObject.GetComponent<RectTransform>().anchoredPosition;
         }
         #endregion
     }
