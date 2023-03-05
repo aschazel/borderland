@@ -55,6 +55,7 @@ namespace ProjectBorderland.UI
         {
             foreach (Transform child in transform)
             {
+                if (child.gameObject != selectedSlot.gameObject)
                 slots.Add(child);
             }
         }
