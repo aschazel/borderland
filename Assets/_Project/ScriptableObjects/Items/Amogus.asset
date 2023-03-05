@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44c4f685d1d3201488b3eb26e8513c2f, type: 3}
-  m_Name: Amogus
+  m_Name: amogus
   m_EditorClassIdentifier: 
   Name: Amogus
   Sprite: {fileID: 21300000, guid: b994feffc60ac5e4eb482dfcf8481f37, type: 3}

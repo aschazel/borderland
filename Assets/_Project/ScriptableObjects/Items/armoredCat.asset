@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44c4f685d1d3201488b3eb26e8513c2f, type: 3}
-  m_Name: pickaxe
+  m_Name: armoredCat
   m_EditorClassIdentifier: 
-  Name: Pickaxe
-  Sprite: {fileID: 21300000, guid: ddef369abc72bda4db217e674fe85b34, type: 3}
-  ModelObject: {fileID: 2810501456085246361, guid: 2c4a4637f08e0cc459e1329cf247dc59, type: 3}
+  Name: Armored Cat
+  Sprite: {fileID: 21300000, guid: 26ee1b08178993149a7251ee41f0f961, type: 3}
+  ModelObject: {fileID: 1752930453590647922, guid: e3ef45bf00dda7841be61640758fe74c, type: 3}
+  IsNullItem: 0
