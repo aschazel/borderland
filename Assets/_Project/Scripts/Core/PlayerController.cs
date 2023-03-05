@@ -58,12 +58,12 @@ namespace ProjectBorderland.Core
             horizontalAxis = Input.GetAxis("Horizontal");
             verticalAxis = Input.GetAxis("Vertical");
 
-            if (Input.GetKeyDown(InputController.Instance.Sprint))
+            if (Input.GetKey(InputController.Instance.Sprint))
             {
                 moveSpeed = sprintSpeed;
             }
 
-            else if (Input.GetKeyUp(InputController.Instance.Sprint))
+            else
             {
                 moveSpeed = originalMoveSpeed;
             }
