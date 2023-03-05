@@ -35,25 +35,33 @@ namespace ProjectBorderland.InventorySystem
 
         #region ProjectBorderland methods
         /// <summary>
-        /// Changes item on player hand.
+        /// Gets input from Unity Input Manager.
         /// </summary>
-        private void ChangeItemOnHand()
-        {           
-            GameObject displayModel = GetModelFromEquipped();
-            DisplayModel(displayModel);
+        private void GetInput()
+        {
+
         }
 
 
 
         /// <summary>
-        /// Gets currently equipped item model.
+        /// Throws item on hand forward.
         /// </summary>
-        private GameObject GetModelFromEquipped()
+        public void Throw()
         {
-            int equippedSlotIndex = InventoryManager.EquippedSlotIndex;
-            GameObject item = InventoryManager.GetModel(equippedSlotIndex);
 
-            return item;
+        }
+
+
+
+        /// <summary>
+        /// Changes item on player hand.
+        /// </summary>
+        private void ChangeItemOnHand()
+        {   
+            int equippedSlotIndex = InventoryManager.EquippedSlotIndex;
+            GameObject displayModel = InventoryManager.GetModel(equippedSlotIndex);
+            DisplayModel(displayModel);
         }
 
 
@@ -68,12 +76,12 @@ namespace ProjectBorderland.InventorySystem
                 if (itemOnHand != null)
                 {
                     Destroy(itemOnHand);
-                    InstantiateModel(item);
+                    itemOnHand = Instantiate(item, transform.position, transform.rotation, transform);
                 }
 
                 else
                 {
-                    InstantiateModel(item);
+                    itemOnHand = Instantiate(item, transform.position, transform.rotation, transform);
                 }    
             }
 
@@ -84,16 +92,6 @@ namespace ProjectBorderland.InventorySystem
                     Destroy(itemOnHand);
                 }
             }
-        }
-
-
-
-        /// <summary>
-        /// Instantiate model.
-        /// </summary>
-        private void InstantiateModel(GameObject item)
-        {
-            itemOnHand = Instantiate(item, transform.position, transform.rotation, transform);
         }
         #endregion
     }

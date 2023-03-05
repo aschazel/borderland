@@ -74,7 +74,7 @@ namespace ProjectBorderland.InventorySystem
 
         private void Update()
         {
-            ScrollInventory();
+            GetInput();
         }
 
 
@@ -89,17 +89,43 @@ namespace ProjectBorderland.InventorySystem
 
         #region ProjectBorderland methods
         /// <summary>
-        /// Scrolls throughout inventory with mouse scroll wheel.
+        /// Gets input from Unity Input Manager.
         /// </summary>
-        private void ScrollInventory()
+        private void GetInput()
         {
-            if (Input.GetAxis("Mouse ScrollWheel") > 0f && EquippedSlotIndex < maxCapacity - 1)
+            if (Input.GetAxis("Mouse ScrollWheel") > 0f)
+            {
+                IncrementEquippedIndex();
+            }
+
+            else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
+            {
+                DecrementEquippedIndex();
+            }
+        }
+
+
+
+        /// <summary>
+        /// Increments the equipped item slot index.
+        /// </summary>
+        private void IncrementEquippedIndex()
+        {
+            if (EquippedSlotIndex < maxCapacity - 1)
             {
                 EquippedSlotIndex++;
                 NotifyOnEquippedChanged();
             }
+        }
 
-            else if (Input.GetAxis("Mouse ScrollWheel") < 0f && EquippedSlotIndex > 0)
+
+
+        /// <summary>
+        /// Decrements the equipped item slot index.
+        /// </summary>
+        private void DecrementEquippedIndex()
+        {
+            if (EquippedSlotIndex > 0)
             {
                 EquippedSlotIndex--;
                 NotifyOnEquippedChanged();
