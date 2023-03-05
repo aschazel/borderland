@@ -16,12 +16,13 @@ namespace ProjectBorderland.Core
         private float verticalAxis;
         private Rigidbody rb;
         private TextMeshProUGUI debugText;
+        private float moveSpeed;
 
         [Header("Object References")]
         [SerializeField] private Transform orientation;
 
         [Header("Attribute Settings")]
-        [SerializeField] private float moveSpeed;
+        [SerializeField] private float originalMoveSpeed;
         [SerializeField] private float sprintSpeed;
 
 
@@ -60,6 +61,11 @@ namespace ProjectBorderland.Core
             if (Input.GetKeyDown(InputController.Instance.Sprint))
             {
                 moveSpeed = sprintSpeed;
+            }
+
+            else if (Input.GetKeyUp(InputController.Instance.Sprint))
+            {
+                moveSpeed = originalMoveSpeed;
             }
         }
 

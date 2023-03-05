@@ -1505,7 +1505,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 1007769718}
-  moveSpeed: 2
+  originalMoveSpeed: 2
   sprintSpeed: 4
 --- !u!114 &1347265407
 MonoBehaviour:

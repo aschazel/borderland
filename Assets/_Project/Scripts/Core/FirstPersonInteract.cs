@@ -37,7 +37,6 @@ namespace ProjectBorderland.Core
         private void Update()
         {
             GetInput();
-            Interact();
             SetDebugText();
         }
         #endregion
