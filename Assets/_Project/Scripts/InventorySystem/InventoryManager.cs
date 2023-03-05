@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -68,6 +69,7 @@ namespace ProjectBorderland.InventorySystem
             #endregion
 
             debugText = DebugController.Instance.DebugText.transform.Find("InventoryManager").GetComponent<TextMeshProUGUI>();
+            items = Enumerable.Repeat(CreateNullItem(), maxCapacity).ToList();
         }
 
 
@@ -88,6 +90,19 @@ namespace ProjectBorderland.InventorySystem
 
 
         #region ProjectBorderland methods
+        /// <summary>
+        /// Creates null item for empty reference.
+        /// </summary>
+        private ItemSO CreateNullItem()
+        {
+            ItemSO nullItem = ScriptableObject.CreateInstance<ItemSO>();
+            nullItem.IsNullItem = true;
+
+            return nullItem;
+        }
+
+
+
         /// <summary>
         /// Gets input from Unity Input Manager.
         /// </summary>
@@ -135,28 +150,13 @@ namespace ProjectBorderland.InventorySystem
 
 
         /// <summary>
-        /// Adds an item to inventory.
+        /// Adds an item to inventory by index.
         /// </summary>
         /// <param name="item"></param>
-        public static void Add(ItemSO item)
+        public static void Add(ItemSO item, int index)
         {
-            if (items.Count < instance.maxCapacity)
-            {
-                items.Add(item);
-            }
+            items[index] = item;
 
-            NotifyOnInventoryChanged();
-        }
-
-
-
-        /// <summary>
-        /// Remove an item from inventory.
-        /// </summary>
-        /// <param name="item"></param>
-        public static void Remove(ItemSO item)
-        {
-            items.Remove(item);
             NotifyOnInventoryChanged();
         }
 
@@ -166,21 +166,10 @@ namespace ProjectBorderland.InventorySystem
         /// Remove an item from inventory by index.
         /// </summary>
         /// <param name="item"></param>
-        public static void RemoveAtIndex(int index)
+        public static void Remove(int index)
         {
-            items.RemoveAt(index);
-            NotifyOnInventoryChanged();
-        }
-
-
-
-        /// <summary>
-        /// Removes an item in inventory by index and add a new one.
-        /// </summary>
-        public static void SwapItem(int index, ItemSO newItem)
-        {
-            RemoveAtIndex(index);
-            Add(newItem);
+            ItemSO nullItem = instance.CreateNullItem();
+            items[index] = nullItem;
             NotifyOnInventoryChanged();
         }
 
@@ -192,9 +181,9 @@ namespace ProjectBorderland.InventorySystem
         /// <param name="index"></param>
         public static Sprite GetSprite(int index)
         {
-            if (index < items.Count)
+            if (!items[index].IsNullItem)
             {
-                return items[index].sprite;
+                return items[index].Sprite;
             }
 
             else
@@ -206,14 +195,14 @@ namespace ProjectBorderland.InventorySystem
 
 
         /// <summary>
-        /// Get model from item.
+        /// Get model object from item.
         /// </summary>
         /// <param name="index"></param>
-        public static GameObject GetModel(int index)
+        public static GameObject GetModelObject(int index)
         {
-            if (index < items.Count)
+            if (!items[index].IsNullItem)
             {
-                return items[index].model;
+                return items[index].ModelObject;
             }
 
             else

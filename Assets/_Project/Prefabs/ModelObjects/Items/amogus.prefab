@@ -11,7 +11,8 @@ GameObject:
   - component: {fileID: 8902582814974105863}
   - component: {fileID: 5486378801657566882}
   - component: {fileID: 7766315970885886568}
-  m_Layer: 0
+  - component: {fileID: -5594027249884675789}
+  m_Layer: 3
   m_Name: amogus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -85,3 +86,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &-5594027249884675789
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8126608408153883581}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.030233135, y: 0.041301608, z: 0.025244288}
+  m_Center: {x: 0.00012255738, y: 0.021190122, z: 0.0008684206}

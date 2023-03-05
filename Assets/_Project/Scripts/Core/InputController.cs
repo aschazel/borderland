@@ -35,6 +35,7 @@ namespace ProjectBorderland.Core
         #endregion
 
         public KeyCode Interact;
+        public KeyCode Throw;
         public KeyCode Forward;
         public KeyCode Backward;
         public KeyCode Right;
@@ -61,6 +62,7 @@ namespace ProjectBorderland.Core
         private void ParseKey()
         {
             Interact = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("interactKey", "Mouse0"));
+            Throw = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("throwKey", "G"));
         }
         #endregion
     }

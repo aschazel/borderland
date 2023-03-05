@@ -1,6 +1,7 @@
 using UnityEngine;
+using ProjectBorderland.InventorySystem;
 
-namespace ProjectBorderland.InventorySystem
+namespace ProjectBorderland.Core
 {
     /// <summary>
     /// Handles player first person item holder.
@@ -11,6 +12,8 @@ namespace ProjectBorderland.InventorySystem
         // Variables
         //==============================================================================
         private GameObject itemOnHand;
+        private static ItemHolder instance;
+        public static ItemHolder Instance { get { return instance; } }
 
 
 
@@ -18,6 +21,20 @@ namespace ProjectBorderland.InventorySystem
         // Functions
         //==============================================================================
         #region MonoBehaviour methods
+        private void Awake()
+        {
+            instance = this;
+        }
+
+
+
+        private void Update()
+        {
+            GetInput();
+        }
+
+
+
         private void OnEnable()
         {
             InventoryManager.OnEquippedChanged += ChangeItemOnHand;
@@ -39,7 +56,10 @@ namespace ProjectBorderland.InventorySystem
         /// </summary>
         private void GetInput()
         {
-
+            if (Input.GetKeyDown(InputController.Instance.Throw))
+            {
+                Throw();
+            }
         }
 
 
@@ -49,7 +69,28 @@ namespace ProjectBorderland.InventorySystem
         /// </summary>
         public void Throw()
         {
+            if (itemOnHand != null)
+            {
+                GameObject throwedItem = Instantiate(itemOnHand, transform.position, transform.rotation);
+                Destroy(itemOnHand);
 
+                throwedItem.AddComponent<Rigidbody>().AddForce(transform.forward * 5f, ForceMode.Impulse);
+
+                int equippedSlotIndex = InventoryManager.EquippedSlotIndex;
+                InventoryManager.Remove(equippedSlotIndex);
+            }
+        }
+
+
+
+        /// <summary>
+        /// Drops an item on ground.
+        /// </summary>
+        public static void DropItem(ItemSO item)
+        {
+            GameObject itemModelObject = item.ModelObject;
+            GameObject droppedItem = Instantiate(itemModelObject, instance.transform.position, instance.transform.rotation);
+            droppedItem.AddComponent<Rigidbody>();
         }
 
 
@@ -60,16 +101,16 @@ namespace ProjectBorderland.InventorySystem
         private void ChangeItemOnHand()
         {   
             int equippedSlotIndex = InventoryManager.EquippedSlotIndex;
-            GameObject displayModel = InventoryManager.GetModel(equippedSlotIndex);
-            DisplayModel(displayModel);
+            GameObject displayModel = InventoryManager.GetModelObject(equippedSlotIndex);
+            DisplayObject(displayModel);
         }
 
 
 
         /// <summary>
-        /// Displays item into item holder.
+        /// Displays object into item holder.
         /// </summary>
-        private void DisplayModel(GameObject item)
+        private void DisplayObject(GameObject item)
         {
             if (item != null)
             {

@@ -12,7 +12,8 @@ namespace ProjectBorderland.InventorySystem
         // Variables
         //==============================================================================
         public string Name;
-        public Sprite sprite;
-        public GameObject model;
+        public Sprite Sprite;
+        public GameObject ModelObject;
+        [HideInInspector] public bool IsNullItem;
     }
 }

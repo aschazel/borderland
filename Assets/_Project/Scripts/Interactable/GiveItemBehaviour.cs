@@ -1,5 +1,6 @@
 using UnityEngine;
 using ProjectBorderland.InventorySystem;
+using ProjectBorderland.Core;
 
 namespace ProjectBorderland.Interactable
 {
@@ -33,7 +34,18 @@ namespace ProjectBorderland.Interactable
         {
             if (giveCount < maxGiveCount || isInfiniteGive)
             {
-                InventoryManager.Add(item);
+                int equippedSlotIndex = InventoryManager.EquippedSlotIndex;
+
+                if (InventoryManager.Items[equippedSlotIndex].IsNullItem)
+                {
+                    InventoryManager.Add(item, equippedSlotIndex);
+                }
+
+                else
+                {
+                    ItemHolder.DropItem(item);
+                }
+
                 giveCount++;
             }
         }

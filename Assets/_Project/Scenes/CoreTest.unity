@@ -823,6 +823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Interact: 0
+  Throw: 0
   Forward: 0
   Backward: 0
   Right: 0
@@ -836,7 +837,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 819979370}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: CameraTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1210,7 +1211,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1007769718}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1381,7 +1382,7 @@ GameObject:
   - component: {fileID: 1347265406}
   - component: {fileID: 1347265407}
   - component: {fileID: 1347265408}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1689,7 +1690,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1466567144}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 68665921fe0d7394694852e385d1deec, type: 3}
+  m_Script: {fileID: 11500000, guid: ff9b3c9a38992e34296a70b1f4385e21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1494704667
@@ -2196,7 +2197,7 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 2}
-  m_ConstrainProportionsScale: 1
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1029647831}
   m_RootOrder: 2
