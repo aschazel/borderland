@@ -38,11 +38,11 @@ namespace ProjectBorderland.InventorySystem
         #endregion
 
         public static Action OnInventoryChanged;
+        public static Action OnEquippedChanged;
         public static int EquippedSlotIndex = 0;
         private static List<ItemSO> items = new List<ItemSO>();
         public static List<ItemSO> Items { get { return items; } }
         private TextMeshProUGUI debugText;
-        
         
         [Header("Attribute Configurations")]
         [SerializeField] private int maxCapacity = 8;
@@ -96,11 +96,13 @@ namespace ProjectBorderland.InventorySystem
             if (Input.GetAxis("Mouse ScrollWheel") > 0f && EquippedSlotIndex < maxCapacity - 1)
             {
                 EquippedSlotIndex++;
+                NotifyOnEquippedChanged();
             }
 
             else if (Input.GetAxis("Mouse ScrollWheel") < 0f && EquippedSlotIndex > 0)
             {
                 EquippedSlotIndex--;
+                NotifyOnEquippedChanged();
             }
         }
 
@@ -177,6 +179,25 @@ namespace ProjectBorderland.InventorySystem
 
 
 
+        /// <summary>
+        /// Get model from item.
+        /// </summary>
+        /// <param name="index"></param>
+        public static GameObject GetModel(int index)
+        {
+            if (index < items.Count)
+            {
+                return items[index].model;
+            }
+
+            else
+            {
+                return null;
+            }
+        }
+
+
+
         #region observer
         /// <summary>
         /// Notifies when inventory changed.
@@ -184,6 +205,17 @@ namespace ProjectBorderland.InventorySystem
         private static void NotifyOnInventoryChanged()
         {
             OnInventoryChanged?.Invoke();
+            NotifyOnEquippedChanged();
+        }
+
+
+
+        /// <summary>
+        /// Notifies when item equipped changed.
+        /// </summary>
+        private static void NotifyOnEquippedChanged()
+        {
+            OnEquippedChanged?.Invoke();
         }
         #endregion
         #endregion

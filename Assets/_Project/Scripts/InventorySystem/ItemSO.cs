@@ -13,5 +13,6 @@ namespace ProjectBorderland.InventorySystem
         //==============================================================================
         public string Name;
         public Sprite sprite;
+        public GameObject model;
     }
 }
