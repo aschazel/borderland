@@ -11,9 +11,13 @@ namespace ProjectBorderland.Interactable
         // Variables
         //==============================================================================
         private GiveItemBehaviour giveItemBehaviour;
+        private PickableBehaviour pickableBehaviour;
 
         [Header("Object References")]
         [SerializeField] private string dialog;
+
+        [Header("Attribute Configurations")]
+        [SerializeField] private bool isOneTimeInteract;
 
         
         
@@ -24,6 +28,7 @@ namespace ProjectBorderland.Interactable
         private void Awake()
         {
             giveItemBehaviour = GetComponent<GiveItemBehaviour>();
+            pickableBehaviour = GetComponent<PickableBehaviour>();
         }
         #endregion
 
@@ -39,6 +44,26 @@ namespace ProjectBorderland.Interactable
             {
                 giveItemBehaviour.Give();
             }
+
+            if (pickableBehaviour != null)
+            {
+                pickableBehaviour.PickUp();
+            }
+
+            if (isOneTimeInteract)
+            {
+                DestroyAfterInteract();
+            }
+        }
+
+
+
+        /// <summary>
+        /// Destroys this object after interaction.
+        /// </summary>
+        private void DestroyAfterInteract()
+        {
+            Destroy(gameObject);
         }
         #endregion
     }

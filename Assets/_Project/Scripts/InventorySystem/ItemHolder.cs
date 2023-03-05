@@ -1,19 +1,18 @@
 using UnityEngine;
-using ProjectBorderland.InventorySystem;
+using ProjectBorderland.Core;
+using ProjectBorderland.Interactable;
 
-namespace ProjectBorderland.Core
+namespace ProjectBorderland.InventorySystem
 {
     /// <summary>
-    /// Handles player first person item holder.
+    /// Handles item holder  behaviour.
     /// </summary>
     public class ItemHolder : MonoBehaviour
     {
         //==============================================================================
         // Variables
         //==============================================================================
-        private GameObject itemOnHand;
-        private static ItemHolder instance;
-        public static ItemHolder Instance { get { return instance; } }
+        private GameObject heldItem;
 
 
 
@@ -21,13 +20,6 @@ namespace ProjectBorderland.Core
         // Functions
         //==============================================================================
         #region MonoBehaviour methods
-        private void Awake()
-        {
-            instance = this;
-        }
-
-
-
         private void Update()
         {
             GetInput();
@@ -37,14 +29,14 @@ namespace ProjectBorderland.Core
 
         private void OnEnable()
         {
-            InventoryManager.OnEquippedChanged += ChangeItemOnHand;
+            InventoryManager.OnEquippedChanged += ChangeHeldItem;
         }
 
 
 
         private void OnDisable()
         {
-            InventoryManager.OnEquippedChanged -= ChangeItemOnHand;
+            InventoryManager.OnEquippedChanged -= ChangeHeldItem;
         }
         #endregion
 
@@ -69,14 +61,15 @@ namespace ProjectBorderland.Core
         /// </summary>
         public void Throw()
         {
-            if (itemOnHand != null)
+            if (heldItem != null)
             {
-                GameObject throwedItem = Instantiate(itemOnHand, transform.position, transform.rotation);
-                Destroy(itemOnHand);
-
-                throwedItem.AddComponent<Rigidbody>().AddForce(transform.forward * 5f, ForceMode.Impulse);
-
                 int equippedSlotIndex = InventoryManager.EquippedSlotIndex;
+
+                GameObject throwedItem = InstantiatePickableItem(heldItem, InventoryManager.Items[equippedSlotIndex]);
+                throwedItem.GetComponent<Rigidbody>().AddForce(transform.forward * 5f, ForceMode.Impulse);
+
+                Destroy(heldItem);
+
                 InventoryManager.Remove(equippedSlotIndex);
             }
         }
@@ -86,11 +79,26 @@ namespace ProjectBorderland.Core
         /// <summary>
         /// Drops an item on ground.
         /// </summary>
-        public static void DropItem(ItemSO item)
+        public void DropItem(ItemSO item)
         {
             GameObject itemModelObject = item.ModelObject;
-            GameObject droppedItem = Instantiate(itemModelObject, instance.transform.position, instance.transform.rotation);
-            droppedItem.AddComponent<Rigidbody>();
+            InstantiatePickableItem(itemModelObject, item);
+        }
+
+
+
+        /// <summary>
+        /// Instantiate item as pickable object.
+        /// </summary>
+        private GameObject InstantiatePickableItem(GameObject itemObject, ItemSO item)
+        {
+            GameObject instantiatedItem = Instantiate(itemObject, transform.position, transform.rotation);
+            instantiatedItem.AddComponent<Rigidbody>();
+            instantiatedItem.AddComponent<PickableBehaviour>().Item = item;
+            instantiatedItem.AddComponent<InteractableItem>();
+            
+
+            return instantiatedItem;
         }
 
 
@@ -98,7 +106,7 @@ namespace ProjectBorderland.Core
         /// <summary>
         /// Changes item on player hand.
         /// </summary>
-        private void ChangeItemOnHand()
+        private void ChangeHeldItem()
         {   
             int equippedSlotIndex = InventoryManager.EquippedSlotIndex;
             GameObject displayModel = InventoryManager.GetModelObject(equippedSlotIndex);
@@ -114,23 +122,23 @@ namespace ProjectBorderland.Core
         {
             if (item != null)
             {
-                if (itemOnHand != null)
+                if (heldItem != null)
                 {
-                    Destroy(itemOnHand);
-                    itemOnHand = Instantiate(item, transform.position, transform.rotation, transform);
+                    Destroy(heldItem);
+                    heldItem = Instantiate(item, transform.position, transform.rotation, transform);
                 }
 
                 else
                 {
-                    itemOnHand = Instantiate(item, transform.position, transform.rotation, transform);
+                    heldItem = Instantiate(item, transform.position, transform.rotation, transform);
                 }    
             }
 
             else
             {
-                if (itemOnHand != null)
+                if (heldItem != null)
                 {
-                    Destroy(itemOnHand);
+                    Destroy(heldItem);
                 }
             }
         }

@@ -44,6 +44,9 @@ namespace ProjectBorderland.InventorySystem
         private static List<ItemSO> items = new List<ItemSO>();
         public static List<ItemSO> Items { get { return items; } }
         private TextMeshProUGUI debugText;
+
+        [Header("Object References")]
+        [SerializeField] public ItemHolder PlayerItemHolder;
         
         [Header("Attribute Configurations")]
         [SerializeField] private int maxCapacity = 8;
@@ -150,14 +153,40 @@ namespace ProjectBorderland.InventorySystem
 
 
         /// <summary>
-        /// Adds an item to inventory by index.
+        /// Adds an item to inventory by index and returns true if success.
         /// </summary>
         /// <param name="item"></param>
-        public static void Add(ItemSO item, int index)
+        public static bool Add(ItemSO item, int index)
         {
-            items[index] = item;
+            if (InventoryManager.Items[index].IsNullItem)
+            {
+                items[index] = item;
+                NotifyOnInventoryChanged();
+                return true;
+            }
 
-            NotifyOnInventoryChanged();
+            else if (GetEmptySlot() != -1)
+            {
+                items[GetEmptySlot()] = item;
+                NotifyOnInventoryChanged();
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Shorthand for Add() to current slot index.
+        /// </summary>
+        /// <param name="item"></param>
+        public static bool AddCurrentIndex(ItemSO item)
+        {
+            return Add(item, EquippedSlotIndex);
         }
 
 
@@ -171,6 +200,38 @@ namespace ProjectBorderland.InventorySystem
             ItemSO nullItem = instance.CreateNullItem();
             items[index] = nullItem;
             NotifyOnInventoryChanged();
+        }
+
+
+
+        /// <summary>
+        /// Shorthand for Remove()) to current slot index.
+        /// </summary>
+        /// <param name="item"></param>
+        public static void RemoveCurrentIndex()
+        {
+            Remove(EquippedSlotIndex);
+        }
+
+
+
+        /// <summary>
+        /// Gets first empty item slot index and returns -1 if inventory is full.
+        /// </summary>
+        public static int GetEmptySlot()
+        {
+            int index = 0;
+            foreach (ItemSO item in items)
+            {
+                if (item.IsNullItem)
+                {
+                    return index;
+                }
+
+                index++;
+            }
+
+            return -1;
         }
 
 

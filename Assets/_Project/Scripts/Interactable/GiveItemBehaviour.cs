@@ -34,16 +34,9 @@ namespace ProjectBorderland.Interactable
         {
             if (giveCount < maxGiveCount || isInfiniteGive)
             {
-                int equippedSlotIndex = InventoryManager.EquippedSlotIndex;
-
-                if (InventoryManager.Items[equippedSlotIndex].IsNullItem)
+                if (!InventoryManager.AddCurrentIndex(item))
                 {
-                    InventoryManager.Add(item, equippedSlotIndex);
-                }
-
-                else
-                {
-                    ItemHolder.DropItem(item);
+                    InventoryManager.Instance.PlayerItemHolder.DropItem(item);
                 }
 
                 giveCount++;

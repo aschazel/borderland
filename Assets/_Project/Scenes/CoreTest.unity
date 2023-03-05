@@ -699,6 +699,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialog: 
+  isOneTimeInteract: 0
 --- !u!65 &803408082
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1017,6 +1018,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: InventoryManager
       objectReference: {fileID: 0}
+    - target: {fileID: 4263739810578226509, guid: 26aa1d64dd03fe14e8a8d61bcf0b805e, type: 3}
+      propertyPath: PlayerItemHolder
+      value: 
+      objectReference: {fileID: 1466567146}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26aa1d64dd03fe14e8a8d61bcf0b805e, type: 3}
 --- !u!1 &963194225
@@ -1660,7 +1665,7 @@ GameObject:
   - component: {fileID: 1466567145}
   - component: {fileID: 1466567146}
   m_Layer: 0
-  m_Name: ItemHolder
+  m_Name: PlayerItemHolder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1760,6 +1765,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dialog: 
+  isOneTimeInteract: 0
 --- !u!65 &1494704671
 BoxCollider:
   m_ObjectHideFlags: 0
