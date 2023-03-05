@@ -36,6 +36,7 @@ namespace ProjectBorderland.Core
 
         private void Update()
         {
+            GetInput();
             Interact();
             SetDebugText();
         }
@@ -45,18 +46,28 @@ namespace ProjectBorderland.Core
 
         #region ProjectBorderland methods
         /// <summary>
+        /// Gets input from Unity Input Manager.
+        /// </summary>
+        private void GetInput()
+        {
+            if (Input.GetKeyDown(InputController.Instance.Interact))
+            {
+                Interact();
+            }
+        }
+
+
+
+        /// <summary>
         /// Tries to interact with item on sight.
         /// </summary>
         private void Interact()
         {
-            if (Input.GetKeyDown(InputController.Instance.Interact))
-            {
-                InteractableItem item = DetectInteractable();
+            InteractableItem item = DetectInteractable();
                 
-                if (item != null)
-                {
-                    item.Interact();
-                }
+            if (item != null)
+            {
+                item.Interact();
             }
         }
 

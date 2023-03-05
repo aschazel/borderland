@@ -22,6 +22,7 @@ namespace ProjectBorderland.Core
 
         [Header("Attribute Settings")]
         [SerializeField] private float moveSpeed;
+        [SerializeField] private float sprintSpeed;
 
 
 
@@ -55,6 +56,11 @@ namespace ProjectBorderland.Core
         {
             horizontalAxis = Input.GetAxis("Horizontal");
             verticalAxis = Input.GetAxis("Vertical");
+
+            if (Input.GetKeyDown(InputController.Instance.Sprint))
+            {
+                moveSpeed = sprintSpeed;
+            }
         }
 
 
