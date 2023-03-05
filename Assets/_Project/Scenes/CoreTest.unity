@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 532012661}
   - component: {fileID: 532012663}
   - component: {fileID: 532012662}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -548,7 +548,7 @@ GameObject:
   m_Component:
   - component: {fileID: 623062448}
   - component: {fileID: 623062449}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -731,7 +731,7 @@ GameObject:
   - component: {fileID: 724075348}
   - component: {fileID: 724075347}
   - component: {fileID: 724075346}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GiveArmoredCat
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -878,7 +878,7 @@ GameObject:
   - component: {fileID: 803408081}
   - component: {fileID: 803408080}
   - component: {fileID: 803408085}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GiveAmogus
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1365,7 +1365,7 @@ GameObject:
   m_Component:
   - component: {fileID: 997423448}
   - component: {fileID: 997423449}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1778,7 +1778,7 @@ GameObject:
   - component: {fileID: 1359306372}
   - component: {fileID: 1359306374}
   - component: {fileID: 1359306373}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2119,7 +2119,7 @@ GameObject:
   - component: {fileID: 1494704670}
   - component: {fileID: 1494704669}
   - component: {fileID: 1494704674}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GivePickaxe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2303,7 +2303,7 @@ GameObject:
   - component: {fileID: 1898817200}
   - component: {fileID: 1898817202}
   - component: {fileID: 1898817201}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Text (TMP)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2506,7 +2506,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2065269107}
   - component: {fileID: 2065269108}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}

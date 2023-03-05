@@ -93,6 +93,7 @@ namespace ProjectBorderland.InventorySystem
         private GameObject InstantiatePickableItem(GameObject itemObject, ItemSO item)
         {
             GameObject instantiatedItem = Instantiate(itemObject, transform.position, transform.rotation);
+            instantiatedItem.GetComponent<BoxCollider>().enabled = true;
             instantiatedItem.AddComponent<Rigidbody>();
             instantiatedItem.AddComponent<PickableBehaviour>().Item = item;
             instantiatedItem.AddComponent<InteractableItem>();
