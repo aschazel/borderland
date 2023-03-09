@@ -41,6 +41,14 @@ namespace ProjectBorderland.Core
         public KeyCode Sprint;
         public KeyCode Interact;
         public KeyCode Throw;
+        public KeyCode Slot1;
+        public KeyCode Slot2;
+        public KeyCode Slot3;
+        public KeyCode Slot4;
+        public KeyCode Slot5;
+        public KeyCode Slot6;
+        public KeyCode Slot7;
+        public KeyCode Slot8;
 
 
 
@@ -65,6 +73,14 @@ namespace ProjectBorderland.Core
             Interact = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("interactKey", "Mouse0"));
             Throw = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("throwKey", "G"));
             Sprint = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("sprintKey", "LeftShift"));
+            Slot1 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot1Key", "Alpha1"));
+            Slot2 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot2Key", "Alpha2"));
+            Slot3 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot3Key", "Alpha3"));
+            Slot4 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot4Key", "Alpha4"));
+            Slot5 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot5Key", "Alpha5"));
+            Slot6 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot6Key", "Alpha6"));
+            Slot7 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot7Key", "Alpha7"));
+            Slot8 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot8Key", "Alpha8"));
         }
         #endregion
     }

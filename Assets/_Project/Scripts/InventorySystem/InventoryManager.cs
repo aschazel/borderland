@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using ProjectBorderland.DeveloperTools;
+using ProjectBorderland.Core;
 
 namespace ProjectBorderland.InventorySystem
 {
@@ -119,6 +120,54 @@ namespace ProjectBorderland.InventorySystem
             else if (Input.GetAxis("Mouse ScrollWheel") < 0f)
             {
                 DecrementEquippedIndex();
+            }
+
+            if (Input.GetKeyDown(InputController.Instance.Slot1))
+            {
+                EquippedSlotIndex = 0;
+                NotifyOnEquippedChanged();
+            }
+
+            if (Input.GetKeyDown(InputController.Instance.Slot2))
+            {
+                EquippedSlotIndex = 1;
+                NotifyOnEquippedChanged();
+            }
+
+            if (Input.GetKeyDown(InputController.Instance.Slot3))
+            {
+                EquippedSlotIndex = 2;
+                NotifyOnEquippedChanged();
+            }
+
+            if (Input.GetKeyDown(InputController.Instance.Slot4))
+            {
+                EquippedSlotIndex = 3;
+                NotifyOnEquippedChanged();
+            }
+
+            if (Input.GetKeyDown(InputController.Instance.Slot5))
+            {
+                EquippedSlotIndex = 4;
+                NotifyOnEquippedChanged();
+            }
+
+            if (Input.GetKeyDown(InputController.Instance.Slot6))
+            {
+                EquippedSlotIndex = 5;
+                NotifyOnEquippedChanged();
+            }
+
+            if (Input.GetKeyDown(InputController.Instance.Slot7))
+            {
+                EquippedSlotIndex = 6;
+                NotifyOnEquippedChanged();
+            }
+
+            if (Input.GetKeyDown(InputController.Instance.Slot8))
+            {
+                EquippedSlotIndex = 7;
+                NotifyOnEquippedChanged();
             }
         }
 
