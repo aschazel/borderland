@@ -11,6 +11,8 @@ namespace ProjectBorderland.Interactable
         //==============================================================================
         // Variables
         //==============================================================================
+        private InteractableItem interactableItem;
+        
         [Header("Object References")]
         [SerializeField] public ItemSO Item;
 
@@ -19,6 +21,29 @@ namespace ProjectBorderland.Interactable
         //==============================================================================
         // Functions
         //==============================================================================
+        #region MonoBehaviour methods
+        private void Awake()
+        {
+            interactableItem = GetComponent<InteractableItem>();
+        }
+
+
+        
+        private void OnEnable()
+        {
+            interactableItem.OnItemInteract += PickUp;
+        }
+
+
+
+        private void OnDisable()
+        {
+            interactableItem.OnItemInteract -= PickUp;
+        }
+        #endregion
+        
+        
+
         #region ProjectBorderland methods
         public void PickUp()
         {

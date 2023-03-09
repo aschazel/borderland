@@ -13,6 +13,7 @@ namespace ProjectBorderland.Interactable
         // Variables
         //==============================================================================
         private int giveCount;
+        private InteractableItem interactableItem;
         
         [Header("Object References")]
         [SerializeField] private ItemSO item;
@@ -26,6 +27,29 @@ namespace ProjectBorderland.Interactable
         //==============================================================================
         // Functions
         //==============================================================================
+        #region MonoBehaviour methods
+        private void Awake()
+        {
+            interactableItem = GetComponent<InteractableItem>();
+        }
+
+
+        
+        private void OnEnable()
+        {
+            interactableItem.OnItemInteract += Give;
+        }
+
+
+
+        private void OnDisable()
+        {
+            interactableItem.OnItemInteract -= Give;
+        }
+        #endregion
+
+
+
         #region ProjectBorderland methods
         /// <summary>
         /// Gives an item to player inventory.

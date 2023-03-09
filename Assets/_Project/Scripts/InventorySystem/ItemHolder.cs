@@ -95,8 +95,8 @@ namespace ProjectBorderland.InventorySystem
             GameObject instantiatedItem = Instantiate(itemObject, transform.position, transform.rotation);
             instantiatedItem.GetComponent<BoxCollider>().enabled = true;
             instantiatedItem.AddComponent<Rigidbody>();
-            instantiatedItem.AddComponent<PickableBehaviour>().Item = item;
             instantiatedItem.AddComponent<InteractableItem>();
+            instantiatedItem.AddComponent<PickableBehaviour>().Item = item;
             instantiatedItem.name = item.Name;
             
 

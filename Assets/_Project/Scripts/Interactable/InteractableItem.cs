@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ProjectBorderland.Interactable
@@ -10,8 +11,7 @@ namespace ProjectBorderland.Interactable
         //==============================================================================
         // Variables
         //==============================================================================
-        private GiveItemBehaviour giveItemBehaviour;
-        private PickableBehaviour pickableBehaviour;
+        public Action OnItemInteract;
 
         [Header("Object References")]
         [SerializeField] private string dialog;
@@ -24,31 +24,13 @@ namespace ProjectBorderland.Interactable
         //==============================================================================
         // Functions
         //==============================================================================
-        #region MonoBehaviour methods
-        private void Awake()
-        {
-            giveItemBehaviour = GetComponent<GiveItemBehaviour>();
-            pickableBehaviour = GetComponent<PickableBehaviour>();
-        }
-        #endregion
-
-        
-        
-        #region ProjectBorderland methods
+         #region ProjectBorderland methods
         /// <summary>
         /// Interacts with this item.
         /// </summary>
         public void Interact()
         {
-            if (giveItemBehaviour != null)
-            {
-                giveItemBehaviour.Give();
-            }
-
-            if (pickableBehaviour != null)
-            {
-                pickableBehaviour.PickUp();
-            }
+            NotifyOnInteract();
 
             if (isOneTimeInteract)
             {
@@ -58,6 +40,7 @@ namespace ProjectBorderland.Interactable
 
 
 
+        #region observer
         /// <summary>
         /// Destroys this object after interaction.
         /// </summary>
@@ -65,6 +48,17 @@ namespace ProjectBorderland.Interactable
         {
             Destroy(gameObject);
         }
+
+
+
+        /// <summary>
+        /// Notifies when item interacted.
+        /// </summary>
+        private void NotifyOnInteract()
+        {
+            OnItemInteract?.Invoke();
+        }
+        #endregion
         #endregion
     }
 }
