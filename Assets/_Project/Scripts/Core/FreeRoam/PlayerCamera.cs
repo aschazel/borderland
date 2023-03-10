@@ -2,10 +2,10 @@ using TMPro;
 using UnityEngine;
 using ProjectBorderland.DeveloperTools;
 
-namespace ProjectBorderland.Core
+namespace ProjectBorderland.Core.FreeRoam
 {
     /// <summary>
-    /// Handles player camera rotation behaviour.
+    /// Handles first person player camera rotation behaviour.
     /// </summary>
     public class PlayerCamera : MonoBehaviour
     {

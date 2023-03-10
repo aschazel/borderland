@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace ProjectBorderland.Core
+namespace ProjectBorderland.Core.FreeRoam
 {
     /// <summary>
     /// Moves camera to player camera position.

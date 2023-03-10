@@ -1,7 +1,7 @@
 using UnityEngine;
 using ProjectBorderland.InventorySystem;
 
-namespace ProjectBorderland.Core
+namespace ProjectBorderland.Core.FreeRoam
 {
     /// <summary>
     /// Handles player inspect object behaviour.

@@ -3,7 +3,7 @@ using UnityEngine;
 namespace ProjectBorderland.Core
 {
     /// <summary>
-    /// Handles game overalls.
+    /// Handles game states and overalls.
     /// </summary>
     public class GameManager : MonoBehaviour
     {
@@ -33,12 +33,6 @@ namespace ProjectBorderland.Core
         }
         #endregion
 
-        private PlayerController playerController;
-        private PlayerCamera playerCamera;
-
-        [Header("Object References")]
-        [SerializeField] private GameObject playerObject;
-
 
 
         //==============================================================================
@@ -58,9 +52,6 @@ namespace ProjectBorderland.Core
                 Destroy(gameObject);
             }
             #endregion
-
-            playerController = playerObject.GetComponent<PlayerController>();
-            playerCamera = playerObject.GetComponent<PlayerCamera>();
         }
         #endregion
 
@@ -68,39 +59,62 @@ namespace ProjectBorderland.Core
 
         #region ProjectBorderland methods
         /// <summary>
-        /// Enables player free roam movement.
+        /// Switchs game state to specified.
         /// </summary>
-        public static void EnableFreeRoamMovement()
+        /// <param name="gameState"></param>
+        public static void SwitchGameState(GameState gameState)
         {
-            instance.playerController.enabled = true;
-        }
 
-
-        /// <summary>
-        /// Disables player free roam movement.
-        /// </summary>
-        public static void DisableFreeRoamMovement()
-        {
-            instance.playerController.enabled = false;
         }
 
 
 
         /// <summary>
-        /// Enables player free roam camera.
+        /// Enable free roam related components.
         /// </summary>
-        public static void EnableFreeRoamCamera()
+        private void EnableFreeRoam()
         {
-            instance.playerCamera.enabled = true;
+
         }
 
 
+        
         /// <summary>
-        /// Disables player free roam camera.
+        /// Disable free roam related components.
         /// </summary>
-        public static void DisableFreeRoamCamera()
+        private void DisableFreeRoam()
         {
-            instance.playerCamera.enabled = false;
+            
+        }
+
+
+
+        /// <summary>
+        /// Enables point and click related components.
+        /// </summary>
+        private void EnablePointAndClick()
+        {
+            
+        }
+
+
+
+        /// <summary>
+        /// Disables point and click related components.
+        /// </summary>
+        private void DisablePointAndClick()
+        {
+
+        }
+
+
+
+        /// <summary>
+        /// Freeze first person movement.
+        /// </summary>
+        private void FreezeMovement()
+        {
+
         }
         #endregion
     }

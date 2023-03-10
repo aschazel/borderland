@@ -3,12 +3,12 @@ using UnityEngine;
 using ProjectBorderland.Interactable;
 using ProjectBorderland.DeveloperTools;
 
-namespace ProjectBorderland.Core
+namespace ProjectBorderland.Core.FreeRoam
 {
     /// <summary>
     /// Handles interact by crosshair behaviour.
     /// </summary>
-    public class FirstPersonInteract : MonoBehaviour
+    public class InteractEnvironment : MonoBehaviour
     {
         //==============================================================================
         // Variables

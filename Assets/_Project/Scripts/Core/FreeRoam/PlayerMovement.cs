@@ -2,12 +2,12 @@ using TMPro;
 using UnityEngine;
 using ProjectBorderland.DeveloperTools;
 
-namespace ProjectBorderland.Core
+namespace ProjectBorderland.Core.FreeRoam
 {
     /// <summary>
-    /// Handles player movement.
+    /// Handles first person player movement.
     /// </summary>
-    public class PlayerController : MonoBehaviour
+    public class PlayerMovement : MonoBehaviour
     {
         //==============================================================================
         // Variables
