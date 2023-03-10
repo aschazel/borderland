@@ -33,7 +33,7 @@ namespace ProjectBorderland.UI
         private void OnEnable()
         {
             InventoryManager.OnInventoryChanged += Refresh;
-            InventoryManager.OnEquippedChanged += SelectShift;
+            InventoryManager.OnEquippedChanged += ShiftSelected;
         }
 
 
@@ -41,7 +41,7 @@ namespace ProjectBorderland.UI
         private void OnDisable()
         {
             InventoryManager.OnInventoryChanged -= Refresh;
-            InventoryManager.OnEquippedChanged -= SelectShift;
+            InventoryManager.OnEquippedChanged -= ShiftSelected;
         }
         #endregion
 
@@ -85,7 +85,8 @@ namespace ProjectBorderland.UI
         private void AssignSprite(Transform slot, int slotIndex)
         {
             ItemDisplayController display = slot.gameObject.GetComponentInChildren<ItemDisplayController>();
-            Sprite sprite = InventoryManager.GetSprite(slotIndex);
+            ItemSO  item = InventoryManager.Items[slotIndex];
+            Sprite sprite = item.GetSprite();
 
             display.UpdateImage(sprite);
         }
@@ -95,7 +96,7 @@ namespace ProjectBorderland.UI
         /// <summary>
         /// Shift the selected slot UI.
         /// </summary>
-        private void SelectShift()
+        private void ShiftSelected()
         {
             int equippedSlotIndex = InventoryManager.EquippedSlotIndex;
             Transform equippedSlot = slots[equippedSlotIndex];

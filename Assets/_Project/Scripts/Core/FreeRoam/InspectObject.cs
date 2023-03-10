@@ -72,7 +72,7 @@ namespace ProjectBorderland.Core.FreeRoam
         private void Inspect()
         {
             isInspecting = true;
-            ItemSO item = InventoryManager.GetCurrentIndex();
+            ItemSO item = InventoryManager.GetCurrentEquipped();
             inspectedObject = Instantiate(test, playerTransform.position, Quaternion.identity);
         }
 

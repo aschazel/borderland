@@ -49,9 +49,7 @@ namespace ProjectBorderland.Interactable
         {
             if (!InventoryManager.AddCurrentIndex(Item))
             {
-                int equippedSlotIndex = InventoryManager.EquippedSlotIndex;
-
-                ItemSO droppedItem = InventoryManager.Items[equippedSlotIndex];
+                ItemSO droppedItem = InventoryManager.GetCurrentEquipped();
                 InventoryManager.Instance.PlayerItemHolder.DropItem(droppedItem);
 
                 InventoryManager.RemoveCurrentIndex();

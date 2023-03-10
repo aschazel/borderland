@@ -63,14 +63,14 @@ namespace ProjectBorderland.InventorySystem
         {
             if (heldItem != null)
             {
-                int equippedSlotIndex = InventoryManager.EquippedSlotIndex;
+                ItemSO item = InventoryManager.GetCurrentEquipped();
 
-                GameObject throwedItem = InstantiatePickableItem(heldItem, InventoryManager.Items[equippedSlotIndex]);
+                GameObject throwedItem = InstantiatePickableItem(heldItem, item);
                 throwedItem.GetComponent<Rigidbody>().AddForce(transform.forward * 5f, ForceMode.Impulse);
 
                 Destroy(heldItem);
 
-                InventoryManager.Remove(equippedSlotIndex);
+                InventoryManager.RemoveCurrentIndex();
             }
         }
 
@@ -81,7 +81,7 @@ namespace ProjectBorderland.InventorySystem
         /// </summary>
         public void DropItem(ItemSO item)
         {
-            GameObject itemModelObject = item.ModelObject;
+            GameObject itemModelObject = item.GetModelObject();
             InstantiatePickableItem(itemModelObject, item);
         }
 
@@ -110,8 +110,8 @@ namespace ProjectBorderland.InventorySystem
         /// </summary>
         private void ChangeHeldItem()
         {   
-            int equippedSlotIndex = InventoryManager.EquippedSlotIndex;
-            GameObject displayModel = InventoryManager.GetModelObject(equippedSlotIndex);
+            ItemSO item = InventoryManager.GetCurrentEquipped();
+            GameObject displayModel = item.ModelObject;
             DisplayObject(displayModel);
         }
 
