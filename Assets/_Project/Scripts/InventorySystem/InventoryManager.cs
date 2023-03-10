@@ -230,6 +230,16 @@ namespace ProjectBorderland.InventorySystem
 
 
         /// <summary>
+        /// Get currently equipped item.
+        /// </summary>
+        public static ItemSO GetCurrentIndex()
+        {
+            return items[EquippedSlotIndex];
+        }
+
+
+
+        /// <summary>
         /// Shorthand for Add() to current slot index.
         /// </summary>
         /// <param name="item"></param>

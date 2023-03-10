@@ -41,6 +41,7 @@ namespace ProjectBorderland.Core
         public KeyCode Sprint;
         public KeyCode Interact;
         public KeyCode Throw;
+        public KeyCode Inspect;
         public KeyCode Slot1;
         public KeyCode Slot2;
         public KeyCode Slot3;
@@ -73,6 +74,7 @@ namespace ProjectBorderland.Core
             Interact = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("interactKey", "Mouse0"));
             Throw = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("throwKey", "G"));
             Sprint = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("sprintKey", "LeftShift"));
+            Inspect = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("inspectKey", "E"));
             Slot1 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot1Key", "Alpha1"));
             Slot2 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot2Key", "Alpha2"));
             Slot3 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot3Key", "Alpha3"));
