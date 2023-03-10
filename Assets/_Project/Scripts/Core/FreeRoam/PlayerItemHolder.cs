@@ -1,18 +1,20 @@
 using UnityEngine;
-using ProjectBorderland.Core;
+using ProjectBorderland.InventorySystem;
 using ProjectBorderland.Interactable;
 
-namespace ProjectBorderland.InventorySystem
+namespace ProjectBorderland.Core.FreeRoam
 {
     /// <summary>
-    /// Handles item holder  behaviour.
+    /// Handles player item holder behaviour.
     /// </summary>
-    public class ItemHolder : MonoBehaviour
+    public class PlayerItemHolder : MonoBehaviour
     {
         //==============================================================================
         // Variables
         //==============================================================================
         private GameObject heldItem;
+
+        [SerializeField] private Transform playerItemHolderTransform;
 
 
 
@@ -30,6 +32,11 @@ namespace ProjectBorderland.InventorySystem
         private void OnEnable()
         {
             InventoryManager.OnEquippedChanged += ChangeHeldItem;
+
+            if (playerItemHolderTransform != null)
+            {
+                playerItemHolderTransform.gameObject.SetActive(true);
+            }
         }
 
 
@@ -37,6 +44,11 @@ namespace ProjectBorderland.InventorySystem
         private void OnDisable()
         {
             InventoryManager.OnEquippedChanged -= ChangeHeldItem;
+
+            if (playerItemHolderTransform != null)
+            {
+                playerItemHolderTransform.gameObject.SetActive(false);
+            }
         }
         #endregion
 
@@ -63,10 +75,9 @@ namespace ProjectBorderland.InventorySystem
         {
             if (heldItem != null)
             {
-                ItemSO item = InventoryManager.GetCurrentEquipped();
-
+                ItemSO item = InventoryManager.GetCurrentIndex();
                 GameObject throwedItem = InstantiatePickableItem(heldItem, item);
-                throwedItem.GetComponent<Rigidbody>().AddForce(transform.forward * 5f, ForceMode.Impulse);
+                throwedItem.GetComponent<Rigidbody>().AddForce(playerItemHolderTransform.forward * 5f, ForceMode.Impulse);
 
                 Destroy(heldItem);
 
@@ -81,7 +92,7 @@ namespace ProjectBorderland.InventorySystem
         /// </summary>
         public void DropItem(ItemSO item)
         {
-            GameObject itemModelObject = item.GetModelObject();
+            GameObject itemModelObject = item.ModelObject;
             InstantiatePickableItem(itemModelObject, item);
         }
 
@@ -92,7 +103,7 @@ namespace ProjectBorderland.InventorySystem
         /// </summary>
         private GameObject InstantiatePickableItem(GameObject itemObject, ItemSO item)
         {
-            GameObject instantiatedItem = Instantiate(itemObject, transform.position, transform.rotation);
+            GameObject instantiatedItem = Instantiate(itemObject, playerItemHolderTransform.position, playerItemHolderTransform.rotation);
             instantiatedItem.GetComponent<BoxCollider>().enabled = true;
             instantiatedItem.AddComponent<Rigidbody>();
             instantiatedItem.AddComponent<InteractableItem>();
@@ -110,8 +121,8 @@ namespace ProjectBorderland.InventorySystem
         /// </summary>
         private void ChangeHeldItem()
         {   
-            ItemSO item = InventoryManager.GetCurrentEquipped();
-            GameObject displayModel = item.ModelObject;
+            ItemSO item = InventoryManager.GetCurrentIndex();
+            GameObject displayModel = item.GetModelObject();
             DisplayObject(displayModel);
         }
 
@@ -127,12 +138,12 @@ namespace ProjectBorderland.InventorySystem
                 if (heldItem != null)
                 {
                     Destroy(heldItem);
-                    heldItem = Instantiate(item, transform.position, transform.rotation, transform);
+                    heldItem = Instantiate(item, playerItemHolderTransform.position, playerItemHolderTransform.rotation, playerItemHolderTransform);
                 }
 
                 else
                 {
-                    heldItem = Instantiate(item, transform.position, transform.rotation, transform);
+                    heldItem = Instantiate(item, playerItemHolderTransform.position, playerItemHolderTransform.rotation, playerItemHolderTransform);
                 }    
             }
 

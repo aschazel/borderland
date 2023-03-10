@@ -5,6 +5,7 @@ using TMPro;
 using UnityEngine;
 using ProjectBorderland.DeveloperTools;
 using ProjectBorderland.Core;
+using ProjectBorderland.Core.FreeRoam;
 
 namespace ProjectBorderland.InventorySystem
 {
@@ -41,14 +42,13 @@ namespace ProjectBorderland.InventorySystem
 
         public static Action OnInventoryChanged;
         public static Action OnEquippedChanged;
-        private static int equippedSlotIndex = 0;
-        public static int EquippedSlotIndex { get { return equippedSlotIndex; } }
+        public static int EquippedSlotIndex = 0;
         private static List<ItemSO> items = new List<ItemSO>();
         public static List<ItemSO> Items { get { return items; } }
         private TextMeshProUGUI debugText;
 
         [Header("Object References")]
-        public ItemHolder PlayerItemHolder;
+        [SerializeField] public PlayerItemHolder PlayerItemHolder;
         
         [Header("Attribute Configurations")]
         [SerializeField] private int maxCapacity = 8;
@@ -96,147 +96,6 @@ namespace ProjectBorderland.InventorySystem
 
         #region ProjectBorderland methods
         /// <summary>
-        /// Adds an item to inventory by index and returns true if success.
-        /// </summary>
-        /// <param name="item"></param>
-        public static bool Add(ItemSO item, int index)
-        {
-            if (InventoryManager.Items[index].IsNullItem)
-            {
-                items[index] = item;
-                NotifyOnInventoryChanged();
-                return true;
-            }
-
-            else if (GetEmptySlot() != -1)
-            {
-                items[GetEmptySlot()] = item;
-                NotifyOnInventoryChanged();
-                return true;
-            }
-
-            else
-            {
-                return false;
-            }
-        }
-
-
-
-        /// <summary>
-        /// Adds current
-        /// </summary>
-        /// <param name="item"></param>
-        public static bool AddCurrentIndex(ItemSO item)
-        {
-            return Add(item, equippedSlotIndex);
-        }
-
-
-
-        /// <summary>
-        /// Remove an item from inventory by index.
-        /// </summary>
-        /// <param name="item"></param>
-        public static void Remove(int index)
-        {
-            ItemSO nullItem = instance.CreateNullItem();
-            items[index] = nullItem;
-            NotifyOnInventoryChanged();
-        }
-
-
-
-        /// <summary>
-        /// Shorthand for Remove()) to current slot index.
-        /// </summary>
-        /// <param name="item"></param>
-        public static void RemoveCurrentIndex()
-        {
-            Remove(equippedSlotIndex);
-        }
-
-
-
-        /// <summary>
-        /// Gets currently equipped item.
-        /// </summary>
-        public static ItemSO GetCurrentEquipped()
-        {
-            return items[equippedSlotIndex];
-        }
-
-
-
-        /// <summary>
-        /// Gets first empty item slot index and returns -1 if inventory is full.
-        /// </summary>
-        public static int GetEmptySlot()
-        {
-            int index = 0;
-            foreach (ItemSO item in items)
-            {
-                if (item.IsNullItem)
-                {
-                    return index;
-                }
-
-                index++;
-            }
-
-            return -1;
-        }
-
-
-
-        /// <summary>
-        /// Get model object from item.
-        /// </summary>
-        /// <param name="index"></param>
-        public static GameObject GetModelObject(int index)
-        {
-            if (!items[index].IsNullItem)
-            {
-                return items[index].ModelObject;
-            }
-
-            else
-            {
-                return null;
-            }
-        }
-
-
-
-        /// <summary>
-        /// Increments the equipped item slot index.
-        /// </summary>
-        private void IncrementEquippedIndex()
-        {
-            if (equippedSlotIndex < maxCapacity - 1)
-            {
-                equippedSlotIndex++;
-                NotifyOnEquippedChanged();
-            }
-        }
-
-
-
-        /// <summary>
-        /// Decrements the equipped item slot index.
-        /// </summary>
-        private void DecrementEquippedIndex()
-        {
-            if (equippedSlotIndex > 0)
-            {
-                equippedSlotIndex--;
-                NotifyOnEquippedChanged();
-            }
-        }
-
-
-
-        /// <summary>
         /// Creates null item for empty reference.
         /// </summary>
         private ItemSO CreateNullItem()
@@ -266,50 +125,210 @@ namespace ProjectBorderland.InventorySystem
 
             if (Input.GetKeyDown(InputController.Instance.Slot1))
             {
-                equippedSlotIndex = 0;
+                EquippedSlotIndex = 0;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot2))
             {
-                equippedSlotIndex = 1;
+                EquippedSlotIndex = 1;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot3))
             {
-                equippedSlotIndex = 2;
+                EquippedSlotIndex = 2;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot4))
             {
-                equippedSlotIndex = 3;
+                EquippedSlotIndex = 3;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot5))
             {
-                equippedSlotIndex = 4;
+                EquippedSlotIndex = 4;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot6))
             {
-                equippedSlotIndex = 5;
+                EquippedSlotIndex = 5;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot7))
             {
-                equippedSlotIndex = 6;
+                EquippedSlotIndex = 6;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot8))
             {
-                equippedSlotIndex = 7;
+                EquippedSlotIndex = 7;
                 NotifyOnEquippedChanged();
+            }
+        }
+
+
+
+        /// <summary>
+        /// Increments the equipped item slot index.
+        /// </summary>
+        private void IncrementEquippedIndex()
+        {
+            if (EquippedSlotIndex < maxCapacity - 1)
+            {
+                EquippedSlotIndex++;
+                NotifyOnEquippedChanged();
+            }
+        }
+
+
+
+        /// <summary>
+        /// Decrements the equipped item slot index.
+        /// </summary>
+        private void DecrementEquippedIndex()
+        {
+            if (EquippedSlotIndex > 0)
+            {
+                EquippedSlotIndex--;
+                NotifyOnEquippedChanged();
+            }
+        }
+
+
+
+        /// <summary>
+        /// Adds an item to inventory by index and returns true if success.
+        /// </summary>
+        /// <param name="item"></param>
+        public static bool Add(ItemSO item, int index)
+        {
+            if (InventoryManager.Items[index].IsNullItem)
+            {
+                items[index] = item;
+                NotifyOnInventoryChanged();
+                return true;
+            }
+
+            else if (GetEmptySlot() != -1)
+            {
+                items[GetEmptySlot()] = item;
+                NotifyOnInventoryChanged();
+                return true;
+            }
+
+            else
+            {
+                return false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Get currently equipped item.
+        /// </summary>
+        public static ItemSO GetCurrentIndex()
+        {
+            return items[EquippedSlotIndex];
+        }
+
+
+
+        /// <summary>
+        /// Shorthand for Add() to current slot index.
+        /// </summary>
+        /// <param name="item"></param>
+        public static bool AddCurrentIndex(ItemSO item)
+        {
+            return Add(item, EquippedSlotIndex);
+        }
+
+
+
+        /// <summary>
+        /// Remove an item from inventory by index.
+        /// </summary>
+        /// <param name="item"></param>
+        public static void Remove(int index)
+        {
+            ItemSO nullItem = instance.CreateNullItem();
+            items[index] = nullItem;
+            NotifyOnInventoryChanged();
+        }
+
+
+
+        /// <summary>
+        /// Shorthand for Remove()) to current slot index.
+        /// </summary>
+        /// <param name="item"></param>
+        public static void RemoveCurrentIndex()
+        {
+            Remove(EquippedSlotIndex);
+        }
+
+
+
+        /// <summary>
+        /// Gets first empty item slot index and returns -1 if inventory is full.
+        /// </summary>
+        public static int GetEmptySlot()
+        {
+            int index = 0;
+            foreach (ItemSO item in items)
+            {
+                if (item.IsNullItem)
+                {
+                    return index;
+                }
+
+                index++;
+            }
+
+            return -1;
+        }
+
+
+
+        /// <summary>
+        /// Get sprite from item.
+        /// </summary>
+        /// <param name="index"></param>
+        public static Sprite GetSprite(int index)
+        {
+            if (!items[index].IsNullItem)
+            {
+                return items[index].Sprite;
+            }
+
+            else
+            {
+                return null;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Get model object from item.
+        /// </summary>
+        /// <param name="index"></param>
+        public static GameObject GetModelObject(int index)
+        {
+            if (!items[index].IsNullItem)
+            {
+                return items[index].ModelObject;
+            }
+
+            else
+            {
+                return null;
             }
         }
 
@@ -359,11 +378,11 @@ namespace ProjectBorderland.InventorySystem
                 }
 
                 text += " }\n";
-                text += $"Equipped slot index: {equippedSlotIndex}\n";
+                text += $"Equipped slot index: {EquippedSlotIndex}\n";
 
                 try
                 {
-                    text += $"Equipped: \"{items[equippedSlotIndex].name}\"";
+                    text += $"Equipped: \"{items[EquippedSlotIndex].name}\"";
                 }
                 
                 catch (ArgumentOutOfRangeException)

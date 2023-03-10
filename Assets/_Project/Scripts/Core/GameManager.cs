@@ -1,4 +1,5 @@
 using UnityEngine;
+using ProjectBorderland.Core.FreeRoam;
 
 namespace ProjectBorderland.Core
 {
@@ -33,6 +34,14 @@ namespace ProjectBorderland.Core
         }
         #endregion
 
+        private PlayerMovement playerMovement;
+        private PlayerCamera playerCamera;
+        private PlayerItemHolder playerItemHolder;
+
+        [Header("Object References")]
+        [SerializeField] private GameObject playerObject;
+        [SerializeField] private GameObject mainCamera;
+
 
 
         //==============================================================================
@@ -52,6 +61,10 @@ namespace ProjectBorderland.Core
                 Destroy(gameObject);
             }
             #endregion
+
+            playerMovement = playerObject.GetComponentInChildren<PlayerMovement>();
+            playerCamera = playerObject.GetComponentInChildren<PlayerCamera>();
+            playerItemHolder = playerObject.GetComponentInChildren<PlayerItemHolder>();
         }
         #endregion
 
@@ -70,7 +83,49 @@ namespace ProjectBorderland.Core
 
 
         /// <summary>
-        /// Enable free roam related components.
+        /// Freezes first person movement and camera movement.
+        /// </summary>
+        public static void FreezePlayer()
+        {
+            instance.playerMovement.enabled = false;
+            instance.playerCamera.enabled = false;
+        }
+
+
+
+        /// <summary>
+        /// Undo freezes first person movement and camera movement.
+        /// </summary>
+        public static void UndoFreezePlayer()
+        {
+            instance.playerMovement.enabled = true;
+            instance.playerCamera.enabled = true;
+        }
+
+
+
+        /// <summary>
+        /// Hides player first person item holder.
+        /// </summary>
+        public static void HidePlayerItemHolder()
+        {
+            instance.playerItemHolder.enabled = false;
+        }
+
+
+
+        /// <summary>
+        /// Undo hides player first person item holder.
+        /// </summary>
+        public static void UndoHidePlayerItemHolder()
+        {
+            instance.playerItemHolder.enabled = true;
+        }
+
+
+
+        /// <summary>
+        /// Enables free roam related components.
         /// </summary>
         private void EnableFreeRoam()
         {
@@ -80,7 +135,7 @@ namespace ProjectBorderland.Core
 
         
         /// <summary>
-        /// Disable free roam related components.
+        /// Disables free roam related components.
         /// </summary>
         private void DisableFreeRoam()
         {
@@ -103,16 +158,6 @@ namespace ProjectBorderland.Core
         /// Disables point and click related components.
         /// </summary>
         private void DisablePointAndClick()
-        {
-
-        }
-
-
-
-        /// <summary>
-        /// Freeze first person movement.
-        /// </summary>
-        private void FreezeMovement()
         {
 
         }

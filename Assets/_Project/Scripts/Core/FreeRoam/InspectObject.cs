@@ -20,8 +20,7 @@ namespace ProjectBorderland.Core.FreeRoam
         private GameObject inspectedObject;
         
         [Header("Object References")]
-        [SerializeField] private Transform playerTransform;
-        public GameObject test;
+        [SerializeField] private Transform inspectorTransform;
 
 
         
@@ -48,14 +47,23 @@ namespace ProjectBorderland.Core.FreeRoam
             {
                 if (isInspecting)
                 {
-                    //GameManager.EnableFreeRoamCamera();
-                    //GameManager.EnableFreeRoamMovement();
+                    isInspecting = false;
+
+                    GameManager.UndoFreezePlayer();
+                    GameManager.UndoHidePlayerItemHolder();
+                    
+                    if (inspectedObject != null)
+                    {
+                        Destroy(inspectedObject);
+                    }
                 }
 
                 else
                 {
-                    //GameManager.DisableFreeRoamCamera();
-                    //GameManager.DisableFreeRoamMovement();
+                    isInspecting = true;
+
+                    GameManager.FreezePlayer();
+                    GameManager.HidePlayerItemHolder();
                     Inspect();
                 }
             }
@@ -71,9 +79,12 @@ namespace ProjectBorderland.Core.FreeRoam
         /// </summary>
         private void Inspect()
         {
-            isInspecting = true;
-            ItemSO item = InventoryManager.GetCurrentEquipped();
-            inspectedObject = Instantiate(test, playerTransform.position, Quaternion.identity);
+            ItemSO item = InventoryManager.GetCurrentIndex();
+
+            if (item != null)
+            {
+                inspectedObject = Instantiate(item.ModelObject, inspectorTransform.position, Quaternion.identity);
+            }
         }
 
 
@@ -83,7 +94,7 @@ namespace ProjectBorderland.Core.FreeRoam
         /// </summary>
         private void Rotate()
         {
-            if (isInspecting)
+            if (isInspecting && inspectedObject != null)
             {
                 yRotation += horizontalAxis;
                 xRotation -= verticalAxis;
