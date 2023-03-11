@@ -85,6 +85,16 @@ namespace ProjectBorderland.Core.FreeRoam
 
 
         /// <summary>
+        /// Stops player velocity.
+        /// </summary>
+        public void Stop()
+        {
+            rb.velocity = Vector3.zero;
+        }
+
+
+
+        /// <summary>
         /// Prevents player speed to exceeds moveSpeed value.
         /// </summary>
         private void ControlSpeed()

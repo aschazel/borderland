@@ -12,11 +12,9 @@ namespace ProjectBorderland.Core.FreeRoam
         // Variables
         //==============================================================================
         private bool isInspecting;
-        private float mouseSensitivity = 2f;
+        private float mouseSensitivity = 6f;
         private float horizontalAxis;
         private float verticalAxis;
-        private float xRotation;
-        private float yRotation;
         private GameObject inspectedObject;
         
         [Header("Object References")]
@@ -68,8 +66,17 @@ namespace ProjectBorderland.Core.FreeRoam
                 }
             }
 
-            horizontalAxis = Input.GetAxis("Mouse X") * mouseSensitivity;
-            verticalAxis = Input.GetAxis("Mouse Y") * mouseSensitivity;
+            if (Input.GetKey(KeyCode.Mouse0))
+            {
+                horizontalAxis = Input.GetAxis("Mouse X") * mouseSensitivity;
+                verticalAxis = Input.GetAxis("Mouse Y") * mouseSensitivity;
+            }
+
+            else
+            {
+                horizontalAxis = 0f;
+                verticalAxis = 0f;
+            }
         }
 
 
@@ -96,11 +103,8 @@ namespace ProjectBorderland.Core.FreeRoam
         {
             if (isInspecting && inspectedObject != null)
             {
-                yRotation += horizontalAxis;
-                xRotation -= verticalAxis;
-
-                inspectedObject.transform.Rotate(-Vector3.up * xRotation, Space.World);
-                inspectedObject.transform.Rotate(-Vector3.right * yRotation, Space.World);
+                inspectedObject.transform.Rotate(Vector3.down, horizontalAxis, Space.World);
+                inspectedObject.transform.Rotate(Vector3.right, verticalAxis, Space.World);
             }
         }
         #endregion

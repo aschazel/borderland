@@ -89,6 +89,7 @@ namespace ProjectBorderland.Core
         {
             instance.playerMovement.enabled = false;
             instance.playerCamera.enabled = false;
+            instance.playerMovement.Stop();
         }
 
 
