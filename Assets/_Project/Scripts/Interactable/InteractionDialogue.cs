@@ -13,9 +13,11 @@ namespace ProjectBorderland.Interactable
         // Variables
         //==============================================================================
         private InteractableItem interactableItem;
+        private bool isUniqueAlreadyTriggered;
         
         [Header("Object References")]
-        [SerializeField] private DialogueSO dialogue;
+        [SerializeField] private DialogueSO uniqueDialogue;
+        [SerializeField ]private DialogueSO dialogue;
 
         
         
@@ -51,7 +53,16 @@ namespace ProjectBorderland.Interactable
         /// </summary>
         private void DisplayDialogue()
         {
-            DialogueWindowController.Display(dialogue);
+            if (isUniqueAlreadyTriggered || uniqueDialogue == null)
+            {
+                DialogueWindowController.Display(dialogue);
+            }
+
+            else
+            {
+                DialogueWindowController.Display(uniqueDialogue);
+                isUniqueAlreadyTriggered = true;
+            }
         }
         #endregion
     }

@@ -117,6 +117,16 @@ namespace ProjectBorderland.Core.FreeRoam
 
 
         /// <summary>
+        /// Refreshes item on hand.
+        /// </summary>
+        public void Refresh()
+        {
+            ChangeHeldItem();
+        }
+
+
+
+        /// <summary>
         /// Changes item on player hand.
         /// </summary>
         private void ChangeHeldItem()

@@ -39,6 +39,7 @@ namespace ProjectBorderland.UI.Dialogue
         {
             if (Input.GetKeyDown(KeyCode.Mouse0))
             {
+                dialogueWindowController.CheckGiveItem();
                 dialogueWindowController.NextSentence();
             }
         }

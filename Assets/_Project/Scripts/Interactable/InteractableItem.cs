@@ -12,6 +12,7 @@ namespace ProjectBorderland.Interactable
         // Variables
         //==============================================================================
         public Action OnItemInteract;
+        public Action OnTriggerGiveItem;
 
         [Header("Attribute Configurations")]
         [SerializeField] private bool isOneTimeInteract;
@@ -37,13 +38,23 @@ namespace ProjectBorderland.Interactable
 
 
 
-        #region observer
         /// <summary>
         /// Destroys this object after interaction.
         /// </summary>
         private void DestroyAfterInteract()
         {
             Destroy(gameObject);
+        }
+
+
+
+        #region observer
+        /// <summary>
+        /// Triggers give item action.
+        /// </summary>
+        public void TriggerGiveItem()
+        {
+            OnTriggerGiveItem?.Invoke();
         }
 
 

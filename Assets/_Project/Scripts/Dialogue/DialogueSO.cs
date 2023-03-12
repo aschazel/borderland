@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using ProjectBorderland.InventorySystem;
 
 namespace ProjectBorderland.Dialogue
 {
@@ -23,6 +24,8 @@ namespace ProjectBorderland.Dialogue
             public CharacterSO Author { get { return author; } }
             [SerializeField] [TextArea] private string say;
             public string Say { get { return say; } }
+            [SerializeField] private ItemSO giveItem;
+            public ItemSO GiveItem { get { return giveItem; } }
         }
     }
 }

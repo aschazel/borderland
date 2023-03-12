@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using ProjectBorderland.Dialogue;
 using ProjectBorderland.Core;
+using ProjectBorderland.InventorySystem;
 
 namespace ProjectBorderland.UI.Dialogue
 {
@@ -24,6 +25,7 @@ namespace ProjectBorderland.UI.Dialogue
         private TextMeshProUGUI characterName;
 
         [Header("Object References")]
+        [SerializeField] private GameObject shadow;
         [SerializeField] private GameObject background;
         [SerializeField] private GameObject characterImageSlot;
         [SerializeField] private GameObject characterNameSlot;
@@ -58,6 +60,7 @@ namespace ProjectBorderland.UI.Dialogue
 
             instance.background.SetActive(true);
             instance.text.SetActive(true);
+            instance.shadow.SetActive(true);
 
             instance.currentDialogueIndex = 0;
             instance.dialogue = dialogue;
@@ -81,6 +84,7 @@ namespace ProjectBorderland.UI.Dialogue
             characterImageSlot.SetActive(false);
             characterNameSlot.SetActive(false);
             text.SetActive(false);
+            shadow.SetActive(false);
 
             instance.dialogueNavigationController.enabled = false;
             dialogue = null;
@@ -140,6 +144,34 @@ namespace ProjectBorderland.UI.Dialogue
             {
                 characterImageSlot.SetActive(false);
                 characterNameSlot.SetActive(false);
+            }
+        }
+
+
+
+        /// <summary>
+        /// Checks if sentence in dialogue contains item to give.
+        /// </summary>
+        public void CheckGiveItem()
+        {
+            ItemSO item = dialogue.Sentences[instance.currentDialogueIndex].GiveItem;
+
+            if (item != null)
+            {
+                GiveItem(item);
+            }
+        }
+
+
+
+        /// <summary>
+        /// Give item to player.
+        /// </summary>
+        private void GiveItem(ItemSO item)
+        {
+            if (!InventoryManager.AddCurrentIndex(item))
+            {
+                InventoryManager.Instance.PlayerItemHolder.DropItem(item);
             }
         }
         #endregion

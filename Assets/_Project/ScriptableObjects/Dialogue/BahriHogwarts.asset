@@ -10,12 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6c23d1936dda41d4fad49e996676c5a4, type: 3}
-  m_Name: TestDialogue
+  m_Name: BahriHogwarts
   m_EditorClassIdentifier: 
   sentences:
+  - author: {fileID: 11400000, guid: 6d8f9608ed21636448e489e8ac8a59c6, type: 2}
+    say: Yo! selamat datang di Hogwarts!
+    giveItem: {fileID: 0}
   - author: {fileID: 0}
-    say: I love you.
-  - author: {fileID: 11400000, guid: bb3bab3267d285e43b4ef9cd7b4d96fa, type: 2}
     say: ...
+    giveItem: {fileID: 0}
   - author: {fileID: 0}
-    say: ...ok
+    say: (Orang aneh...)
+    giveItem: {fileID: 0}

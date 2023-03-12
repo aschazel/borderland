@@ -158,6 +158,9 @@ namespace ProjectBorderland.Core
                 DisablePlayerItemHolder();
                 DisablePlayerMovement();
                 DisableFirstPersonInteract();
+
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
             }
         }
 
@@ -173,6 +176,11 @@ namespace ProjectBorderland.Core
                 EnablePlayerItemHolder();
                 EnablePlayerMovement();
                 EnableFirstPersonInteract();
+
+                instance.playerItemHolder.Refresh();
+
+                Cursor.visible = false;
+                Cursor.lockState = CursorLockMode.Locked;
             }
         }
 

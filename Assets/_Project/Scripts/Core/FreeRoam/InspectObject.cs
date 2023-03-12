@@ -45,24 +45,12 @@ namespace ProjectBorderland.Core.FreeRoam
             {
                 if (isInspecting)
                 {
-                    isInspecting = false;
-
-                    GameManager.EnablePlayerMovement();
-                    GameManager.EnablePlayerItemHolder();
-                    
-                    if (inspectedObject != null)
-                    {
-                        Destroy(inspectedObject);
-                    }
+                    DisableInspecting();
                 }
 
                 else
                 {
-                    isInspecting = true;
-
-                    GameManager.DisablePlayerMovement();
-                    GameManager.DisablePlayerItemHolder();
-                    Inspect();
+                    EnableInspecting();
                 }
             }
 
@@ -82,13 +70,49 @@ namespace ProjectBorderland.Core.FreeRoam
 
 
         /// <summary>
+        /// Enters inspecting mode.
+        /// </summary>
+        private void EnableInspecting()
+        {
+            isInspecting = true;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+
+            GameManager.DisablePlayerMovement();
+            GameManager.DisablePlayerItemHolder();
+            Inspect();
+        }
+
+
+
+        /// <summary>
+        /// Exits inspecting mode.
+        /// </summary>
+        private void DisableInspecting()
+        {
+            isInspecting = false;
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+
+            GameManager.EnablePlayerMovement();
+            GameManager.EnablePlayerItemHolder();
+                    
+            if (inspectedObject != null)
+            {
+                Destroy(inspectedObject);
+            }
+        }
+
+
+
+        /// <summary>
         /// Inspects object.
         /// </summary>
         private void Inspect()
         {
             ItemSO item = InventoryManager.GetCurrentIndex();
 
-            if (item != null)
+            if (!item.IsNullItem)
             {
                 inspectedObject = Instantiate(item.ModelObject, inspectorTransform.position, Quaternion.identity);
             }
@@ -104,7 +128,7 @@ namespace ProjectBorderland.Core.FreeRoam
             if (isInspecting && inspectedObject != null)
             {
                 inspectedObject.transform.Rotate(Vector3.down, horizontalAxis, Space.World);
-                inspectedObject.transform.Rotate(Vector3.right, verticalAxis, Space.World);
+                inspectedObject.transform.Rotate(Vector3.right, -verticalAxis, Space.World);
             }
         }
         #endregion
