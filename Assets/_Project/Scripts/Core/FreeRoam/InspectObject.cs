@@ -74,13 +74,13 @@ namespace ProjectBorderland.Core.FreeRoam
         /// </summary>
         private void EnableInspecting()
         {
-            isInspecting = true;
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+            ItemSO item = InventoryManager.GetCurrentIndex();
 
-            GameManager.DisablePlayerMovement();
-            GameManager.DisablePlayerItemHolder();
-            Inspect();
+            if (!item.IsNullItem)
+            {
+                isInspecting = true;
+                Inspect(item);
+            }
         }
 
 
@@ -108,14 +108,15 @@ namespace ProjectBorderland.Core.FreeRoam
         /// <summary>
         /// Inspects object.
         /// </summary>
-        private void Inspect()
+        /// <param name="item"></param>
+        private void Inspect(ItemSO item)
         {
-            ItemSO item = InventoryManager.GetCurrentIndex();
+            inspectedObject = Instantiate(item.ModelObject, inspectorTransform.position, Quaternion.identity);
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
 
-            if (!item.IsNullItem)
-            {
-                inspectedObject = Instantiate(item.ModelObject, inspectorTransform.position, Quaternion.identity);
-            }
+            GameManager.DisablePlayerMovement();
+            GameManager.DisablePlayerItemHolder();
         }
 
 
