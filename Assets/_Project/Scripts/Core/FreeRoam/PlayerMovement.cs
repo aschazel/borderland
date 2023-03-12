@@ -85,7 +85,7 @@ namespace ProjectBorderland.Core.FreeRoam
 
 
         /// <summary>
-        /// Stops player velocity.
+        /// Sets player velocity to zero.
         /// </summary>
         public void Stop()
         {

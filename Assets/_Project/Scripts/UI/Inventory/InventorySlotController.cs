@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using ProjectBorderland.InventorySystem;
 
-namespace ProjectBorderland.UI
+namespace ProjectBorderland.UI.Inventory
 {
     /// <summary>
     /// Handles inventory slot behaviour.

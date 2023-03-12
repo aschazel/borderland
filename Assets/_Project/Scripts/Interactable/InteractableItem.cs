@@ -13,9 +13,6 @@ namespace ProjectBorderland.Interactable
         //==============================================================================
         public Action OnItemInteract;
 
-        [Header("Object References")]
-        [SerializeField] private string dialog;
-
         [Header("Attribute Configurations")]
         [SerializeField] private bool isOneTimeInteract;
 

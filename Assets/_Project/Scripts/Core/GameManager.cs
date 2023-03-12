@@ -37,6 +37,8 @@ namespace ProjectBorderland.Core
         private PlayerMovement playerMovement;
         private PlayerCamera playerCamera;
         private PlayerItemHolder playerItemHolder;
+        private InteractEnvironment firstPersonInteractEnvironment;
+        private GameState currentGameState;
 
         [Header("Object References")]
         [SerializeField] private GameObject playerObject;
@@ -65,6 +67,7 @@ namespace ProjectBorderland.Core
             playerMovement = playerObject.GetComponentInChildren<PlayerMovement>();
             playerCamera = playerObject.GetComponentInChildren<PlayerCamera>();
             playerItemHolder = playerObject.GetComponentInChildren<PlayerItemHolder>();
+            firstPersonInteractEnvironment = playerObject.GetComponentInChildren<InteractEnvironment>();
         }
         #endregion
 
@@ -83,9 +86,9 @@ namespace ProjectBorderland.Core
 
 
         /// <summary>
-        /// Freezes first person movement and camera movement.
+        /// Disables first person movement and camera movement.
         /// </summary>
-        public static void FreezePlayer()
+        public static void DisablePlayerMovement()
         {
             instance.playerMovement.enabled = false;
             instance.playerCamera.enabled = false;
@@ -95,9 +98,9 @@ namespace ProjectBorderland.Core
 
 
         /// <summary>
-        /// Undo freezes first person movement and camera movement.
+        /// Enables first person movement and camera movement.
         /// </summary>
-        public static void UndoFreezePlayer()
+        public static void EnablePlayerMovement()
         {
             instance.playerMovement.enabled = true;
             instance.playerCamera.enabled = true;
@@ -106,9 +109,9 @@ namespace ProjectBorderland.Core
 
 
         /// <summary>
-        /// Hides player first person item holder.
+        /// Disables player first person item holder.
         /// </summary>
-        public static void HidePlayerItemHolder()
+        public static void DisablePlayerItemHolder()
         {
             instance.playerItemHolder.enabled = false;
         }
@@ -116,9 +119,9 @@ namespace ProjectBorderland.Core
 
 
         /// <summary>
-        /// Undo hides player first person item holder.
+        /// Enables player first person item holder.
         /// </summary>
-        public static void UndoHidePlayerItemHolder()
+        public static void EnablePlayerItemHolder()
         {
             instance.playerItemHolder.enabled = true;
         }
@@ -126,9 +129,59 @@ namespace ProjectBorderland.Core
 
 
         /// <summary>
+        /// Disables player first person interact behaviour.
+        /// </summary>
+        public static void DisableFirstPersonInteract()
+        {
+            instance.firstPersonInteractEnvironment.enabled = false;
+        }
+
+
+
+        /// <summary>
+        /// Enables player first person interact behaviour.
+        /// </summary>
+        public static void EnableFirstPersonInteract()
+        {
+            instance.firstPersonInteractEnvironment.enabled = true;
+        }
+
+
+
+        /// <summary>
+        /// Enters dialogue mode.
+        /// </summary>
+        public static void EnterDialogue()
+        {
+            if (instance.currentGameState == GameState.FreeRoam)
+            {
+                DisablePlayerItemHolder();
+                DisablePlayerMovement();
+                DisableFirstPersonInteract();
+            }
+        }
+
+
+
+        /// <summary>
+        /// Exits dialogue mode.
+        /// </summary>
+        public static void ExitDialogue()
+        {
+            if (instance.currentGameState == GameState.FreeRoam)
+            {
+                EnablePlayerItemHolder();
+                EnablePlayerMovement();
+                EnableFirstPersonInteract();
+            }
+        }
+
+
+
+        /// <summary>
         /// Enables free roam related components.
         /// </summary>
-        private void EnableFreeRoam()
+        private void EnableFreeRoamState()
         {
 
         }
@@ -138,7 +191,7 @@ namespace ProjectBorderland.Core
         /// <summary>
         /// Disables free roam related components.
         /// </summary>
-        private void DisableFreeRoam()
+        private void DisableFreeRoamState()
         {
             
         }
@@ -148,7 +201,7 @@ namespace ProjectBorderland.Core
         /// <summary>
         /// Enables point and click related components.
         /// </summary>
-        private void EnablePointAndClick()
+        private void EnablePointAndClickState()
         {
             
         }
@@ -158,7 +211,7 @@ namespace ProjectBorderland.Core
         /// <summary>
         /// Disables point and click related components.
         /// </summary>
-        private void DisablePointAndClick()
+        private void DisablePointAndClickState()
         {
 
         }

@@ -47,8 +47,8 @@ namespace ProjectBorderland.Core.FreeRoam
                 {
                     isInspecting = false;
 
-                    GameManager.UndoFreezePlayer();
-                    GameManager.UndoHidePlayerItemHolder();
+                    GameManager.EnablePlayerMovement();
+                    GameManager.EnablePlayerItemHolder();
                     
                     if (inspectedObject != null)
                     {
@@ -60,8 +60,8 @@ namespace ProjectBorderland.Core.FreeRoam
                 {
                     isInspecting = true;
 
-                    GameManager.FreezePlayer();
-                    GameManager.HidePlayerItemHolder();
+                    GameManager.DisablePlayerMovement();
+                    GameManager.DisablePlayerItemHolder();
                     Inspect();
                 }
             }

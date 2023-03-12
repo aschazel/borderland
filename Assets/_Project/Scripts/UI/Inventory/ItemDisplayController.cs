@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace ProjectBorderland.UI
+namespace ProjectBorderland.UI.Inventory
 {
     /// <summary>
     /// Handles item sprite display behaviour on UI.
