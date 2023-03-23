@@ -14,7 +14,7 @@ namespace ProjectBorderland.Core.FreeRoam
         //==============================================================================
         private GameObject heldItem;
 
-        [SerializeField] private Transform playerItemHolderTransform;
+        [SerializeField] private Transform itemHolderTransform;
 
 
 
@@ -33,9 +33,9 @@ namespace ProjectBorderland.Core.FreeRoam
         {
             InventoryManager.OnEquippedChanged += ChangeHeldItem;
 
-            if (playerItemHolderTransform != null)
+            if (itemHolderTransform != null)
             {
-                playerItemHolderTransform.gameObject.SetActive(true);
+                itemHolderTransform.gameObject.SetActive(true);
             }
         }
 
@@ -45,9 +45,9 @@ namespace ProjectBorderland.Core.FreeRoam
         {
             InventoryManager.OnEquippedChanged -= ChangeHeldItem;
 
-            if (playerItemHolderTransform != null)
+            if (itemHolderTransform != null)
             {
-                playerItemHolderTransform.gameObject.SetActive(false);
+                itemHolderTransform.gameObject.SetActive(false);
             }
         }
         #endregion
@@ -77,7 +77,7 @@ namespace ProjectBorderland.Core.FreeRoam
             {
                 ItemSO item = InventoryManager.GetCurrentIndex();
                 GameObject throwedItem = InstantiatePickableItem(heldItem, item);
-                throwedItem.GetComponent<Rigidbody>().AddForce(playerItemHolderTransform.forward * 5f, ForceMode.Impulse);
+                throwedItem.GetComponent<Rigidbody>().AddForce(itemHolderTransform.forward * 5f, ForceMode.Impulse);
 
                 Destroy(heldItem);
 
@@ -103,7 +103,7 @@ namespace ProjectBorderland.Core.FreeRoam
         /// </summary>
         private GameObject InstantiatePickableItem(GameObject itemObject, ItemSO item)
         {
-            GameObject instantiatedItem = Instantiate(itemObject, playerItemHolderTransform.position, playerItemHolderTransform.rotation);
+            GameObject instantiatedItem = Instantiate(itemObject, itemHolderTransform.position, itemHolderTransform.rotation);
             instantiatedItem.GetComponent<BoxCollider>().enabled = true;
             instantiatedItem.AddComponent<Rigidbody>();
             instantiatedItem.AddComponent<InteractableItem>();
@@ -148,12 +148,12 @@ namespace ProjectBorderland.Core.FreeRoam
                 if (heldItem != null)
                 {
                     Destroy(heldItem);
-                    heldItem = Instantiate(item, playerItemHolderTransform.position, playerItemHolderTransform.rotation, playerItemHolderTransform);
+                    heldItem = Instantiate(item, itemHolderTransform.position, itemHolderTransform.rotation, itemHolderTransform);
                 }
 
                 else
                 {
-                    heldItem = Instantiate(item, playerItemHolderTransform.position, playerItemHolderTransform.rotation, playerItemHolderTransform);
+                    heldItem = Instantiate(item, itemHolderTransform.position, itemHolderTransform.rotation, itemHolderTransform);
                 }    
             }
 

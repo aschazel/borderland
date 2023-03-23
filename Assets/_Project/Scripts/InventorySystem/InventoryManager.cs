@@ -1,9 +1,7 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using ProjectBorderland.DeveloperTools;
 using ProjectBorderland.Core;
 using ProjectBorderland.Core.FreeRoam;
 
@@ -42,10 +40,10 @@ namespace ProjectBorderland.InventorySystem
 
         public static Action OnInventoryChanged;
         public static Action OnEquippedChanged;
-        public static int EquippedSlotIndex = 0;
+        private static int slotIndex = 0;
+        public static int SlotIndex { get { return slotIndex; } }
         private static List<ItemSO> items = new List<ItemSO>();
         public static List<ItemSO> Items { get { return items; } }
-        private TextMeshProUGUI debugText;
 
         [Header("Object References")]
         [SerializeField] public PlayerItemHolder PlayerItemHolder;
@@ -73,7 +71,6 @@ namespace ProjectBorderland.InventorySystem
             }
             #endregion
 
-            debugText = DebugController.Instance.DebugText.transform.Find("InventoryManager").GetComponent<TextMeshProUGUI>();
             items = Enumerable.Repeat(CreateNullItem(), maxCapacity).ToList();
         }
 
@@ -83,31 +80,11 @@ namespace ProjectBorderland.InventorySystem
         {
             GetInput();
         }
-
-
-
-        private void FixedUpdate()
-        {
-            SetDebugText();
-        }
         #endregion
 
 
 
         #region ProjectBorderland methods
-        /// <summary>
-        /// Creates null item for empty reference.
-        /// </summary>
-        private ItemSO CreateNullItem()
-        {
-            ItemSO nullItem = ScriptableObject.CreateInstance<ItemSO>();
-            nullItem.IsNullItem = true;
-
-            return nullItem;
-        }
-
-
-
         /// <summary>
         /// Gets input from Unity Input Manager.
         /// </summary>
@@ -125,49 +102,49 @@ namespace ProjectBorderland.InventorySystem
 
             if (Input.GetKeyDown(InputController.Instance.Slot1))
             {
-                EquippedSlotIndex = 0;
+                slotIndex = 0;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot2))
             {
-                EquippedSlotIndex = 1;
+                slotIndex = 1;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot3))
             {
-                EquippedSlotIndex = 2;
+                slotIndex = 2;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot4))
             {
-                EquippedSlotIndex = 3;
+                slotIndex = 3;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot5))
             {
-                EquippedSlotIndex = 4;
+                slotIndex = 4;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot6))
             {
-                EquippedSlotIndex = 5;
+                slotIndex = 5;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot7))
             {
-                EquippedSlotIndex = 6;
+                slotIndex = 6;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot8))
             {
-                EquippedSlotIndex = 7;
+                slotIndex = 7;
                 NotifyOnEquippedChanged();
             }
         }
@@ -179,9 +156,9 @@ namespace ProjectBorderland.InventorySystem
         /// </summary>
         private void IncrementEquippedIndex()
         {
-            if (EquippedSlotIndex < maxCapacity - 1)
+            if (slotIndex < maxCapacity - 1)
             {
-                EquippedSlotIndex++;
+                slotIndex++;
                 NotifyOnEquippedChanged();
             }
         }
@@ -193,11 +170,24 @@ namespace ProjectBorderland.InventorySystem
         /// </summary>
         private void DecrementEquippedIndex()
         {
-            if (EquippedSlotIndex > 0)
+            if (slotIndex > 0)
             {
-                EquippedSlotIndex--;
+                slotIndex--;
                 NotifyOnEquippedChanged();
             }
+        }
+
+
+
+        /// <summary>
+        /// Creates null item for empty reference.
+        /// </summary>
+        private ItemSO CreateNullItem()
+        {
+            ItemSO nullItem = ScriptableObject.CreateInstance<ItemSO>();
+            nullItem.IsNullItem = true;
+
+            return nullItem;
         }
 
 
@@ -231,27 +221,6 @@ namespace ProjectBorderland.InventorySystem
 
 
         /// <summary>
-        /// Get currently equipped item.
-        /// </summary>
-        public static ItemSO GetCurrentIndex()
-        {
-            return items[EquippedSlotIndex];
-        }
-
-
-
-        /// <summary>
-        /// Shorthand for Add() to current slot index.
-        /// </summary>
-        /// <param name="item"></param>
-        public static bool AddCurrentIndex(ItemSO item)
-        {
-            return Add(item, EquippedSlotIndex);
-        }
-
-
-
-        /// <summary>
         /// Remove an item from inventory by index.
         /// </summary>
         /// <param name="item"></param>
@@ -265,12 +234,33 @@ namespace ProjectBorderland.InventorySystem
 
 
         /// <summary>
+        /// Get currently equipped item.
+        /// </summary>
+        public static ItemSO GetCurrentIndex()
+        {
+            return items[slotIndex];
+        }
+
+
+
+        /// <summary>
+        /// Shorthand for Add() to current slot index.
+        /// </summary>
+        /// <param name="item"></param>
+        public static bool AddCurrentIndex(ItemSO item)
+        {
+            return Add(item, slotIndex);
+        }
+
+
+
+        /// <summary>
         /// Shorthand for Remove()) to current slot index.
         /// </summary>
         /// <param name="item"></param>
         public static void RemoveCurrentIndex()
         {
-            Remove(EquippedSlotIndex);
+            Remove(slotIndex);
         }
 
 
@@ -354,45 +344,6 @@ namespace ProjectBorderland.InventorySystem
             OnEquippedChanged?.Invoke();
         }
         #endregion
-        #endregion
-
-
-
-        #region Debug
-        /// <summary>
-        /// Sets debug text.
-        /// </summary>
-        private void SetDebugText()
-        {
-            if (DebugController.Instance.IsDebugMode)
-            {
-                string text;
-                string itemName;
-
-                text = $"Inventory: {{";
-
-                foreach (ItemSO item in items)
-                {
-                    itemName = item.Name;
-                    text += $" \"{itemName}\",";
-                }
-
-                text += " }\n";
-                text += $"Equipped slot index: {EquippedSlotIndex}\n";
-
-                try
-                {
-                    text += $"Equipped: \"{items[EquippedSlotIndex].name}\"";
-                }
-                
-                catch (ArgumentOutOfRangeException)
-                {
-                    text += $"Equipped: \"None\"";
-                }
-                
-                debugText.SetText(text);
-            }
-        }
         #endregion
     }
 }
