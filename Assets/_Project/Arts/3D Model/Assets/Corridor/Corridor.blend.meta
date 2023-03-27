@@ -27,6 +27,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Tiles 01
+    second: {fileID: 2100000, guid: c299da963fc39f142a0b6693ffbc1b57, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: plaster white irregular.001
     second: {fileID: 2100000, guid: 477c2ba7788fa9349b2370a2227ee259, type: 2}
   materials:
