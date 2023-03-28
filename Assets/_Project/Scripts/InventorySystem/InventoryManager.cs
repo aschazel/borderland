@@ -180,7 +180,7 @@ namespace ProjectBorderland.InventorySystem
 
 
         /// <summary>
-        /// Creates null item for empty reference.
+        /// Creates null item for empty item reference.
         /// </summary>
         private ItemSO CreateNullItem()
         {
@@ -290,7 +290,7 @@ namespace ProjectBorderland.InventorySystem
         /// Get sprite from item.
         /// </summary>
         /// <param name="index"></param>
-        public static Sprite GetSprite(int index)
+        public static Sprite GetItemSprite(int index)
         {
             if (!items[index].IsNullItem)
             {
@@ -306,14 +306,14 @@ namespace ProjectBorderland.InventorySystem
 
 
         /// <summary>
-        /// Get model object from item.
+        /// Get item prefab from item.
         /// </summary>
         /// <param name="index"></param>
-        public static GameObject GetModelObject(int index)
+        public static GameObject GetItemPrefab(int index)
         {
             if (!items[index].IsNullItem)
             {
-                return items[index].ModelObject;
+                return items[index].Prefab;
             }
 
             else

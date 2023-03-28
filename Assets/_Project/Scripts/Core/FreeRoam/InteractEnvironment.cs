@@ -38,7 +38,7 @@ namespace ProjectBorderland.Core.FreeRoam
         /// </summary>
         private void GetInput()
         {
-            if (Input.GetKeyDown(InputController.Instance.Interact))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 Interact();
             }

@@ -17,7 +17,7 @@ namespace ProjectBorderland.Interactable
         
         [Header("Object References")]
         [SerializeField] private DialogueSO uniqueDialogue;
-        [SerializeField ]private DialogueSO dialogue;
+        [SerializeField ] private DialogueSO dialogue;
 
         
         

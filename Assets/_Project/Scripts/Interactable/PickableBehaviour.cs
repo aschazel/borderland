@@ -45,7 +45,10 @@ namespace ProjectBorderland.Interactable
         
 
         #region ProjectBorderland methods
-        public void PickUp()
+        /// <summary>
+        /// Picks up item and swap item on current inventory slot index if inventory is full.
+        /// </summary>
+        private void PickUp()
         {
             if (!InventoryManager.AddCurrentIndex(Item))
             {

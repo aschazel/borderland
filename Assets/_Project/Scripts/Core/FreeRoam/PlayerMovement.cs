@@ -50,8 +50,21 @@ namespace ProjectBorderland.Core.FreeRoam
         /// </summary>
         private void GetInput()
         {
-            horizontalAxis = Input.GetAxis("Horizontal");
-            verticalAxis = Input.GetAxis("Vertical");
+            // horizontalAxis = Input.GetAxis("Horizontal");
+            // verticalAxis = Input.GetAxis("Vertical");
+
+            if (Input.GetKey(InputController.Instance.Forward)) verticalAxis = 1f;
+
+            else if (Input.GetKey(InputController.Instance.Backward)) verticalAxis = -1f; 
+            
+            else verticalAxis = 0f;
+
+            if (Input.GetKey(InputController.Instance.Right)) horizontalAxis = 1f;
+
+            else if (Input.GetKey(InputController.Instance.Left)) horizontalAxis = -1f; 
+            
+            else horizontalAxis = 0f;
+
 
             if (Input.GetKey(InputController.Instance.Sprint))
             {
@@ -100,6 +113,11 @@ namespace ProjectBorderland.Core.FreeRoam
             {
                 Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
                 rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
+            }
+
+            if (verticalAxis == 0f && horizontalAxis == 0f)
+            {
+                Stop();
             }
         }
         #endregion

@@ -1,9 +1,9 @@
 using UnityEngine;
 
-namespace ProjectBorderland.Interactable
+namespace ProjectBorderland.Core
 {
     /// <summary>
-    /// Rotates object to always face camera.
+    /// Rotates object to always face main camera.
     /// </summary>
     public class FaceCamera : MonoBehaviour
     {

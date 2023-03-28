@@ -165,7 +165,7 @@ namespace ProjectBorderland.UI.Dialogue
 
 
         /// <summary>
-        /// Give item to player.
+        /// Give item to player and drop item on ground if inventory is full.
         /// </summary>
         private void GiveItem(ItemSO item)
         {

@@ -12,7 +12,6 @@ namespace ProjectBorderland.Interactable
         // Variables
         //==============================================================================
         public Action OnItemInteract;
-        public Action OnTriggerGiveItem;
 
         [Header("Attribute Configurations")]
         [SerializeField] private bool isOneTimeInteract;
@@ -49,16 +48,6 @@ namespace ProjectBorderland.Interactable
 
 
         #region observer
-        /// <summary>
-        /// Triggers give item action.
-        /// </summary>
-        public void TriggerGiveItem()
-        {
-            OnTriggerGiveItem?.Invoke();
-        }
-
-
-
         /// <summary>
         /// Notifies when item interacted.
         /// </summary>

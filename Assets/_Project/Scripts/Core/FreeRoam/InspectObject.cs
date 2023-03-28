@@ -79,7 +79,8 @@ namespace ProjectBorderland.Core.FreeRoam
             if (!item.IsNullItem)
             {
                 isInspecting = true;
-                Inspect(item);
+                GameManager.EnterInspectMode();
+                InstantiateInspectedObject(item);
             }
         }
 
@@ -94,8 +95,7 @@ namespace ProjectBorderland.Core.FreeRoam
             Cursor.visible = false;
             Cursor.lockState = CursorLockMode.Locked;
 
-            GameManager.EnablePlayerMovement();
-            GameManager.EnablePlayerItemHolder();
+            GameManager.ExitInspectMode();
                     
             if (inspectedObject != null)
             {
@@ -109,20 +109,17 @@ namespace ProjectBorderland.Core.FreeRoam
         /// Inspects object.
         /// </summary>
         /// <param name="item"></param>
-        private void Inspect(ItemSO item)
+        private void InstantiateInspectedObject(ItemSO item)
         {
-            inspectedObject = Instantiate(item.ModelObject, inspectorTransform.position, Quaternion.identity);
+            inspectedObject = Instantiate(item.Prefab, inspectorTransform.position, Quaternion.identity);
             Cursor.visible = true;
             Cursor.lockState = CursorLockMode.None;
-
-            GameManager.DisablePlayerMovement();
-            GameManager.DisablePlayerItemHolder();
         }
 
 
 
         /// <summary>
-        /// Rotates object around input axis.
+        /// Rotates inspected object around input axis.
         /// </summary>
         private void Rotate()
         {
