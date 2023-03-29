@@ -121,9 +121,9 @@ namespace ProjectBorderland.Core.FreeRoam
                 Destroy(heldItem);
 
                 InventoryManager.RemoveCurrentIndex();
-
-                itemHolderAnimator.SetBool("IsReadyToThrow", false);
             }
+
+            itemHolderAnimator.SetBool("IsReadyToThrow", false);
         }
 
 

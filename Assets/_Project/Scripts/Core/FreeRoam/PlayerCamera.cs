@@ -18,6 +18,7 @@ namespace ProjectBorderland.Core.FreeRoam
 
         [Header("Object References")]
         [SerializeField] private Transform playerOrientation;
+        [SerializeField] private Transform playerCamera;
 
 
         
@@ -64,7 +65,7 @@ namespace ProjectBorderland.Core.FreeRoam
 
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            playerCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
             playerOrientation.rotation = Quaternion.Euler(0, yRotation, 0);
         }
         #endregion
