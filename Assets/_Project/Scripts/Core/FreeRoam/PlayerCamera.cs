@@ -28,8 +28,7 @@ namespace ProjectBorderland.Core.FreeRoam
         #region MonoBehaviour methods
         private void Start()
         {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
+            GameManager.HideCursor();
         }
 
 

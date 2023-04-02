@@ -1,5 +1,6 @@
 using UnityEngine;
 using ProjectBorderland.Core.FreeRoam;
+using ProjectBorderland.Core.PointAndClick;
 
 namespace ProjectBorderland.Core
 {
@@ -38,12 +39,14 @@ namespace ProjectBorderland.Core
         private PlayerCamera playerCamera;
         private PlayerItemHolder playerItemHolder;
         private InteractEnvironment firstPersonInteractEnvironment;
+        private PointAndClickCamera pointAndClickCamera;
         private GameState currentGameState;
 
         [Header("Object References")]
-        [SerializeField] private GameObject playerObject;
+        [SerializeField] private GameObject freeRoamPlayer;
+        [SerializeField] private GameObject pointAndClickPlayer;
 
-
+  
 
         //==============================================================================
         // Functions
@@ -63,10 +66,11 @@ namespace ProjectBorderland.Core
             }
             #endregion
 
-            playerMovement = playerObject.GetComponentInChildren<PlayerMovement>();
-            playerCamera = playerObject.GetComponentInChildren<PlayerCamera>();
-            playerItemHolder = playerObject.GetComponentInChildren<PlayerItemHolder>();
-            firstPersonInteractEnvironment = playerObject.GetComponentInChildren<InteractEnvironment>();
+            playerMovement = freeRoamPlayer.GetComponentInChildren<PlayerMovement>();
+            playerCamera = freeRoamPlayer.GetComponentInChildren<PlayerCamera>();
+            playerItemHolder = freeRoamPlayer.GetComponentInChildren<PlayerItemHolder>();
+            firstPersonInteractEnvironment = freeRoamPlayer.GetComponentInChildren<InteractEnvironment>();
+            pointAndClickCamera = pointAndClickPlayer.GetComponentInChildren<PointAndClickCamera>();
         }
         #endregion
 
@@ -74,12 +78,46 @@ namespace ProjectBorderland.Core
 
         #region ProjectBorderland methods
         /// <summary>
+        /// Hides and locks player cursor.
+        /// </summary>
+        public static void HideCursor()
+        {
+            Cursor.visible = false;
+            Cursor.lockState = CursorLockMode.Locked;
+        }
+
+
+
+        /// <summary>
+        /// Shows and unlock
+        /// </summary>
+        public static void ShowCursor()
+        {
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+        }
+
+
+
+        /// <summary>
         /// Switchs current game state to specified game state.
         /// </summary>
         /// <param name="gameState"></param>
         public static void SwitchGameState(GameState gameState)
         {
+            if (gameState == GameState.FreeRoam)
+            {
+                HideCursor();
+                instance.freeRoamPlayer.SetActive(true);
+                instance.pointAndClickPlayer.SetActive(false);
+            }
 
+            else if (gameState == GameState.PointAndClick)
+            {
+                ShowCursor();
+                instance.freeRoamPlayer.SetActive(false);
+                instance.pointAndClickPlayer.SetActive(true);
+            }
         }
 
 
@@ -148,12 +186,23 @@ namespace ProjectBorderland.Core
 
 
         /// <summary>
+        /// Sets up point and click camera position and boundary.
+        /// </summary>
+        public static void SetUpPointAndClickCamera(CameraBoundary cameraBoundary)
+        {
+            instance.pointAndClickCamera.SetUpCamera(cameraBoundary.transform, cameraBoundary.MinimumCameraConstraint, cameraBoundary.MaximumCameraConstraint);
+        }
+
+
+
+        /// <summary>
         /// Enters item inspection mode.
         /// </summary>
         public static void EnterInspectMode()
         {
             if (instance.currentGameState == GameState.FreeRoam)
             {
+                ShowCursor();
                 DisablePlayerMovement();
                 DisablePlayerItemHolder();
                 DisableFirstPersonInteract();
@@ -174,6 +223,7 @@ namespace ProjectBorderland.Core
         {
             if (instance.currentGameState == GameState.FreeRoam)
             {
+                HideCursor();
                 EnablePlayerMovement();
                 EnablePlayerItemHolder();
                 EnableFirstPersonInteract();

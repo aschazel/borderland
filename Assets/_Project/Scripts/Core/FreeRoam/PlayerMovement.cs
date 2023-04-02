@@ -50,9 +50,6 @@ namespace ProjectBorderland.Core.FreeRoam
         /// </summary>
         private void GetInput()
         {
-            // horizontalAxis = Input.GetAxis("Horizontal");
-            // verticalAxis = Input.GetAxis("Vertical");
-
             if (Input.GetKey(InputController.Instance.Forward)) verticalAxis = 1f;
 
             else if (Input.GetKey(InputController.Instance.Backward)) verticalAxis = -1f; 

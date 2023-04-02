@@ -92,9 +92,6 @@ namespace ProjectBorderland.Core.FreeRoam
         private void DisableInspecting()
         {
             isInspecting = false;
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-
             GameManager.ExitInspectMode();
                     
             if (inspectedObject != null)
@@ -112,8 +109,7 @@ namespace ProjectBorderland.Core.FreeRoam
         private void InstantiateInspectedObject(ItemSO item)
         {
             inspectedObject = Instantiate(item.Prefab, inspectorTransform.position, Quaternion.identity);
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
+
         }
 
 

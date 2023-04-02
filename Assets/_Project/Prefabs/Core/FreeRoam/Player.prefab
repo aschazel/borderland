@@ -201,7 +201,6 @@ GameObject:
   - component: {fileID: 4571883479103776615}
   - component: {fileID: 4571883479103776611}
   - component: {fileID: 4571883479103776612}
-  - component: {fileID: 4571883479103776613}
   - component: {fileID: 4571883479103776614}
   m_Layer: 0
   m_Name: Player Camera
@@ -274,14 +273,6 @@ Camera:
   m_StereoSeparation: 0.022
 --- !u!124 &4571883479103776612
 Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4571883479103776616}
-  m_Enabled: 1
---- !u!81 &4571883479103776613
-AudioListener:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}

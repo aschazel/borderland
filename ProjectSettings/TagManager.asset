@@ -8,13 +8,13 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Interactable
+  - Item
   - Water
   - UI
   - Movement
   - PostProcessing
-  - 
-  - 
+  - HeldObject
+  - Clickable
   - 
   - 
   - 
