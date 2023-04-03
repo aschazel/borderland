@@ -24,6 +24,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Locker Door
     second: {fileID: 2100000, guid: da77b66b2b32f0245b057b3126b5770c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TUTUP
+    second: {fileID: 2100000, guid: ab05a8f2599c9a74a83c57409b401b25, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
