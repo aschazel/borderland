@@ -13,8 +13,6 @@ namespace ProjectBorderland.Core
         [Header("Object Attachments")]
         [SerializeField] private Transform cameraTransform;
 
-
-        
         //==============================================================================
         // Functions
         //==============================================================================
@@ -25,8 +23,6 @@ namespace ProjectBorderland.Core
         }
         #endregion
 
-
-
         #region Project
         /// <summary>
         /// Moves camera to player camera position.
@@ -34,6 +30,7 @@ namespace ProjectBorderland.Core
         private void Move()
         {
             transform.position = cameraTransform.position;
+            transform.rotation = cameraTransform.rotation;
         }
         #endregion
     }
