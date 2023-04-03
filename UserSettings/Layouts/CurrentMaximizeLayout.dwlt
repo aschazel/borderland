@@ -24,7 +24,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-  controlID: -1
+  controlID: 2165
 --- !u!114 &2
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 16192, y: 16192}
   vertical: 1
-  controlID: -1
+  controlID: 2166
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_MinSize: {x: 200, y: 100}
   m_MaxSize: {x: 16192, y: 8096}
   vertical: 0
-  controlID: -1
+  controlID: 2167
 --- !u!114 &5
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -184,8 +184,13 @@ MonoBehaviour:
     serializedVersion: 2
     x: 0
     y: 0
+<<<<<<< HEAD
     width: 312.8
     height: 442.4
+=======
+    width: 390
+    height: 598
+>>>>>>> origin/3D-ANJAY
   m_MinSize: {x: 200, y: 200}
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 6}
@@ -224,9 +229,15 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
       m_SelectedIDs: 1aa4ffff
       m_LastClickedID: -23526
       m_ExpandedIDs: 26c7ffff46c7ffff5ec7ffff7ec7ffffd4eeffffeceeffffa2f7ffffc2f7ffffe0faffff905c00009c5c0000d65c0000dc5c0000ec5c0000925d0000a25d0000b85d0000005e0000
+=======
+      m_SelectedIDs: 24610000
+      m_LastClickedID: 24868
+      m_ExpandedIDs: d0b8ffff84c4ffff74caffff00fbfffff0600000fe600000046100000861000034610000446100005861000062610000686100007a610000b0610000b4610000ba610000da610000f26100002662000060620000706200008062000084620000a4620000b8620000d6620000f8620000
+>>>>>>> origin/3D-ANJAY
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -526,9 +537,15 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
+<<<<<<< HEAD
     m_Target: {x: 0.24364394, y: 1.1223791, z: -6.3739524}
     speed: 2
     m_Value: {x: 0.24364394, y: 1.1223791, z: -6.3739524}
+=======
+    m_Target: {x: 5.0129066, y: 1.0628783, z: -10.305806}
+    speed: 2
+    m_Value: {x: 5.0129066, y: 1.0628783, z: -10.305806}
+>>>>>>> origin/3D-ANJAY
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -575,6 +592,7 @@ MonoBehaviour:
     m_GridAxis: 1
     m_gridOpacity: 0.5
   m_Rotation:
+<<<<<<< HEAD
     m_Target: {x: -0.068013534, y: 0.3112722, z: 0.022483613, w: 0.9477807}
     speed: 2
     m_Value: {x: -0.068003, y: 0.31122398, z: 0.02248013, w: 0.94763386}
@@ -582,6 +600,15 @@ MonoBehaviour:
     m_Target: 0.8519281
     speed: 2
     m_Value: 0.8519281
+=======
+    m_Target: {x: 0.0187239, y: 0.8049441, z: -0.025331357, w: 0.5927599}
+    speed: 2
+    m_Value: {x: 0.01872117, y: 0.80482674, z: -0.025327666, w: 0.5926735}
+  m_Size:
+    m_Target: 0.27424622
+    speed: 2
+    m_Value: 0.27424622
+>>>>>>> origin/3D-ANJAY
   m_Ortho:
     m_Target: 0
     speed: 2
@@ -766,22 +793,38 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets/_Project
+=======
+    - Assets/_Project/Arts/3D Model/Assets/Classroom/ClassRoom 2
+>>>>>>> origin/3D-ANJAY
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 16
   m_LastFolders:
+<<<<<<< HEAD
   - Assets/_Project
   m_LastFoldersGridSize: 16
   m_LastProjectPath: C:\Users\Administrator\Documents\Projects\project-borderland
+=======
+  - Assets/_Project/Arts/3D Model/Assets/Classroom/ClassRoom 2
+  m_LastFoldersGridSize: 76
+  m_LastProjectPath: D:\For University\Semester 2\WPG 2\git\project-borderland
+>>>>>>> origin/3D-ANJAY
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 95}
+<<<<<<< HEAD
     m_SelectedIDs: ec640000
     m_LastClickedID: 25836
     m_ExpandedIDs: 00000000b4640000b6640000b8640000ba640000bc640000be640000c0640000c2640000c4640000c6640000c8640000ca640000cc640000ce640000d0640000d2640000d4640000d6640000d8640000da640000dc640000de640000e0640000e2640000e4640000e6640000e8640000ea640000ec640000ee640000f0640000f2640000f4640000f664000000ca9a3bffffff7f
+=======
+    m_SelectedIDs: b6680000
+    m_LastClickedID: 26806
+    m_ExpandedIDs: 00000000586800005a6800005c6800005e68000060680000626800006468000066680000686800006a68000000ca9a3bffffff7f
+>>>>>>> origin/3D-ANJAY
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -809,7 +852,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000b4640000b6640000b8640000ba640000bc640000be640000c0640000c2640000c4640000c6640000c8640000ca640000cc640000ce640000d0640000d2640000d4640000d6640000d8640000da640000dc640000de640000e0640000e2640000e4640000e6640000e8640000ea640000ec640000ee640000f0640000f2640000f4640000f664000000ca9a3bffffff7f
+=======
+    m_ExpandedIDs: 00000000586800005a6800005c6800005e68000060680000626800006468000066680000686800006a68000000ca9a3bffffff7f
+>>>>>>> origin/3D-ANJAY
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -834,10 +881,17 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
+<<<<<<< HEAD
     m_SelectedInstanceIDs: 1aa4ffff
     m_LastClickedInstanceID: -23526
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000aa63000088590000ae66000000000000a6060200
+=======
+    m_SelectedInstanceIDs: 24610000
+    m_LastClickedInstanceID: 24868
+    m_HadKeyboardFocusLastEvent: 0
+    m_ExpandedInstanceIDs: c6230000aa63000088590000ae66000000000000
+>>>>>>> origin/3D-ANJAY
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -910,9 +964,15 @@ MonoBehaviour:
     serializedVersion: 2
     x: 1223.2
     y: 0
+<<<<<<< HEAD
     width: 312.80005
     height: 730.8
   m_MinSize: {x: 275, y: 50}
+=======
+    width: 391
+    height: 987
+  m_MinSize: {x: 390, y: 390}
+>>>>>>> origin/3D-ANJAY
   m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 15}
   m_Panes:
@@ -954,7 +1014,11 @@ MonoBehaviour:
     m_CachedPref: 160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
+<<<<<<< HEAD
   m_LastInspectedObjectInstanceID: -1
+=======
+  m_LastInspectedObjectInstanceID: 24868
+>>>>>>> origin/3D-ANJAY
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
