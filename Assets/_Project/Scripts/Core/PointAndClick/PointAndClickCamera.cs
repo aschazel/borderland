@@ -16,6 +16,9 @@ namespace ProjectBorderland.Core.PointAndClick
         private Vector3 minimumCameraConstraint;
         private Vector3 maximumCameraConstraint;
 
+        public Vector3 move;
+        public Vector3 clamp;
+
         [Header("Attribute Configurations")]
         [SerializeField] private float speed;
 
@@ -61,9 +64,11 @@ namespace ProjectBorderland.Core.PointAndClick
         /// </summary>
         private void PanCamera()
         {
-            Vector3 xAxis = transform.right * (horizontalAxis * speed * Time.deltaTime);
-            Vector3 yAxis = transform.up * (verticalAxis * speed * Time.deltaTime);
-            transform.position += xAxis + yAxis;
+            float xAxis = horizontalAxis * speed * Time.deltaTime;
+            float yAxis = verticalAxis * speed * Time.deltaTime;
+            move = new Vector3(xAxis, yAxis, 0f);
+
+            transform.position += move;
         }
 
 
@@ -103,6 +108,7 @@ namespace ProjectBorderland.Core.PointAndClick
             float clampedZ = Mathf.Clamp(transform.position.z, cameraTransform.position.z - minimumCameraConstraint.z, cameraTransform.position.z + maximumCameraConstraint.z);
 
             transform.position = new Vector3(clampedX, clampedY, clampedZ);
+            clamp =  new Vector3(clampedX, clampedY, clampedZ);
         }
         #endregion
     }

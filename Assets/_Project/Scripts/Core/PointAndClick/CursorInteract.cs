@@ -10,8 +10,10 @@ namespace ProjectBorderland.Core.PointAndClick
         //==============================================================================
         // Variables
         //==============================================================================
+        [Header("Attribute Configurations")]
         [SerializeField] private float interactDistance;
         [SerializeField] private LayerMask cursorInteractLayer;
+        [SerializeField] private Camera pointAndClickCamera;
 
         
 
@@ -66,9 +68,9 @@ namespace ProjectBorderland.Core.PointAndClick
         /// </summary>
         private ClickableObject DetectClickable()
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = pointAndClickCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            Physics.Raycast(ray, out hit, interactDistance, cursorInteractLayer);
+            Physics.Raycast(ray, out hit, interactDistance, ~cursorInteractLayer);
 
             if(hit.collider != null)
             {

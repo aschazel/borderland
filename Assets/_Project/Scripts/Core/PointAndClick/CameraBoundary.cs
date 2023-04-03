@@ -43,21 +43,22 @@ namespace ProjectBorderland.Core.PointAndClick
         private void DrawConstraintGizmos()
         {
             Gizmos.color = Color.green;
+            Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, transform.lossyScale);
 
-            Vector3 xMinimum = new Vector3(transform.position.x - MinimumCameraConstraint.x, transform.position.y, transform.position.z);
-            Vector3 xMaximum = new Vector3(transform.position.x + MaximumCameraConstraint.x, transform.position.y, transform.position.z);
-            Gizmos.DrawLine(transform.position, xMinimum);
-            Gizmos.DrawLine(transform.position, xMaximum);
+            Vector3 xMinimum = new Vector3(0f - MinimumCameraConstraint.x, 0f, 0f);
+            Vector3 xMaximum = new Vector3(0f + MaximumCameraConstraint.x, 0f, 0f);
+            Gizmos.DrawLine(Vector3.zero, xMinimum);
+            Gizmos.DrawLine(Vector3.zero, xMaximum);
 
-            Vector3 yMinimum = new Vector3(transform.position.x, transform.position.y - MinimumCameraConstraint.y, transform.position.z);
-            Vector3 yMaximum = new Vector3(transform.position.x, transform.position.y + MaximumCameraConstraint.y, transform.position.z);
-            Gizmos.DrawLine(transform.position, yMinimum);
-            Gizmos.DrawLine(transform.position, yMaximum);
+            Vector3 yMinimum = new Vector3(0f, 0f - MinimumCameraConstraint.y, 0f);
+            Vector3 yMaximum = new Vector3(0f, 0f + MaximumCameraConstraint.y, 0f);
+            Gizmos.DrawLine(Vector3.zero, yMinimum);
+            Gizmos.DrawLine(Vector3.zero, yMaximum);
 
-            Vector3 zMinimum = new Vector3(transform.position.x, transform.position.y, transform.position.z - MinimumCameraConstraint.z);
-            Vector3 zMaximum = new Vector3(transform.position.x, transform.position.y, transform.position.z + MaximumCameraConstraint.z);
-            Gizmos.DrawLine(transform.position, zMinimum);
-            Gizmos.DrawLine(transform.position, zMaximum);
+            Vector3 zMinimum = new Vector3(0f, 0f, 0f - MinimumCameraConstraint.z);
+            Vector3 zMaximum = new Vector3(0f, 0f, 0f + MaximumCameraConstraint.z);
+            Gizmos.DrawLine(Vector3.zero, zMinimum);
+            Gizmos.DrawLine(Vector3.zero, zMaximum);
         }
         #endregion
     }

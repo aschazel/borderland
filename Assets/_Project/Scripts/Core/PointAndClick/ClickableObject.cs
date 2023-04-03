@@ -11,7 +11,7 @@ namespace ProjectBorderland.Core.PointAndClick
         //==============================================================================
         // Variables
         //==============================================================================
-        public Action OnItemClicked;
+        public Action OnObjectClicked;
 
         [Header("Attribute Configurations")]
         [SerializeField] private bool isOneTimeInteract;
@@ -53,7 +53,7 @@ namespace ProjectBorderland.Core.PointAndClick
         /// </summary>
         private void NotifyOnInteract()
         {
-            OnItemClicked?.Invoke();
+            OnObjectClicked?.Invoke();
         }
         #endregion
         #endregion
