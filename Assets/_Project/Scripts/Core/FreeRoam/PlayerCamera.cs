@@ -1,6 +1,4 @@
-using TMPro;
 using UnityEngine;
-using ProjectBorderland.DeveloperTools;
 
 namespace ProjectBorderland.Core.FreeRoam
 {
@@ -17,11 +15,9 @@ namespace ProjectBorderland.Core.FreeRoam
         private float verticalAxis;
         private float xRotation;
         private float yRotation;
-        private TextMeshProUGUI debugText;
 
         [Header("Object References")]
-        [SerializeField] private Transform orientation;
-        [SerializeField] private Transform mainCamera;
+        [SerializeField] private Transform playerOrientation;
 
 
         
@@ -29,13 +25,6 @@ namespace ProjectBorderland.Core.FreeRoam
         // Functions
         //==============================================================================
         #region MonoBehaviour methods
-        private void Awake()
-        {
-            debugText = DebugController.Instance.DebugText.transform.Find("PlayerCamera").GetComponent<TextMeshProUGUI>();
-        }
-
-
-
         private void Start()
         {
             Cursor.visible = false;
@@ -48,7 +37,6 @@ namespace ProjectBorderland.Core.FreeRoam
         {
             GetInput();
             RotateCamera();
-            SetDebugText();
         }
         #endregion
 
@@ -76,28 +64,8 @@ namespace ProjectBorderland.Core.FreeRoam
 
             xRotation = Mathf.Clamp(xRotation, -90f, 90f);
 
-            mainCamera.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-        }
-        #endregion
-
-
-
-        #region Debug
-        /// <summary>
-        /// Sets debug text.
-        /// </summary>
-        private void SetDebugText()
-        {
-            if (DebugController.Instance.IsDebugMode)
-            {
-                string text;
-
-                text = $"Input mouse horizontal axis: {horizontalAxis}\n";
-                text += $"Input mouse vertical axis: {verticalAxis}\n";
-
-                debugText.SetText(text);
-            }
+            transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            playerOrientation.rotation = Quaternion.Euler(0, yRotation, 0);
         }
         #endregion
     }

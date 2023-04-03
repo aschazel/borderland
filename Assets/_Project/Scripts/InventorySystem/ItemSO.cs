@@ -13,7 +13,7 @@ namespace ProjectBorderland.InventorySystem
         //==============================================================================
         public string Name;
         public Sprite Sprite;
-        public GameObject ModelObject;
+        public GameObject Prefab;
         [HideInInspector] public bool IsNullItem;
 
 
@@ -25,11 +25,11 @@ namespace ProjectBorderland.InventorySystem
         /// <summary>
         /// Get model object from item.
         /// </summary>
-        public GameObject GetModelObject()
+        public GameObject GetPrefab()
         {
             if (!IsNullItem)
             {
-                return ModelObject;
+                return Prefab;
             }
 
             else

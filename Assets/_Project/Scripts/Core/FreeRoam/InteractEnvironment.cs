@@ -1,22 +1,19 @@
-using TMPro;
 using UnityEngine;
 using ProjectBorderland.Interactable;
-using ProjectBorderland.DeveloperTools;
 
 namespace ProjectBorderland.Core.FreeRoam
 {
     /// <summary>
-    /// Handles interact by crosshair behaviour.
+    /// Handles player environment interaction behaviour.
     /// </summary>
     public class InteractEnvironment : MonoBehaviour
     {
         //==============================================================================
         // Variables
         //==============================================================================
-        private TextMeshProUGUI debugText;
         
         [Header("Object References")]
-        [SerializeField] private Transform cameraTransform;
+        [SerializeField] private Transform playerCamera;
 
         [Header("Attribute Configurations")]
         [SerializeField] private float interactDistance;
@@ -27,17 +24,9 @@ namespace ProjectBorderland.Core.FreeRoam
         // Functions
         //==============================================================================
         #region MonoBehaviour methods
-        private void Awake()
-        {
-            debugText = DebugController.Instance.DebugText.transform.Find("FirstPersonInteract").GetComponent<TextMeshProUGUI>();
-        }
-
-
-
         private void Update()
         {
             GetInput();
-            SetDebugText();
         }
         #endregion
 
@@ -49,7 +38,7 @@ namespace ProjectBorderland.Core.FreeRoam
         /// </summary>
         private void GetInput()
         {
-            if (Input.GetKeyDown(InputController.Instance.Interact))
+            if (Input.GetKeyDown(KeyCode.Mouse0))
             {
                 Interact();
             }
@@ -58,7 +47,7 @@ namespace ProjectBorderland.Core.FreeRoam
 
 
         /// <summary>
-        /// Tries to interact with item on sight.
+        /// Tries to interact with item in sight.
         /// </summary>
         private void Interact()
         {
@@ -73,12 +62,12 @@ namespace ProjectBorderland.Core.FreeRoam
 
 
         /// <summary>
-        /// Detects interactable item on sight.
+        /// Returns InteractableItem in sight if detected by Raycast.
         /// </summary>
         private InteractableItem DetectInteractable()
         {
             RaycastHit hit;
-            Physics.Raycast(cameraTransform.position, cameraTransform.forward, out hit, interactDistance);
+            Physics.Raycast(playerCamera.position, playerCamera.forward, out hit, interactDistance);
 
             if(hit.collider != null)
             {
@@ -92,37 +81,6 @@ namespace ProjectBorderland.Core.FreeRoam
             }
 
             return null;
-        }
-        #endregion
-
-
-
-        #region Debug
-        /// <summary>
-        /// Sets debug text.
-        /// </summary>
-        private void SetDebugText()
-        {
-            if (DebugController.Instance.IsDebugMode)
-            {
-                string text;
-                InteractableItem item = DetectInteractable();
-                string itemName = "";
-
-                if (item != null)
-                {
-                    itemName = item.name;
-                }
-
-                else
-                {
-                    itemName = "None";
-                };
-
-                text = $"Interactable: \"{itemName}\"";
-
-                debugText.SetText(text);
-            }
         }
         #endregion
     }

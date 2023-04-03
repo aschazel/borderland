@@ -42,7 +42,6 @@ namespace ProjectBorderland.Core
 
         [Header("Object References")]
         [SerializeField] private GameObject playerObject;
-        [SerializeField] private GameObject mainCamera;
 
 
 
@@ -75,7 +74,7 @@ namespace ProjectBorderland.Core
 
         #region ProjectBorderland methods
         /// <summary>
-        /// Switchs game state to specified.
+        /// Switchs current game state to specified game state.
         /// </summary>
         /// <param name="gameState"></param>
         public static void SwitchGameState(GameState gameState)
@@ -144,6 +143,46 @@ namespace ProjectBorderland.Core
         public static void EnableFirstPersonInteract()
         {
             instance.firstPersonInteractEnvironment.enabled = true;
+        }
+
+
+
+        /// <summary>
+        /// Enters item inspection mode.
+        /// </summary>
+        public static void EnterInspectMode()
+        {
+            if (instance.currentGameState == GameState.FreeRoam)
+            {
+                DisablePlayerMovement();
+                DisablePlayerItemHolder();
+                DisableFirstPersonInteract();
+            }
+
+            else if (instance.currentGameState == GameState.PointAndClick)
+            {
+
+            }
+        }
+
+
+
+        /// <summary>
+        /// Exits item inspection mode.
+        /// </summary>
+        public static void ExitInspectMode()
+        {
+            if (instance.currentGameState == GameState.FreeRoam)
+            {
+                EnablePlayerMovement();
+                EnablePlayerItemHolder();
+                EnableFirstPersonInteract();
+            }
+
+            else if (instance.currentGameState == GameState.PointAndClick)
+            {
+
+            }
         }
 
 

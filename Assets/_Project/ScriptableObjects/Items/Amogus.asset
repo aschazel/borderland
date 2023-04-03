@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Amogus
   Sprite: {fileID: 21300000, guid: b994feffc60ac5e4eb482dfcf8481f37, type: 3}
-  ModelObject: {fileID: 8126608408153883581, guid: 196584928c8fde94aaf943c05e541cec, type: 3}
+  Prefab: {fileID: 8126608408153883581, guid: 196584928c8fde94aaf943c05e541cec, type: 3}
+  IsNullItem: 0

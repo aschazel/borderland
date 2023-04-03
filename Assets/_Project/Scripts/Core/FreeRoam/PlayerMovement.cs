@@ -1,6 +1,4 @@
-using TMPro;
 using UnityEngine;
-using ProjectBorderland.DeveloperTools;
 
 namespace ProjectBorderland.Core.FreeRoam
 {
@@ -15,14 +13,13 @@ namespace ProjectBorderland.Core.FreeRoam
         private float horizontalAxis;
         private float verticalAxis;
         private Rigidbody rb;
-        private TextMeshProUGUI debugText;
         private float moveSpeed;
 
         [Header("Object References")]
-        [SerializeField] private Transform orientation;
+        [SerializeField] private Transform playerOrientation;
 
         [Header("Attribute Settings")]
-        [SerializeField] private float originalMoveSpeed;
+        [SerializeField] private float walkSpeed;
         [SerializeField] private float sprintSpeed;
 
 
@@ -33,7 +30,6 @@ namespace ProjectBorderland.Core.FreeRoam
         #region MonoBehaviour methods
         private void Awake()
         {
-            debugText = DebugController.Instance.DebugText.transform.Find("PlayerController").GetComponent<TextMeshProUGUI>();
             rb = gameObject.GetComponent<Rigidbody>();
         }
 
@@ -43,7 +39,6 @@ namespace ProjectBorderland.Core.FreeRoam
         {
             GetInput();
             Move();
-            SetDebugText();
         }
         #endregion
 
@@ -55,8 +50,21 @@ namespace ProjectBorderland.Core.FreeRoam
         /// </summary>
         private void GetInput()
         {
-            horizontalAxis = Input.GetAxis("Horizontal");
-            verticalAxis = Input.GetAxis("Vertical");
+            // horizontalAxis = Input.GetAxis("Horizontal");
+            // verticalAxis = Input.GetAxis("Vertical");
+
+            if (Input.GetKey(InputController.Instance.Forward)) verticalAxis = 1f;
+
+            else if (Input.GetKey(InputController.Instance.Backward)) verticalAxis = -1f; 
+            
+            else verticalAxis = 0f;
+
+            if (Input.GetKey(InputController.Instance.Right)) horizontalAxis = 1f;
+
+            else if (Input.GetKey(InputController.Instance.Left)) horizontalAxis = -1f; 
+            
+            else horizontalAxis = 0f;
+
 
             if (Input.GetKey(InputController.Instance.Sprint))
             {
@@ -65,7 +73,7 @@ namespace ProjectBorderland.Core.FreeRoam
 
             else
             {
-                moveSpeed = originalMoveSpeed;
+                moveSpeed = walkSpeed;
             }
         }
 
@@ -76,7 +84,7 @@ namespace ProjectBorderland.Core.FreeRoam
         /// </summary>
         private void Move()
         {
-            Vector3 moveDirection = orientation.forward * verticalAxis + orientation.right * horizontalAxis;
+            Vector3 moveDirection = playerOrientation.forward * verticalAxis + playerOrientation.right * horizontalAxis;
             rb.AddForce(moveDirection.normalized * moveSpeed * 10f, ForceMode.Force);
 
             ControlSpeed();
@@ -95,7 +103,7 @@ namespace ProjectBorderland.Core.FreeRoam
 
 
         /// <summary>
-        /// Prevents player speed to exceeds moveSpeed value.
+        /// Clamps player velocity to moveSpeed value.
         /// </summary>
         private void ControlSpeed()
         {
@@ -106,28 +114,10 @@ namespace ProjectBorderland.Core.FreeRoam
                 Vector3 limitedVelocity = flatVelocity.normalized * moveSpeed;
                 rb.velocity = new Vector3(limitedVelocity.x, rb.velocity.y, limitedVelocity.z);
             }
-        }
-        #endregion
 
-
-
-        #region Debug
-        /// <summary>
-        /// Sets debug text.
-        /// </summary>
-        private void SetDebugText()
-        {
-            if (DebugController.Instance.IsDebugMode)
+            if (verticalAxis == 0f && horizontalAxis == 0f)
             {
-                string text;
-
-                text = $"Input keyboard horizontal axis: {horizontalAxis}\n";
-                text += $"Input keyboard vertical axis: {verticalAxis}\n";
-                text += $"Rigidbody velocity: {rb.velocity}\n";
-                text += $"Rigidbody drag: {rb.drag}\n";
-                text += $"Coordinates: {transform.position}";
-
-                debugText.SetText(text);
+                Stop();
             }
         }
         #endregion

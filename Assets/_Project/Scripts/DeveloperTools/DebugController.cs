@@ -1,62 +1,56 @@
+using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using ProjectBorderland.InventorySystem;
 
 namespace ProjectBorderland.DeveloperTools
 {
     /// <summary>
-    /// Handles game debug.
+    /// Handles game debugging.
     /// </summary>
     public class DebugController : MonoBehaviour
     {
         //==============================================================================
         // Variables
         //==============================================================================
-        #region singletonDDOL
         private static DebugController instance;
-        public static DebugController Instance
-        {
-            get
-            {
-                if (instance == null)
-                {
-                    instance = FindObjectOfType<DebugController>();
-
-                    if (instance == null)
-                    {
-                        GameObject newGameObject = new GameObject();
-                        newGameObject.name = typeof(DebugController).Name;
-                        instance = newGameObject.AddComponent<DebugController>();
-                    }
-                }
-
-                return instance;
-            }
-        }
-        #endregion
+        public static DebugController Instance { get { return instance; } }
 
         [Header("Attribute Settings")]
-        public bool IsDebugMode = true;
+        public bool IsDebugMode;
 
         [Header("Object Attachments")]
-        public GameObject DebugText;
+        [SerializeField] private TextMeshProUGUI debugText;
 
 
 
         //==============================================================================
         // Functions
         //==============================================================================
+        #region MonoBehaviour methods
         private void Awake()
         {
-            #region singletonDDOL
-            if (instance == null)
-            {
-                instance = this;
-                DontDestroyOnLoad(gameObject);
-            }
-            else
-            {
-                Destroy(gameObject);
-            }
-            #endregion
+            instance = this;
         }
+
+
+
+        private void Update()
+        {
+            UpdateDebugText();
+        }
+        #endregion
+
+
+
+        #region ProjectBorderland methods
+        /// <summary>
+        /// Updates debug texts.
+        /// </summary>
+        private void UpdateDebugText()
+        {
+
+        }
+        #endregion
     }
 }

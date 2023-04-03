@@ -98,7 +98,7 @@ namespace ProjectBorderland.UI.Inventory
         /// </summary>
         private void ShiftSelected()
         {
-            int equippedSlotIndex = InventoryManager.EquippedSlotIndex;
+            int equippedSlotIndex = InventoryManager.SlotIndex;
             Transform equippedSlot = slots[equippedSlotIndex];
 
             selectedSlot.anchoredPosition = equippedSlot.gameObject.GetComponent<RectTransform>().anchoredPosition;

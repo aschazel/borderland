@@ -1,4 +1,3 @@
-using System.Collections;
 using UnityEngine;
 
 namespace ProjectBorderland.Core
@@ -39,8 +38,6 @@ namespace ProjectBorderland.Core
         public KeyCode Right;
         public KeyCode Left;
         public KeyCode Sprint;
-        public KeyCode Interact;
-        public KeyCode Throw;
         public KeyCode Inspect;
         public KeyCode Slot1;
         public KeyCode Slot2;
@@ -59,6 +56,18 @@ namespace ProjectBorderland.Core
         #region MonoBehaviour methods
         private void Awake()
         {
+            #region singletonDDOL
+            if (instance == null)
+            {
+                instance = this;
+                DontDestroyOnLoad(gameObject);
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            #endregion
+            
             ParseKey();
         }
         #endregion
@@ -71,8 +80,10 @@ namespace ProjectBorderland.Core
         /// </summary>
         private void ParseKey()
         {
-            Interact = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("interactKey", "Mouse0"));
-            Throw = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("throwKey", "G"));
+            Forward = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("forwardKey", "W"));
+            Backward = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("backwardKey", "S"));
+            Right = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("rightKey", "D"));
+            Left = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("forwardKey", "A"));
             Sprint = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("sprintKey", "LeftShift"));
             Inspect = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("inspectKey", "E"));
             Slot1 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot1Key", "Alpha1"));
