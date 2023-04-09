@@ -19,6 +19,16 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: Kayu
     second: {fileID: 2100000, guid: 28a7812702720b1408227b016780d858, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: MainColor
+    second: {fileID: 2100000, guid: 59353ef3facae2e4d94c5f1d19955f4b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Wood
+    second: {fileID: 2100000, guid: 65ccc591713105b4ab50363b1eaaa913, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
