@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Base Kunci
+    second: {fileID: 2100000, guid: 6d2516d4f66a87f47bc28f99ef7f0397, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Base Locker
     second: {fileID: 2100000, guid: fc22dbbacb7f8104dafe98c0344e28ea, type: 2}
   - first:
