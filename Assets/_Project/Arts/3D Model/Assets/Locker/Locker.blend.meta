@@ -7,23 +7,33 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Base Kunci
+    second: {fileID: 2100000, guid: 6d2516d4f66a87f47bc28f99ef7f0397, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Base Locker
-    second: {fileID: 2100000, guid: 47baf4a997cd9884095bd2c827a9fdea, type: 2}
+    second: {fileID: 2100000, guid: fc22dbbacb7f8104dafe98c0344e28ea, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Engsel
-    second: {fileID: 2100000, guid: 963220e61db5eb94c960fcf8e085818b, type: 2}
+    second: {fileID: 2100000, guid: 6dbb029553f56014c9f18d6248499dca, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Locker Base
-    second: {fileID: 2100000, guid: f7adb234198e6114eb484fd4e6b817c8, type: 2}
+    second: {fileID: 2100000, guid: 0591a526f7304b84684b59b6117097b1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Locker Door
     second: {fileID: 2100000, guid: da77b66b2b32f0245b057b3126b5770c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: TUTUP
+    second: {fileID: 2100000, guid: 6f76f02b5af12b24aa95ed501e5f47ff, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/_Project/Arts/Animations/Core/FreeRoam/PlayerItemHolder.meta
+guid: 3989999931e2b6b4ab66d55e5e4bcf9f
+========
 guid: 74670444e716cab498f811493e7652b6
+>>>>>>>> origin/3D-ANJAY:Assets/_Project/Arts/Animations/Core/FreeRoam.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}
