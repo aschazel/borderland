@@ -12,6 +12,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Glass Windows.003
+    second: {fileID: 2100000, guid: 791f37a3762448644a70ab08a3c6c75b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Office Ceiling
     second: {fileID: 2100000, guid: f3b51f27da3ae3e47b6cbfcaddbf482a, type: 2}
   - first:
