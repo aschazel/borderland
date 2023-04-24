@@ -19,9 +19,9 @@ namespace ProjectBorderland.Core.FreeRoam
         [Header("Object References")]
         [SerializeField] private Transform playerOrientation;
 
-        [Header("Attribute Settings")]
-        [SerializeField] private float walkSpeed;
-        [SerializeField] private float sprintSpeed;
+        [Header("Attribute Configurations")]
+        [SerializeField] private float walkSpeed = 2f;
+        [SerializeField] private float sprintSpeed = 4f;
 
 
 

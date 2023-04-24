@@ -20,7 +20,7 @@ namespace ProjectBorderland.Core.FreeRoam
         private Animator itemHolderAnimator;
 
         [Header("Attribute Configurations")]
-        [SerializeField] private string heldItemLayer = "HeldItem";
+        [SerializeField] private string noClipWallLayer = "NoClipWall";
         [SerializeField] private string interactableLayer = "Interactable";
 
         [Header("Object References")]
@@ -118,7 +118,7 @@ namespace ProjectBorderland.Core.FreeRoam
                 DestroyHeldItem();
                 heldItem = Instantiate(item, itemHolderTransform.position, itemHolderTransform.rotation, itemHolderTransform);
 
-                heldItem.layer = LayerMask.NameToLayer(heldItemLayer);
+                heldItem.layer = LayerMask.NameToLayer(noClipWallLayer);
                 heldItem.TryGetComponent<BoxCollider>(out BoxCollider collider);
                 collider.enabled = false;
             }

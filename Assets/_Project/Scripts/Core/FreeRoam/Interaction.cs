@@ -16,8 +16,7 @@ namespace ProjectBorderland.Core.FreeRoam
         [SerializeField] private Transform freeRoamCamera;
 
         [Header("Attribute Configurations")]
-        [SerializeField] private float interactDistance;
-        [SerializeField] private LayerMask interactableLayer;
+        [SerializeField] private float interactDistance = 5f;
 
 
         

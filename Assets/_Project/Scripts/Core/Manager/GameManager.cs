@@ -41,6 +41,8 @@ namespace ProjectBorderland.Core.Manager
         private FreeRoam.PlayerMovement freeRoamPlayerMovement;
         private FreeRoam.PlayerCamera freeRoamPlayerCamera;
         private FreeRoam.Interaction freeRoamInteraction;
+        private FreeRoam.PlayerItemHolder freeRoamPlayerItemHolder;
+
         private GameState currentGameState;
 
         
@@ -68,6 +70,7 @@ namespace ProjectBorderland.Core.Manager
             freeRoamPlayerMovement = freeRoamPlayer.GetComponentInChildren<FreeRoam.PlayerMovement>();
             freeRoamPlayerCamera = freeRoamPlayer.GetComponentInChildren<FreeRoam.PlayerCamera>();
             freeRoamInteraction = freeRoamPlayer.GetComponentInChildren<FreeRoam.Interaction>();
+            freeRoamPlayerItemHolder = freeRoamPlayer.GetComponentInChildren<FreeRoam.PlayerItemHolder>();
         }
         #endregion
 
@@ -81,9 +84,11 @@ namespace ProjectBorderland.Core.Manager
         {
             if (instance.currentGameState == GameState.FreeRoam)
             {
+                instance.freeRoamPlayerMovement.Stop();
                 instance.freeRoamPlayerMovement.enabled = false;
                 instance.freeRoamPlayerCamera.enabled = false;
                 instance.freeRoamInteraction.enabled = false;
+                instance.freeRoamPlayerItemHolder.enabled = false;
             }
         }
 
@@ -99,6 +104,40 @@ namespace ProjectBorderland.Core.Manager
                 instance.freeRoamPlayerMovement.enabled = true;
                 instance.freeRoamPlayerCamera.enabled = true;
                 instance.freeRoamInteraction.enabled = true;
+                instance.freeRoamPlayerItemHolder.enabled = true;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Enters inspection mode.
+        /// </summary>
+        public static void EnterInspection()
+        {
+            if (instance.currentGameState == GameState.FreeRoam)
+            {
+                instance.freeRoamPlayerMovement.Stop();
+                instance.freeRoamPlayerMovement.enabled = false;
+                instance.freeRoamPlayerCamera.enabled = false;
+                instance.freeRoamInteraction.enabled = false;
+                instance.freeRoamPlayerItemHolder.enabled = false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Exits inspection mode.
+        /// </summary>
+        public static void ExitInspection()
+        {
+            if (instance.currentGameState == GameState.FreeRoam)
+            {
+                instance.freeRoamPlayerMovement.enabled = true;
+                instance.freeRoamPlayerCamera.enabled = true;
+                instance.freeRoamInteraction.enabled = true;
+                instance.freeRoamPlayerItemHolder.enabled = true;
             }
         }
         #endregion

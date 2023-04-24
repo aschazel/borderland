@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1959600047}
   - component: {fileID: 1959600049}
   m_Layer: 0
-  m_Name: Item Holder Camera
+  m_Name: No Clip Wall Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,6 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1058793627041775493}
+  - {fileID: 7475854870634143872}
   m_Father: {fileID: 3357342191899041233}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -85,7 +86,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7475854870634143872}
-  m_Layer: 7
+  m_Layer: 0
   m_Name: Inspector Transform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -100,12 +101,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635574418276719101}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3357342191899041233}
-  m_RootOrder: 2
+  m_Father: {fileID: 1959600047}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1687297966207737839
 GameObject:
@@ -216,7 +217,6 @@ Transform:
   m_Children:
   - {fileID: 1959600047}
   - {fileID: 5471977543459920242}
-  - {fileID: 7475854870634143872}
   m_Father: {fileID: 4583045272993327771}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -438,7 +438,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4583045272840597955}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Player Orientation
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -476,7 +476,8 @@ GameObject:
   - component: {fileID: 4583045272993327769}
   - component: {fileID: 745827628993904222}
   - component: {fileID: 8887854888796633371}
-  m_Layer: 6
+  - component: {fileID: 1623457537}
+  m_Layer: 0
   m_Name: FreeRoamPlayer
   m_TagString: FreeRoamPlayer
   m_Icon: {fileID: 0}
@@ -565,7 +566,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c08764ec680fccf4b95b2659b9fe9992, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  heldItemLayer: HeldItem
+  noClipWallLayer: NoClipWall
   interactableLayer: Interactable
   itemHolderTransform: {fileID: 1058793627041775493}
   clickHoldTreshold: 0.6
@@ -583,9 +584,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freeRoamCamera: {fileID: 3357342191899041233}
   interactDistance: 5
-  interactableLayer:
-    serializedVersion: 2
-    m_Bits: 8
 --- !u!136 &8887854888796633371
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -600,6 +598,22 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1623457537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4583045272993327772}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bdbcf4cd7e73d234188dbe103beb2038, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mouseSensitivity: 6
+  noClipWallLayer: NoClipWall
+  inspectorTransform: {fileID: 7475854870634143872}
+  shadow: {fileID: 0}
 --- !u!1 &6542344079901142775
 GameObject:
   m_ObjectHideFlags: 0

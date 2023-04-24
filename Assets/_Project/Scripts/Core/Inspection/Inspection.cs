@@ -2,27 +2,31 @@ using UnityEngine;
 using ProjectBorderland.InventorySystem;
 using ProjectBorderland.Core.Manager;
 
-namespace ProjectBorderland.Core.FreeRoam
+namespace ProjectBorderland.Core.Inspection
 {
     /// <summary>
-    /// Handles player inspect object behaviour.
+    /// Handles item inspection.
     /// </summary>
-    public class InspectObject : MonoBehaviour
+    public class Inspection : MonoBehaviour
     {
         //==============================================================================
         // Variables
         //==============================================================================
         private bool isInspecting;
-        private float mouseSensitivity = 6f;
         private float horizontalAxis;
         private float verticalAxis;
         private GameObject inspectedObject;
-        
+
+        [Header("Attribute Configurations")]
+        [SerializeField] private float mouseSensitivity = 6f;
+        [SerializeField] private string noClipWallLayer = "NoClipWall";
+
         [Header("Object References")]
         [SerializeField] private Transform inspectorTransform;
+        [SerializeField] private GameObject shadow;
 
 
-        
+
         //==============================================================================
         // Functions
         //==============================================================================
@@ -80,24 +84,9 @@ namespace ProjectBorderland.Core.FreeRoam
             if (!item.IsNullItem)
             {
                 isInspecting = true;
-                //GameManager.EnterInspectMode();
+                GameManager.EnterInspection();
                 InstantiateInspectedObject(item);
-            }
-        }
-
-
-
-        /// <summary>
-        /// Exits inspecting mode.
-        /// </summary>
-        private void DisableInspecting()
-        {
-            isInspecting = false;
-            //GameManager.ExitInspectMode();
-                    
-            if (inspectedObject != null)
-            {
-                Destroy(inspectedObject);
+                shadow.SetActive(true);
             }
         }
 
@@ -110,7 +99,28 @@ namespace ProjectBorderland.Core.FreeRoam
         private void InstantiateInspectedObject(ItemSO item)
         {
             inspectedObject = Instantiate(item.Prefab, inspectorTransform.position, Quaternion.identity);
+            inspectedObject.layer = LayerMask.NameToLayer(noClipWallLayer);
 
+            inspectedObject.transform.forward = Camera.main.transform.forward;
+            inspectedObject.TryGetComponent<BoxCollider>(out BoxCollider collider);
+            collider.enabled = false;
+        }
+
+
+
+        /// <summary>
+        /// Exits inspecting mode.
+        /// </summary>
+        private void DisableInspecting()
+        {
+            isInspecting = false;
+            GameManager.ExitInspection();
+            shadow.SetActive(false);
+
+            if (inspectedObject != null)
+            {
+                Destroy(inspectedObject);
+            }
         }
 
 
@@ -122,8 +132,8 @@ namespace ProjectBorderland.Core.FreeRoam
         {
             if (isInspecting && inspectedObject != null)
             {
-                inspectedObject.transform.Rotate(Vector3.down, horizontalAxis, Space.World);
-                inspectedObject.transform.Rotate(Vector3.right, -verticalAxis, Space.World);
+                inspectedObject.transform.Rotate(Vector3.down, horizontalAxis);
+                inspectedObject.transform.Rotate(Vector3.right, verticalAxis);
             }
         }
         #endregion
