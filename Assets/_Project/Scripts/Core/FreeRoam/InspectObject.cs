@@ -1,5 +1,6 @@
 using UnityEngine;
 using ProjectBorderland.InventorySystem;
+using ProjectBorderland.Core.Manager;
 
 namespace ProjectBorderland.Core.FreeRoam
 {
@@ -79,7 +80,7 @@ namespace ProjectBorderland.Core.FreeRoam
             if (!item.IsNullItem)
             {
                 isInspecting = true;
-                GameManager.EnterInspectMode();
+                //GameManager.EnterInspectMode();
                 InstantiateInspectedObject(item);
             }
         }
@@ -92,7 +93,7 @@ namespace ProjectBorderland.Core.FreeRoam
         private void DisableInspecting()
         {
             isInspecting = false;
-            GameManager.ExitInspectMode();
+            //GameManager.ExitInspectMode();
                     
             if (inspectedObject != null)
             {

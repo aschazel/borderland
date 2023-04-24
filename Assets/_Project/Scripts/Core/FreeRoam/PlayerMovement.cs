@@ -1,9 +1,10 @@
 using UnityEngine;
+using ProjectBorderland.Core.Manager;
 
 namespace ProjectBorderland.Core.FreeRoam
 {
     /// <summary>
-    /// Handles first person player movement.
+    /// Handles free roam player movement.
     /// </summary>
     public class PlayerMovement : MonoBehaviour
     {

@@ -1,4 +1,5 @@
 using UnityEngine;
+using ProjectBorderland.Core.Manager;
 
 namespace ProjectBorderland.Core.PointAndClick
 {

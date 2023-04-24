@@ -3,18 +3,19 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - FreeRoamPlayer
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Item
+  - Interactable
   - Water
   - UI
-  - Movement
-  - PostProcessing
-  - HeldObject
-  - Clickable
+  - HeldItem
+  - 
+  - 
+  - 
   - 
   - 
   - 

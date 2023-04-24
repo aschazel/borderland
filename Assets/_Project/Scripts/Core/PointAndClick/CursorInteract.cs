@@ -1,4 +1,5 @@
 using UnityEngine;
+using ProjectBorderland.Core.Manager;
 
 namespace ProjectBorderland.Core.PointAndClick
 {
@@ -93,7 +94,7 @@ namespace ProjectBorderland.Core.PointAndClick
         /// </summary>
         private void QuitPointAndClick()
         {
-            GameManager.SwitchGameState(GameState.FreeRoam);
+            //GameManager.SwitchGameState(GameState.FreeRoam);
         }
         #endregion
     }

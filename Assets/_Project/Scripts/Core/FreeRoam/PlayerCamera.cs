@@ -3,7 +3,7 @@ using UnityEngine;
 namespace ProjectBorderland.Core.FreeRoam
 {
     /// <summary>
-    /// Handles first person player camera rotation behaviour.
+    /// Handles free roam player camera rotation behaviour.
     /// </summary>
     public class PlayerCamera : MonoBehaviour
     {
@@ -26,13 +26,6 @@ namespace ProjectBorderland.Core.FreeRoam
         // Functions
         //==============================================================================
         #region MonoBehaviour methods
-        private void Start()
-        {
-            GameManager.HideCursor();
-        }
-
-
-
         private void Update()
         {
             GetInput();

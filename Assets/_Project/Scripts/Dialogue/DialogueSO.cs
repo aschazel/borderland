@@ -17,6 +17,9 @@ namespace ProjectBorderland.Dialogue
         [SerializeField] private List<Sentence> sentences = new List<Sentence>();
         public List<Sentence> Sentences { get { return sentences; } }
 
+        [SerializeField] private float speed = 0.1f;
+        public float Speed { get { return speed; } }
+
         [System.Serializable]
         public struct Sentence
         {
@@ -24,8 +27,6 @@ namespace ProjectBorderland.Dialogue
             public CharacterSO Author { get { return author; } }
             [SerializeField] [TextArea] private string say;
             public string Say { get { return say; } }
-            [SerializeField] private ItemSO giveItem;
-            public ItemSO GiveItem { get { return giveItem; } }
         }
     }
 }

@@ -1,11 +1,11 @@
 using UnityEngine;
 using ProjectBorderland.InventorySystem;
-using ProjectBorderland.Interactable;
+using ProjectBorderland.Interaction;
 
 namespace ProjectBorderland.Core.FreeRoam
 {
     /// <summary>
-    /// Handles player item holder behaviour.
+    /// Handles free roam item holder.
     /// </summary>
     public class PlayerItemHolder : MonoBehaviour
     {
@@ -13,9 +13,14 @@ namespace ProjectBorderland.Core.FreeRoam
         // Variables
         //==============================================================================
         private GameObject heldItem;
+        public GameObject HeldItem { get { return heldItem; } }
         private bool isReadyToThrow;
         private float clickHoldTime;
         private Animator itemHolderAnimator;
+
+        [Header("Attribute Configurations")]
+        [SerializeField] private string heldItemLayer = "HeldItem";
+        [SerializeField] private string interactableLayer = "Interactable";
 
         [Header("Object References")]
         [SerializeField] private Transform itemHolderTransform;
@@ -144,14 +149,15 @@ namespace ProjectBorderland.Core.FreeRoam
         /// <summary>
         /// Instantiate item as pickable object.
         /// </summary>
-        private GameObject InstantiatePickableItem(GameObject itemObject, ItemSO item)
+        private GameObject InstantiatePickableItem(GameObject itemObject, ItemSO itemSO)
         {
             GameObject instantiatedItem = Instantiate(itemObject, itemHolderTransform.position, itemHolderTransform.rotation);
-            instantiatedItem.GetComponent<BoxCollider>().enabled = true;
+
             instantiatedItem.AddComponent<Rigidbody>();
-            instantiatedItem.AddComponent<InteractableItem>();
-            instantiatedItem.AddComponent<PickableBehaviour>().Item = item;
-            instantiatedItem.name = item.Name;
+            instantiatedItem.AddComponent<PickableItem>().ItemSO = itemSO;
+
+            instantiatedItem.name = itemSO.Name;
+            instantiatedItem.layer = LayerMask.NameToLayer(interactableLayer);
             
             return instantiatedItem;
         }
@@ -164,8 +170,8 @@ namespace ProjectBorderland.Core.FreeRoam
         public void Refresh()
         {   
             ItemSO item = InventoryManager.GetCurrentIndex();
-            GameObject displayModel = item.GetPrefab();
-            DisplayObject(displayModel);
+            GameObject itemPrefab = item.GetPrefab();
+            DisplayObject(itemPrefab);
         }
 
 
@@ -177,30 +183,31 @@ namespace ProjectBorderland.Core.FreeRoam
         {
             if (item != null)
             {
-                CheckOldItem();
-                heldItem = Instantiate(item, itemHolderTransform.position, itemHolderTransform.rotation, itemHolderTransform); 
+                DestroyHeldItem();
+                heldItem = Instantiate(item, itemHolderTransform.position, itemHolderTransform.rotation, itemHolderTransform);
+
+                heldItem.layer = LayerMask.NameToLayer(heldItemLayer);
+                heldItem.TryGetComponent<BoxCollider>(out BoxCollider collider);
+                collider.enabled = false;
             }
 
             else
             {
-                CheckOldItem();
+                DestroyHeldItem();
             }
         }
 
 
 
         /// <summary>
-        /// Checks and destroy old item on hand if present.
+        /// Destroys held item if present.
         /// </summary>
-        private bool CheckOldItem()
+        private void DestroyHeldItem()
         {
             if (heldItem != null)
             {
                 Destroy(heldItem);
-                return true;
             }
-
-            else return false;
         }
         #endregion
     }

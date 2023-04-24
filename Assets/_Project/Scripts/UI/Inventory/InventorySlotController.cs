@@ -15,7 +15,7 @@ namespace ProjectBorderland.UI.Inventory
         private List<Transform> slots = new List<Transform>();
 
         [Header("Object References")]
-        [SerializeField] private RectTransform selectedSlot;
+        [SerializeField] private RectTransform selector;
 
         
 
@@ -55,7 +55,7 @@ namespace ProjectBorderland.UI.Inventory
         {
             foreach (Transform child in transform)
             {
-                if (child.gameObject != selectedSlot.gameObject)
+                if (child.gameObject != selector.gameObject)
                 slots.Add(child);
             }
         }
@@ -101,7 +101,7 @@ namespace ProjectBorderland.UI.Inventory
             int equippedSlotIndex = InventoryManager.SlotIndex;
             Transform equippedSlot = slots[equippedSlotIndex];
 
-            selectedSlot.anchoredPosition = equippedSlot.gameObject.GetComponent<RectTransform>().anchoredPosition;
+            selector.anchoredPosition = equippedSlot.gameObject.GetComponent<RectTransform>().anchoredPosition;
         }
         #endregion
     }

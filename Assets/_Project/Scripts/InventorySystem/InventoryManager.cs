@@ -2,7 +2,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using UnityEngine;
-using ProjectBorderland.Core;
+using ProjectBorderland.Core.Manager;
 using ProjectBorderland.Core.FreeRoam;
 
 namespace ProjectBorderland.InventorySystem
@@ -40,13 +40,10 @@ namespace ProjectBorderland.InventorySystem
 
         public static Action OnInventoryChanged;
         public static Action OnEquippedChanged;
-        private static int slotIndex = 0;
+        private static int slotIndex;
         public static int SlotIndex { get { return slotIndex; } }
         private static List<ItemSO> items = new List<ItemSO>();
         public static List<ItemSO> Items { get { return items; } }
-
-        [Header("Object References")]
-        [SerializeField] public PlayerItemHolder PlayerItemHolder;
         
         [Header("Attribute Configurations")]
         [SerializeField] private int maxCapacity = 8;
@@ -193,7 +190,7 @@ namespace ProjectBorderland.InventorySystem
 
 
         /// <summary>
-        /// Adds an item to inventory by index and returns true if success.
+        /// Tries to add an item to inventory by index, if occupied then tries to the next slot and returns true if success.
         /// </summary>
         /// <param name="item"></param>
         public static bool Add(ItemSO item, int index)
@@ -266,7 +263,7 @@ namespace ProjectBorderland.InventorySystem
 
 
         /// <summary>
-        /// Gets first empty item slot index and returns -1 if inventory is full.
+        /// Gets first empty slot index and returns -1 if no empty slot is found.
         /// </summary>
         public static int GetEmptySlot()
         {
