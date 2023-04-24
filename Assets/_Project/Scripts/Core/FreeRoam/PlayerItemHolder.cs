@@ -1,6 +1,7 @@
 using UnityEngine;
 using ProjectBorderland.InventorySystem;
 using ProjectBorderland.Interaction;
+using ProjectBorderland.DeveloperTools.PublishSubscribe;
 
 namespace ProjectBorderland.Core.FreeRoam
 {
@@ -35,6 +36,7 @@ namespace ProjectBorderland.Core.FreeRoam
         private void Awake()
         {
             itemHolderAnimator = itemHolderTransform.GetComponentInChildren<Animator>();
+            InventoryManager.Instance.OnEquippedChanged += Refresh;
         }
 
 
@@ -48,8 +50,6 @@ namespace ProjectBorderland.Core.FreeRoam
 
         private void OnEnable()
         {
-            InventoryManager.OnEquippedChanged += Refresh;
-
             if (itemHolderTransform != null)
             {
                 itemHolderTransform.gameObject.SetActive(true);
@@ -60,7 +60,7 @@ namespace ProjectBorderland.Core.FreeRoam
 
         private void OnDisable()
         {
-            InventoryManager.OnEquippedChanged -= Refresh;
+            InventoryManager.Instance.OnEquippedChanged -= Refresh;
 
             if (itemHolderTransform != null)
             {
@@ -91,6 +91,54 @@ namespace ProjectBorderland.Core.FreeRoam
             if (Input.GetKeyUp(KeyCode.Mouse0))
             {
                 Throw();
+            }
+        }
+
+
+
+                /// <summary>
+        /// Refreshes item on player hand.
+        /// </summary>
+        public void Refresh()
+        {   
+            ItemSO item = InventoryManager.GetCurrentIndex();
+            GameObject itemPrefab = item.GetPrefab();
+            DisplayObject(itemPrefab);
+        }
+
+
+
+        /// <summary>
+        /// Displays object into item holder if item is not null.
+        /// </summary>
+        private void DisplayObject(GameObject item)
+        {
+            if (item != null)
+            {
+                DestroyHeldItem();
+                heldItem = Instantiate(item, itemHolderTransform.position, itemHolderTransform.rotation, itemHolderTransform);
+
+                heldItem.layer = LayerMask.NameToLayer(heldItemLayer);
+                heldItem.TryGetComponent<BoxCollider>(out BoxCollider collider);
+                collider.enabled = false;
+            }
+
+            else
+            {
+                DestroyHeldItem();
+            }
+        }
+
+
+
+        /// <summary>
+        /// Destroys held item if present.
+        /// </summary>
+        private void DestroyHeldItem()
+        {
+            if (heldItem != null)
+            {
+                Destroy(heldItem);
             }
         }
 
@@ -160,54 +208,6 @@ namespace ProjectBorderland.Core.FreeRoam
             instantiatedItem.layer = LayerMask.NameToLayer(interactableLayer);
             
             return instantiatedItem;
-        }
-
-
-
-        /// <summary>
-        /// Refreshes item on player hand.
-        /// </summary>
-        public void Refresh()
-        {   
-            ItemSO item = InventoryManager.GetCurrentIndex();
-            GameObject itemPrefab = item.GetPrefab();
-            DisplayObject(itemPrefab);
-        }
-
-
-
-        /// <summary>
-        /// Displays object into item holder if item is not null.
-        /// </summary>
-        private void DisplayObject(GameObject item)
-        {
-            if (item != null)
-            {
-                DestroyHeldItem();
-                heldItem = Instantiate(item, itemHolderTransform.position, itemHolderTransform.rotation, itemHolderTransform);
-
-                heldItem.layer = LayerMask.NameToLayer(heldItemLayer);
-                heldItem.TryGetComponent<BoxCollider>(out BoxCollider collider);
-                collider.enabled = false;
-            }
-
-            else
-            {
-                DestroyHeldItem();
-            }
-        }
-
-
-
-        /// <summary>
-        /// Destroys held item if present.
-        /// </summary>
-        private void DestroyHeldItem()
-        {
-            if (heldItem != null)
-            {
-                Destroy(heldItem);
-            }
         }
         #endregion
     }

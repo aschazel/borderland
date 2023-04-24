@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
+using ProjectBorderland.InventorySystem;
+using ProjectBorderland.DeveloperTools.PublishSubscribe;
 
 namespace ProjectBorderland.UI.Inventory
 {
@@ -13,6 +15,9 @@ namespace ProjectBorderland.UI.Inventory
         //==============================================================================
         private Image image;
 
+        [Header("Attribute Configurations")]
+        [SerializeField] private int slotIndex;
+
         
 
         //==============================================================================
@@ -22,6 +27,14 @@ namespace ProjectBorderland.UI.Inventory
         private void Awake()
         {
             image = GetComponent<Image>();
+            PublishSubscribe.Instance.Subscribe<InventoryChangedMessage>(UpdateImageUI);
+        }
+
+
+
+        private void OnDisable()
+        {
+            PublishSubscribe.Instance.Unsubscribe<InventoryChangedMessage>(UpdateImageUI);
         }
 
 
@@ -36,18 +49,18 @@ namespace ProjectBorderland.UI.Inventory
 
         #region ProjectBorderland methods
         /// <summary>
-        /// Updates self sprite to a new one.
+        /// Updates item sprite in slot UI.
         /// </summary>
         /// <param name="newImage"></param>
-        public void UpdateImage(Sprite newSprite)
+        public void UpdateImageUI(InventoryChangedMessage message)
         {
-            image.sprite = newSprite;
+            if (message.SlotIndex == slotIndex) image.sprite = message.Item.Sprite;
         }
 
 
 
         /// <summary>
-        /// Hide image if item is empty.
+        /// Hides image if item is empty.
         /// </summary>
         private void HideImage()
         {

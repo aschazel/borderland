@@ -39,6 +39,7 @@ namespace ProjectBorderland.Core.Manager
         public KeyCode Left;
         public KeyCode Sprint;
         public KeyCode Inspect;
+        public KeyCode Slot0;
         public KeyCode Slot1;
         public KeyCode Slot2;
         public KeyCode Slot3;
@@ -46,7 +47,6 @@ namespace ProjectBorderland.Core.Manager
         public KeyCode Slot5;
         public KeyCode Slot6;
         public KeyCode Slot7;
-        public KeyCode Slot8;
 
 
 
@@ -86,14 +86,14 @@ namespace ProjectBorderland.Core.Manager
             Left = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("forwardKey", "A"));
             Sprint = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("sprintKey", "LeftShift"));
             Inspect = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("inspectKey", "E"));
-            Slot1 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot1Key", "Alpha1"));
-            Slot2 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot2Key", "Alpha2"));
-            Slot3 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot3Key", "Alpha3"));
-            Slot4 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot4Key", "Alpha4"));
-            Slot5 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot5Key", "Alpha5"));
-            Slot6 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot6Key", "Alpha6"));
-            Slot7 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot7Key", "Alpha7"));
-            Slot8 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot8Key", "Alpha8"));
+            Slot0 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot1Key", "Alpha1"));
+            Slot1 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot2Key", "Alpha2"));
+            Slot2 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot3Key", "Alpha3"));
+            Slot3 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot4Key", "Alpha4"));
+            Slot4 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot5Key", "Alpha5"));
+            Slot5 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot6Key", "Alpha6"));
+            Slot6 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot7Key", "Alpha7"));
+            Slot7 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot8Key", "Alpha8"));
         }
         #endregion
     }
