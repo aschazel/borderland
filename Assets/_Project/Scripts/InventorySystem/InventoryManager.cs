@@ -1,11 +1,9 @@
 using System;
 using System.Linq;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using ProjectBorderland.DeveloperTools;
-using ProjectBorderland.Core;
-using ProjectBorderland.Core.FreeRoam;
+using ProjectBorderland.Core.Manager;
+using ProjectBorderland.DeveloperTools.PublishSubscribe;
 
 namespace ProjectBorderland.InventorySystem
 {
@@ -40,15 +38,11 @@ namespace ProjectBorderland.InventorySystem
         }
         #endregion
 
-        public static Action OnInventoryChanged;
-        public static Action OnEquippedChanged;
-        public static int EquippedSlotIndex = 0;
+        public Action OnEquippedChanged;
+        private static int slotIndex;
+        public static int SlotIndex { get { return slotIndex; } }
         private static List<ItemSO> items = new List<ItemSO>();
         public static List<ItemSO> Items { get { return items; } }
-        private TextMeshProUGUI debugText;
-
-        [Header("Object References")]
-        [SerializeField] public PlayerItemHolder PlayerItemHolder;
         
         [Header("Attribute Configurations")]
         [SerializeField] private int maxCapacity = 8;
@@ -73,7 +67,6 @@ namespace ProjectBorderland.InventorySystem
             }
             #endregion
 
-            debugText = DebugController.Instance.DebugText.transform.Find("InventoryManager").GetComponent<TextMeshProUGUI>();
             items = Enumerable.Repeat(CreateNullItem(), maxCapacity).ToList();
         }
 
@@ -83,31 +76,11 @@ namespace ProjectBorderland.InventorySystem
         {
             GetInput();
         }
-
-
-
-        private void FixedUpdate()
-        {
-            SetDebugText();
-        }
         #endregion
 
 
 
         #region ProjectBorderland methods
-        /// <summary>
-        /// Creates null item for empty reference.
-        /// </summary>
-        private ItemSO CreateNullItem()
-        {
-            ItemSO nullItem = ScriptableObject.CreateInstance<ItemSO>();
-            nullItem.IsNullItem = true;
-
-            return nullItem;
-        }
-
-
-
         /// <summary>
         /// Gets input from Unity Input Manager.
         /// </summary>
@@ -123,51 +96,51 @@ namespace ProjectBorderland.InventorySystem
                 DecrementEquippedIndex();
             }
 
+            if (Input.GetKeyDown(InputController.Instance.Slot0))
+            {
+                slotIndex = 0;
+                NotifyOnEquippedChanged();
+            }
+
             if (Input.GetKeyDown(InputController.Instance.Slot1))
             {
-                EquippedSlotIndex = 0;
+                slotIndex = 1;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot2))
             {
-                EquippedSlotIndex = 1;
+                slotIndex = 2;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot3))
             {
-                EquippedSlotIndex = 2;
+                slotIndex = 3;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot4))
             {
-                EquippedSlotIndex = 3;
+                slotIndex = 4;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot5))
             {
-                EquippedSlotIndex = 4;
+                slotIndex = 5;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot6))
             {
-                EquippedSlotIndex = 5;
+                slotIndex = 6;
                 NotifyOnEquippedChanged();
             }
 
             if (Input.GetKeyDown(InputController.Instance.Slot7))
             {
-                EquippedSlotIndex = 6;
-                NotifyOnEquippedChanged();
-            }
-
-            if (Input.GetKeyDown(InputController.Instance.Slot8))
-            {
-                EquippedSlotIndex = 7;
+                slotIndex = 7;
                 NotifyOnEquippedChanged();
             }
         }
@@ -179,9 +152,9 @@ namespace ProjectBorderland.InventorySystem
         /// </summary>
         private void IncrementEquippedIndex()
         {
-            if (EquippedSlotIndex < maxCapacity - 1)
+            if (slotIndex < maxCapacity - 1)
             {
-                EquippedSlotIndex++;
+                slotIndex++;
                 NotifyOnEquippedChanged();
             }
         }
@@ -193,9 +166,9 @@ namespace ProjectBorderland.InventorySystem
         /// </summary>
         private void DecrementEquippedIndex()
         {
-            if (EquippedSlotIndex > 0)
+            if (slotIndex > 0)
             {
-                EquippedSlotIndex--;
+                slotIndex--;
                 NotifyOnEquippedChanged();
             }
         }
@@ -203,7 +176,20 @@ namespace ProjectBorderland.InventorySystem
 
 
         /// <summary>
-        /// Adds an item to inventory by index and returns true if success.
+        /// Creates null item for empty item reference.
+        /// </summary>
+        private ItemSO CreateNullItem()
+        {
+            ItemSO nullItem = ScriptableObject.CreateInstance<ItemSO>();
+            nullItem.IsNullItem = true;
+
+            return nullItem;
+        }
+
+
+
+        /// <summary>
+        /// Tries to add an item to inventory by index, if occupied then tries to the next slot and returns true if success.
         /// </summary>
         /// <param name="item"></param>
         public static bool Add(ItemSO item, int index)
@@ -211,14 +197,19 @@ namespace ProjectBorderland.InventorySystem
             if (InventoryManager.Items[index].IsNullItem)
             {
                 items[index] = item;
-                NotifyOnInventoryChanged();
+                PublishSubscribe.Instance.Publish<InventoryChangedMessage>(new InventoryChangedMessage(index, item));
+                instance.NotifyOnEquippedChanged();
+
                 return true;
             }
 
             else if (GetEmptySlot() != -1)
             {
-                items[GetEmptySlot()] = item;
-                NotifyOnInventoryChanged();
+                int emptySlotIndex = GetEmptySlot();
+                items[emptySlotIndex] = item;
+                PublishSubscribe.Instance.Publish<InventoryChangedMessage>(new InventoryChangedMessage(emptySlotIndex, item));
+                instance.NotifyOnEquippedChanged();
+
                 return true;
             }
 
@@ -231,11 +222,26 @@ namespace ProjectBorderland.InventorySystem
 
 
         /// <summary>
+        /// Remove an item from inventory by index.
+        /// </summary>
+        /// <param name="item"></param>
+        public static void Remove(int index)
+        {
+            ItemSO nullItem = instance.CreateNullItem();
+            items[index] = nullItem;
+
+            PublishSubscribe.Instance.Publish<InventoryChangedMessage>(new InventoryChangedMessage(index, nullItem));
+            instance.NotifyOnEquippedChanged();
+        }
+
+
+
+        /// <summary>
         /// Get currently equipped item.
         /// </summary>
         public static ItemSO GetCurrentIndex()
         {
-            return items[EquippedSlotIndex];
+            return items[slotIndex];
         }
 
 
@@ -246,20 +252,7 @@ namespace ProjectBorderland.InventorySystem
         /// <param name="item"></param>
         public static bool AddCurrentIndex(ItemSO item)
         {
-            return Add(item, EquippedSlotIndex);
-        }
-
-
-
-        /// <summary>
-        /// Remove an item from inventory by index.
-        /// </summary>
-        /// <param name="item"></param>
-        public static void Remove(int index)
-        {
-            ItemSO nullItem = instance.CreateNullItem();
-            items[index] = nullItem;
-            NotifyOnInventoryChanged();
+            return Add(item, slotIndex);
         }
 
 
@@ -270,13 +263,13 @@ namespace ProjectBorderland.InventorySystem
         /// <param name="item"></param>
         public static void RemoveCurrentIndex()
         {
-            Remove(EquippedSlotIndex);
+            Remove(slotIndex);
         }
 
 
 
         /// <summary>
-        /// Gets first empty item slot index and returns -1 if inventory is full.
+        /// Gets first empty slot index and returns -1 if no empty slot is found.
         /// </summary>
         public static int GetEmptySlot()
         {
@@ -300,7 +293,7 @@ namespace ProjectBorderland.InventorySystem
         /// Get sprite from item.
         /// </summary>
         /// <param name="index"></param>
-        public static Sprite GetSprite(int index)
+        public static Sprite GetItemSprite(int index)
         {
             if (!items[index].IsNullItem)
             {
@@ -316,14 +309,14 @@ namespace ProjectBorderland.InventorySystem
 
 
         /// <summary>
-        /// Get model object from item.
+        /// Get item prefab from item.
         /// </summary>
         /// <param name="index"></param>
-        public static GameObject GetModelObject(int index)
+        public static GameObject GetItemPrefab(int index)
         {
             if (!items[index].IsNullItem)
             {
-                return items[index].ModelObject;
+                return items[index].Prefab;
             }
 
             else
@@ -331,68 +324,44 @@ namespace ProjectBorderland.InventorySystem
                 return null;
             }
         }
-
-
-
-        #region observer
+        #region Observer
         /// <summary>
-        /// Notifies when inventory changed.
+        /// Notifies when equipped slot is changed.
         /// </summary>
-        private static void NotifyOnInventoryChanged()
+        private void NotifyOnEquippedChanged()
         {
-            OnInventoryChanged?.Invoke();
-            NotifyOnEquippedChanged();
-        }
-
-
-
-        /// <summary>
-        /// Notifies when item equipped changed.
-        /// </summary>
-        private static void NotifyOnEquippedChanged()
-        {
+            PublishSubscribe.Instance.Publish<EquippedChangedMessage>(new EquippedChangedMessage(slotIndex));
             OnEquippedChanged?.Invoke();
         }
         #endregion
         #endregion
-
-
-
-        #region Debug
-        /// <summary>
-        /// Sets debug text.
-        /// </summary>
-        private void SetDebugText()
-        {
-            if (DebugController.Instance.IsDebugMode)
-            {
-                string text;
-                string itemName;
-
-                text = $"Inventory: {{";
-
-                foreach (ItemSO item in items)
-                {
-                    itemName = item.Name;
-                    text += $" \"{itemName}\",";
-                }
-
-                text += " }\n";
-                text += $"Equipped slot index: {EquippedSlotIndex}\n";
-
-                try
-                {
-                    text += $"Equipped: \"{items[EquippedSlotIndex].name}\"";
-                }
-                
-                catch (ArgumentOutOfRangeException)
-                {
-                    text += $"Equipped: \"None\"";
-                }
-                
-                debugText.SetText(text);
-            }
-        }
-        #endregion
     }
+
+
+
+    #region PublishSubscribe
+    public struct InventoryChangedMessage
+    {
+        public int SlotIndex;
+        public ItemSO Item;
+
+        public InventoryChangedMessage(int slotIndex, ItemSO item)
+        {
+            this.SlotIndex = slotIndex;
+            this.Item = item;
+        }
+    }
+
+
+
+    public struct EquippedChangedMessage
+    {
+        public int SlotIndex;
+
+        public EquippedChangedMessage(int slotIndex)
+        {
+            this.SlotIndex = slotIndex;
+        }
+    }
+    #endregion
 }

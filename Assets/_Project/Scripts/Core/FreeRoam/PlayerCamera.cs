@@ -1,11 +1,9 @@
-using TMPro;
 using UnityEngine;
-using ProjectBorderland.DeveloperTools;
 
 namespace ProjectBorderland.Core.FreeRoam
 {
     /// <summary>
-    /// Handles first person player camera rotation behaviour.
+    /// Handles free roam player camera rotation behaviour.
     /// </summary>
     public class PlayerCamera : MonoBehaviour
     {
@@ -17,11 +15,10 @@ namespace ProjectBorderland.Core.FreeRoam
         private float verticalAxis;
         private float xRotation;
         private float yRotation;
-        private TextMeshProUGUI debugText;
 
         [Header("Object References")]
-        [SerializeField] private Transform orientation;
-        [SerializeField] private Transform mainCamera;
+        [SerializeField] private Transform playerOrientation;
+        [SerializeField] private Transform playerCamera;
 
 
         
@@ -29,26 +26,10 @@ namespace ProjectBorderland.Core.FreeRoam
         // Functions
         //==============================================================================
         #region MonoBehaviour methods
-        private void Awake()
-        {
-            debugText = DebugController.Instance.DebugText.transform.Find("PlayerCamera").GetComponent<TextMeshProUGUI>();
-        }
-
-
-
-        private void Start()
-        {
-            Cursor.visible = false;
-            Cursor.lockState = CursorLockMode.Locked;
-        }
-
-
-
         private void Update()
         {
             GetInput();
             RotateCamera();
-            SetDebugText();
         }
         #endregion
 
@@ -74,30 +55,10 @@ namespace ProjectBorderland.Core.FreeRoam
             yRotation += horizontalAxis;
             xRotation -= verticalAxis;
 
-            xRotation = Mathf.Clamp(xRotation, -90f, 90f);
+            xRotation = Mathf.Clamp(xRotation, -85f, 85f);
 
-            mainCamera.rotation = Quaternion.Euler(xRotation, yRotation, 0);
-            orientation.rotation = Quaternion.Euler(0, yRotation, 0);
-        }
-        #endregion
-
-
-
-        #region Debug
-        /// <summary>
-        /// Sets debug text.
-        /// </summary>
-        private void SetDebugText()
-        {
-            if (DebugController.Instance.IsDebugMode)
-            {
-                string text;
-
-                text = $"Input mouse horizontal axis: {horizontalAxis}\n";
-                text += $"Input mouse vertical axis: {verticalAxis}\n";
-
-                debugText.SetText(text);
-            }
+            playerCamera.transform.rotation = Quaternion.Euler(xRotation, yRotation, 0);
+            playerOrientation.rotation = Quaternion.Euler(0, yRotation, 0);
         }
         #endregion
     }
