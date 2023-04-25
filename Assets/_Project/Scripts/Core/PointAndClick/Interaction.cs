@@ -1,25 +1,21 @@
 using UnityEngine;
 using ProjectBorderland.Interaction;
 
-namespace ProjectBorderland.Core.FreeRoam
+namespace ProjectBorderland.Core.PointAndClick
 {
     /// <summary>
-    /// Handles interation behaviour in free roam mode.
+    /// Handles point and click cursor interact behaviour.
     /// </summary>
     public class Interaction : MonoBehaviour
     {
         //==============================================================================
         // Variables
         //==============================================================================
-        
-        [Header("Object References")]
-        [SerializeField] private Transform freeRoamCamera;
-
-        [Header("Attribute Configurations")]
-        [SerializeField] private float interactDistance = 5f;
-
+        public Camera PointAndClickCamera;
+        public string _LayerMask;
 
         
+
         //==============================================================================
         // Functions
         //==============================================================================
@@ -47,7 +43,7 @@ namespace ProjectBorderland.Core.FreeRoam
 
 
         /// <summary>
-        /// Tries to interact with item in sight.
+        /// Tries to interact with item on cursor position.
         /// </summary>
         private void Interact()
         {
@@ -62,16 +58,17 @@ namespace ProjectBorderland.Core.FreeRoam
 
 
         /// <summary>
-        /// Returns interactable item in sight if detected by Raycast.
+        /// Returns interactable item if clicked using Raycast.
         /// </summary>
         private IInteractable DetectInteractable()
         {
+            Ray ray = PointAndClickCamera.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
-            Physics.Raycast(freeRoamCamera.position, freeRoamCamera.forward, out hit, interactDistance);
+            Physics.Raycast(ray, out hit);
 
             if(hit.collider != null)
             {
-                if(hit.collider.gameObject.GetComponent<IInteractable>() != null)
+                if(hit.collider.gameObject.GetComponent<IInteractable>() != null && hit.collider.gameObject.layer == LayerMask.NameToLayer(_LayerMask))
                 {
                     IInteractable item = hit.collider.gameObject.GetComponent<IInteractable>();
                     return item;

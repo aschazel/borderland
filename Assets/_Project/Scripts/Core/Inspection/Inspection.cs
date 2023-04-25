@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using ProjectBorderland.InventorySystem;
 using ProjectBorderland.Core.Manager;
@@ -99,11 +100,34 @@ namespace ProjectBorderland.Core.Inspection
         private void InstantiateInspectedObject(ItemSO item)
         {
             inspectedObject = Instantiate(item.Prefab, inspectorTransform.position, Quaternion.identity);
-            inspectedObject.layer = LayerMask.NameToLayer(noClipWallLayer);
+
+            List<GameObject> _objects = new List<GameObject>();
+            _objects.Add(inspectedObject);
+
+            for (int i = 0; i < inspectedObject.transform.childCount; i++)
+            {
+                _objects.Add(inspectedObject.transform.GetChild(i).gameObject);
+            }
+
+            AssignNoClipLayer(_objects);
 
             inspectedObject.transform.forward = Camera.main.transform.forward;
             inspectedObject.TryGetComponent<BoxCollider>(out BoxCollider collider);
             collider.enabled = false;
+        }
+
+
+
+        /// <summary>
+        /// Assigns no clip layers for objects.
+        /// </summary>
+        private void AssignNoClipLayer(List<GameObject> _objects)
+        {
+            foreach (GameObject _object in _objects)
+            {
+                _object.layer = LayerMask.NameToLayer(noClipWallLayer);
+            }
+            
         }
 
 
@@ -132,8 +156,8 @@ namespace ProjectBorderland.Core.Inspection
         {
             if (isInspecting && inspectedObject != null)
             {
-                inspectedObject.transform.Rotate(Vector3.down, horizontalAxis);
-                inspectedObject.transform.Rotate(Vector3.right, verticalAxis);
+                inspectedObject.transform.Rotate(Camera.main.transform.up, -horizontalAxis, Space.World);
+                inspectedObject.transform.Rotate(Camera.main.transform.right, verticalAxis, Space.World);
             }
         }
         #endregion

@@ -193,12 +193,11 @@ GameObject:
   m_Component:
   - component: {fileID: 3357342191899041233}
   - component: {fileID: 3010475416407130101}
-  - component: {fileID: 8366851593575215158}
   - component: {fileID: 8140797232085365646}
   - component: {fileID: 8851496232694295553}
   m_Layer: 0
   m_Name: Free Roam Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -243,7 +242,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 0
@@ -263,14 +262,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!124 &8366851593575215158
-Behaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1812183695944244923}
-  m_Enabled: 1
 --- !u!81 &8140797232085365646
 AudioListener:
   m_ObjectHideFlags: 0
@@ -483,7 +474,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4583045272993327771
 Transform:
   m_ObjectHideFlags: 0

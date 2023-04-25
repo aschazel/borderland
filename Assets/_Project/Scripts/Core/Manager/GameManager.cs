@@ -1,5 +1,5 @@
+using System.Collections.Generic;
 using UnityEngine;
-using ProjectBorderland.Core.FreeRoam;
 
 namespace ProjectBorderland.Core.Manager
 {
@@ -34,16 +34,21 @@ namespace ProjectBorderland.Core.Manager
         }
         #endregion
 
-        [Header("Attribute Configurations")]
-        [SerializeField] private string freeRoamPlayerTag = "FreeRoamPlayer";
+        [Header("Object References")]
+        [SerializeField] private GameObject freeRoamPlayer;
+        [SerializeField] private Camera freeRoamCamera;
+        [SerializeField] private GameObject pointAndClickPlayer;
+        [SerializeField] private GameObject crosshair;
 
-        private GameObject freeRoamPlayer;
         private FreeRoam.PlayerMovement freeRoamPlayerMovement;
         private FreeRoam.PlayerCamera freeRoamPlayerCamera;
         private FreeRoam.Interaction freeRoamInteraction;
         private FreeRoam.PlayerItemHolder freeRoamPlayerItemHolder;
 
+        private PointAndClick.Interaction pointAndClickInteraction;
+
         private GameState currentGameState;
+        public List<ActionState> currentActionStates = new List<ActionState>();
 
         
         
@@ -65,12 +70,19 @@ namespace ProjectBorderland.Core.Manager
             }
             #endregion
 
-            freeRoamPlayer = GameObject.FindWithTag(freeRoamPlayerTag);
-
             freeRoamPlayerMovement = freeRoamPlayer.GetComponentInChildren<FreeRoam.PlayerMovement>();
             freeRoamPlayerCamera = freeRoamPlayer.GetComponentInChildren<FreeRoam.PlayerCamera>();
             freeRoamInteraction = freeRoamPlayer.GetComponentInChildren<FreeRoam.Interaction>();
             freeRoamPlayerItemHolder = freeRoamPlayer.GetComponentInChildren<FreeRoam.PlayerItemHolder>();
+
+            pointAndClickInteraction = pointAndClickPlayer.GetComponentInChildren<PointAndClick.Interaction>();
+        }
+
+
+
+        private void Start()
+        {
+            SwitchGamestate(GameState.FreeRoam);
         }
         #endregion
 
@@ -78,17 +90,75 @@ namespace ProjectBorderland.Core.Manager
 
         #region ProjectBorderland methods
         /// <summary>
+        /// Switches between game states.
+        /// </summary>
+        /// <param name="gameState"></param>
+        public static void SwitchGamestate(GameState gameState)
+        {
+            if (gameState == GameState.FreeRoam)
+            {
+                Cursor.lockState = CursorLockMode.Locked;
+
+                instance.pointAndClickInteraction.enabled = false;
+            }
+        }
+
+
+
+        /// <summary>
+        /// Checks if current action states contains given action state.
+        /// </summary>
+        /// <param name="actionState"></param>
+        private bool CheckActionState(ActionState actionState)
+        {
+            return currentActionStates.Contains(actionState);
+        }
+
+
+
+        /// <summary>
+        /// Adds an action state to action states list.
+        /// </summary>
+        private void AddActionState(ActionState actionState)
+        {
+            currentActionStates.Add(actionState);
+        }
+
+
+
+        /// <summary>
+        /// Removes an action state from action states list.
+        /// </summary>
+        private void RemoveActionState(ActionState actionState)
+        {
+            currentActionStates.Remove(actionState);
+        }
+
+
+
+        /// <summary>
         /// Enters dialogue mode.
         /// </summary>
         public static void EnterDialogue()
         {
             if (instance.currentGameState == GameState.FreeRoam)
             {
-                instance.freeRoamPlayerMovement.Stop();
-                instance.freeRoamPlayerMovement.enabled = false;
-                instance.freeRoamPlayerCamera.enabled = false;
-                instance.freeRoamInteraction.enabled = false;
-                instance.freeRoamPlayerItemHolder.enabled = false;
+                if (!instance.CheckActionState(ActionState.Inspection))
+                {
+                    Cursor.lockState = CursorLockMode.None;
+                    instance.crosshair.SetActive(false);
+
+                    instance.freeRoamPlayerMovement.Stop();
+                    instance.freeRoamPlayerMovement.enabled = false;
+                    instance.freeRoamPlayerCamera.enabled = false;
+                    instance.freeRoamInteraction.enabled = false;
+                    instance.freeRoamPlayerItemHolder.enabled = false;
+                }
+
+                else
+                {
+                    instance.pointAndClickInteraction.enabled = false;
+                }
             }
         }
 
@@ -101,10 +171,21 @@ namespace ProjectBorderland.Core.Manager
         {
             if (instance.currentGameState == GameState.FreeRoam)
             {
-                instance.freeRoamPlayerMovement.enabled = true;
-                instance.freeRoamPlayerCamera.enabled = true;
-                instance.freeRoamInteraction.enabled = true;
-                instance.freeRoamPlayerItemHolder.enabled = true;
+                if (!instance.CheckActionState(ActionState.Inspection))
+                {
+                    Cursor.lockState = CursorLockMode.Locked;
+                    instance.crosshair.SetActive(true);
+
+                    instance.freeRoamPlayerMovement.enabled = true;
+                    instance.freeRoamPlayerCamera.enabled = true;
+                    instance.freeRoamInteraction.enabled = true;
+                    instance.freeRoamPlayerItemHolder.enabled = true;
+                }
+
+                else
+                {
+                    instance.pointAndClickInteraction.enabled = true;
+                }
             }
         }
 
@@ -117,6 +198,13 @@ namespace ProjectBorderland.Core.Manager
         {
             if (instance.currentGameState == GameState.FreeRoam)
             {
+                instance.AddActionState(ActionState.Inspection);
+                Cursor.lockState = CursorLockMode.None;
+                instance.crosshair.SetActive(false);
+
+                instance.pointAndClickInteraction.enabled = true;
+                instance.pointAndClickInteraction.PointAndClickCamera = instance.freeRoamCamera;
+
                 instance.freeRoamPlayerMovement.Stop();
                 instance.freeRoamPlayerMovement.enabled = false;
                 instance.freeRoamPlayerCamera.enabled = false;
@@ -134,6 +222,12 @@ namespace ProjectBorderland.Core.Manager
         {
             if (instance.currentGameState == GameState.FreeRoam)
             {
+                instance.RemoveActionState(ActionState.Inspection);
+                Cursor.lockState = CursorLockMode.Locked;
+                instance.crosshair.SetActive(true);
+
+                instance.pointAndClickInteraction.enabled = false;
+
                 instance.freeRoamPlayerMovement.enabled = true;
                 instance.freeRoamPlayerCamera.enabled = true;
                 instance.freeRoamInteraction.enabled = true;

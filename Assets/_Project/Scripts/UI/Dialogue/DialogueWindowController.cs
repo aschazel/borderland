@@ -28,6 +28,9 @@ namespace ProjectBorderland.UI.Dialogue
         private Image characterImage;
         private TextMeshProUGUI characterName;
 
+        [Header("Attribute Configurations")]
+        [SerializeField] private string linkColor = "blue";
+
         [Header("Object References")]
         [SerializeField] private GameObject shadow;
         [SerializeField] private GameObject background;
@@ -253,20 +256,17 @@ namespace ProjectBorderland.UI.Dialogue
             {
                 if(character == '\\')
                 {
-                    string linkText = "<color=blue>" + links[linkIndex] + "</color>";
+                    string linkText = $"<color={linkColor}>" + links[linkIndex] + "</color>";
                     sentenceText.text += linkText;
                     linkIndex++;
                 }
 
                 else sentenceText.text += character;
 
-                if(sentenceText.text == dialogue.Sentences[instance.currentDialogueIndex].Say)
-                {
-                    MarkReadyToContinue();
-                }
-
                 yield return new WaitForSecondsRealtime(1 * dialogue.Speed);
             }
+
+            MarkReadyToContinue();
         }
 
 
@@ -278,6 +278,7 @@ namespace ProjectBorderland.UI.Dialogue
         {
             StopCoroutine(currentlyTyping);
             sentenceText.text = dialogue.Sentences[instance.currentDialogueIndex].Say;
+            sentenceText.text = sentenceText.text.Replace("<link=", $"<color={linkColor}><link=").Replace("</link>", "</link></color>");
             MarkReadyToContinue();
         }
 

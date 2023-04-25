@@ -60,12 +60,17 @@ namespace ProjectBorderland.Core.FreeRoam
 
         private void OnDisable()
         {
-            InventoryManager.Instance.OnEquippedChanged -= Refresh;
-
             if (itemHolderTransform != null)
             {
                 itemHolderTransform.gameObject.SetActive(false);
             }
+        }
+
+
+
+        private void OnDestroy()
+        {
+            InventoryManager.Instance.OnEquippedChanged -= Refresh;
         }
         #endregion
 
