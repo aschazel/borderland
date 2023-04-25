@@ -99,7 +99,8 @@ namespace ProjectBorderland.Core.Inspection
         /// <param name="item"></param>
         private void InstantiateInspectedObject(ItemSO item)
         {
-            inspectedObject = Instantiate(item.Prefab, inspectorTransform.position, Quaternion.identity);
+            inspectedObject = Instantiate(item.Prefab, inspectorTransform.position, Quaternion.identity, inspectorTransform);
+            inspectedObject.name = item.Name;
 
             List<GameObject> _objects = new List<GameObject>();
             _objects.Add(inspectedObject);

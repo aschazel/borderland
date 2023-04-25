@@ -21,7 +21,6 @@ namespace ProjectBorderland.Core.FreeRoam
 
         [Header("Attribute Configurations")]
         [SerializeField] private string noClipWallLayer = "NoClipWall";
-        [SerializeField] private string interactableLayer = "Interactable";
 
         [Header("Object References")]
         [SerializeField] private Transform itemHolderTransform;
@@ -205,12 +204,11 @@ namespace ProjectBorderland.Core.FreeRoam
         private GameObject InstantiatePickableItem(GameObject itemObject, ItemSO itemSO)
         {
             GameObject instantiatedItem = Instantiate(itemObject, itemHolderTransform.position, itemHolderTransform.rotation);
+            instantiatedItem.layer = LayerMask.NameToLayer("Default");
+            instantiatedItem.name = itemSO.Name;
 
             instantiatedItem.AddComponent<Rigidbody>();
             instantiatedItem.AddComponent<PickableItem>().ItemSO = itemSO;
-
-            instantiatedItem.name = itemSO.Name;
-            instantiatedItem.layer = LayerMask.NameToLayer(interactableLayer);
             
             return instantiatedItem;
         }
