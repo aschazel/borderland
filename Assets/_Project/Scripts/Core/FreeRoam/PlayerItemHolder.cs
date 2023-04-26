@@ -17,10 +17,10 @@ namespace ProjectBorderland.Core.FreeRoam
         public GameObject HeldItem { get { return heldItem; } }
         private bool isReadyToThrow;
         private float clickHoldTime;
-        private Animator itemHolderAnimator;
 
         [Header("Attribute Configurations")]
         [SerializeField] private string noClipWallLayer = "NoClipWall";
+        [SerializeField] private string droppedItemLayer = "DroppedItem";
 
         [Header("Object References")]
         [SerializeField] private Transform itemHolderTransform;
@@ -34,7 +34,6 @@ namespace ProjectBorderland.Core.FreeRoam
         #region MonoBehaviour methods
         private void Awake()
         {
-            itemHolderAnimator = itemHolderTransform.GetComponentInChildren<Animator>();
             InventoryManager.Instance.OnEquippedChanged += Refresh;
         }
 
@@ -100,7 +99,7 @@ namespace ProjectBorderland.Core.FreeRoam
 
 
 
-                /// <summary>
+        /// <summary>
         /// Refreshes item on player hand.
         /// </summary>
         public void Refresh()
@@ -108,6 +107,8 @@ namespace ProjectBorderland.Core.FreeRoam
             ItemSO item = InventoryManager.GetCurrentIndex();
             GameObject itemPrefab = item.GetPrefab();
             DisplayObject(itemPrefab);
+
+            if (!item.IsNullItem) PublishSubscribe.Instance.Publish<OnEquipItemMessage>(new OnEquipItemMessage(item));
         }
 
 
@@ -158,7 +159,8 @@ namespace ProjectBorderland.Core.FreeRoam
             if (clickHoldTime >= clickHoldTreshold)
             {
                 isReadyToThrow = true;
-                itemHolderAnimator.SetBool("IsReadyToThrow", true);
+                
+                PublishSubscribe.Instance.Publish<OnThrowStateChangedMessage>(new OnThrowStateChangedMessage(true));
             }
         }
 
@@ -179,10 +181,10 @@ namespace ProjectBorderland.Core.FreeRoam
 
                 InventoryManager.RemoveCurrentIndex();
 
-                itemHolderAnimator.SetBool("IsReadyToThrow", false);
+                PublishSubscribe.Instance.Publish<OnThrowStateChangedMessage>(new OnThrowStateChangedMessage(true));
             }
 
-            itemHolderAnimator.SetBool("IsReadyToThrow", false);
+            PublishSubscribe.Instance.Publish<OnThrowStateChangedMessage>(new OnThrowStateChangedMessage(false));
         }
 
 
@@ -204,7 +206,7 @@ namespace ProjectBorderland.Core.FreeRoam
         private GameObject InstantiatePickableItem(GameObject itemObject, ItemSO itemSO)
         {
             GameObject instantiatedItem = Instantiate(itemObject, itemHolderTransform.position, itemHolderTransform.rotation);
-            instantiatedItem.layer = LayerMask.NameToLayer("Default");
+            instantiatedItem.layer = LayerMask.NameToLayer(droppedItemLayer);
             instantiatedItem.name = itemSO.Name;
 
             instantiatedItem.AddComponent<Rigidbody>();
@@ -214,4 +216,30 @@ namespace ProjectBorderland.Core.FreeRoam
         }
         #endregion
     }
+
+
+
+    #region PublishSubscribe
+    public struct OnEquipItemMessage
+    {
+        public ItemSO Item;
+
+        public OnEquipItemMessage(ItemSO item)
+        {
+            this.Item = item;
+        }
+    }
+
+
+
+    public struct OnThrowStateChangedMessage
+    {
+        public bool IsReadyToThrow;
+
+        public OnThrowStateChangedMessage(bool isReadyToThrow)
+        {
+            this.IsReadyToThrow = isReadyToThrow;
+        }
+    }
+    #endregion
 }

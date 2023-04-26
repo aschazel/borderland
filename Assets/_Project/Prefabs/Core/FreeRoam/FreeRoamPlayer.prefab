@@ -377,7 +377,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1058793627041775493}
-  - component: {fileID: 853151317}
+  - component: {fileID: 1175430327}
   m_Layer: 0
   m_Name: Player Item Holder Transform
   m_TagString: Untagged
@@ -400,26 +400,64 @@ Transform:
   m_Father: {fileID: 1959600047}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!95 &853151317
-Animator:
-  serializedVersion: 5
+--- !u!114 &1175430327
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2249320162711122422}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4c8c3d46bd85912438c2c0f5547285f1, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 935e611a4f3df6240bdcff5a6dc395ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &3192147409894361084
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2177395463703502543}
+  - component: {fileID: 529062858695965932}
+  m_Layer: 8
+  m_Name: Collider
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2177395463703502543
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192147409894361084}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4583045272993327771}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &529062858695965932
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3192147409894361084}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &4583045272840597956
 GameObject:
   m_ObjectHideFlags: 0
@@ -466,7 +504,6 @@ GameObject:
   - component: {fileID: 4583045272993327751}
   - component: {fileID: 4583045272993327769}
   - component: {fileID: 745827628993904222}
-  - component: {fileID: 8887854888796633371}
   - component: {fileID: 1623457537}
   m_Layer: 0
   m_Name: FreeRoamPlayer
@@ -474,7 +511,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4583045272993327771
 Transform:
   m_ObjectHideFlags: 0
@@ -489,6 +526,7 @@ Transform:
   m_Children:
   - {fileID: 4583045272840597955}
   - {fileID: 3357342191899041233}
+  - {fileID: 2177395463703502543}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -558,7 +596,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   noClipWallLayer: NoClipWall
-  interactableLayer: Interactable
+  droppedItemLayer: DroppedItem
   itemHolderTransform: {fileID: 1058793627041775493}
   clickHoldTreshold: 0.6
 --- !u!114 &745827628993904222
@@ -575,20 +613,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   freeRoamCamera: {fileID: 3357342191899041233}
   interactDistance: 5
---- !u!136 &8887854888796633371
-CapsuleCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4583045272993327772}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1623457537
 MonoBehaviour:
   m_ObjectHideFlags: 0
