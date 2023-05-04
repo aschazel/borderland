@@ -12,6 +12,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Door_Restroom
+    second: {fileID: 2100000, guid: ad365776ddbc67a4d886892913adf6de, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Door_Restroom.002
+    second: {fileID: 2100000, guid: b933d2f08d1d0124088767f71875552e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Glass Windows.003
     second: {fileID: 2100000, guid: 791f37a3762448644a70ab08a3c6c75b, type: 2}
   - first:
@@ -32,8 +42,33 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: black
+    second: {fileID: 2100000, guid: e7dad123eb54cac4da9ff50ae273a551, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: glass dvere
+    second: {fileID: 2100000, guid: cf5adf671becb8e46bb03f43f5d482ae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: grey
+    second: {fileID: 2100000, guid: 6d2745946ebbf224c8f770094d2fe7eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: plaster white irregular.001
     second: {fileID: 2100000, guid: fe03aae03ff8397418f992ec184a03b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: prah.002
+    second: {fileID: 2100000, guid: 617fb3bc54883274e89914b3fa0d3974, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stainless
+    second: {fileID: 2100000, guid: db54e4b7f9d502f4388331bc5de12fb8, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
