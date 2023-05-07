@@ -42,6 +42,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Wood wall
+    second: {fileID: 2100000, guid: 976e6c0f160219f47b7640297d1e9025, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: black
     second: {fileID: 2100000, guid: e7dad123eb54cac4da9ff50ae273a551, type: 2}
   - first:
