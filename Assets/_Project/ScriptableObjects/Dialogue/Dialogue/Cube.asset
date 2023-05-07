@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sentences:
   - author: {fileID: 11400000, guid: 234476d0ed71af64ab61e6419da8a4ec, type: 2}
-    say: Halo, aku Bahri! <link="Parrot">my link</link>, mau mabar?
+    say: Kontol kuda <link="Parrot">my link</link>
   speed: 0.05

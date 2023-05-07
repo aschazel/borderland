@@ -154,6 +154,19 @@ namespace ProjectBorderland.UI.Fade
                 yield return null;
             }
         }
+
+
+
+        /// <summary>
+        /// Sets text alpha to zero.
+        /// </summary>
+        /// <param name="textMeshProUGUI"></param>
+        public static void TextAlphaZero(TextMeshProUGUI textMeshProUGUI)
+        {
+            Color textColor = textMeshProUGUI.color;
+
+            textMeshProUGUI.color = new Color(textColor.r, textColor.g, textColor.b, 0f);
+        }
         #endregion
     }
 }

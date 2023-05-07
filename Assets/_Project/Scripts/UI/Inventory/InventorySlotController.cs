@@ -46,7 +46,8 @@ namespace ProjectBorderland.UI.Inventory
         private void ShiftSelector(EquippedChangedMessage message)
         {
             Transform equippedSlot = slots[message.SlotIndex];
-            selector.anchoredPosition = equippedSlot.gameObject.GetComponent<RectTransform>().anchoredPosition;
+            Vector2 newPosition = equippedSlot.gameObject.GetComponent<RectTransform>().anchoredPosition;
+            selector.anchoredPosition = new Vector3(newPosition.x, selector.anchoredPosition.y);
         }
         #endregion
     }

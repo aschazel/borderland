@@ -171,6 +171,8 @@ namespace ProjectBorderland.Core.FreeRoam
         /// </summary>
         public void Throw()
         {
+            PublishSubscribe.Instance.Publish<OnThrowStateChangedMessage>(new OnThrowStateChangedMessage(false));
+            
             if (isReadyToThrow && heldItem != null)
             {
                 ItemSO item = InventoryManager.GetCurrentIndex();
@@ -180,11 +182,7 @@ namespace ProjectBorderland.Core.FreeRoam
                 Destroy(heldItem);
 
                 InventoryManager.RemoveCurrentIndex();
-
-                PublishSubscribe.Instance.Publish<OnThrowStateChangedMessage>(new OnThrowStateChangedMessage(true));
             }
-
-            PublishSubscribe.Instance.Publish<OnThrowStateChangedMessage>(new OnThrowStateChangedMessage(false));
         }
 
 

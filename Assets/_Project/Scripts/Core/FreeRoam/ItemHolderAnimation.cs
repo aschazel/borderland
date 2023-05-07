@@ -26,7 +26,7 @@ namespace ProjectBorderland.Core.FreeRoam
         private void Awake()
         {
             originalPosition = transform.localPosition;
-            originalRotation = transform.rotation;
+            originalRotation = transform.localRotation;
             PublishSubscribe.Instance.Subscribe<OnEquipItemMessage>(PlayEquipAnimation);
             PublishSubscribe.Instance.Subscribe<OnThrowStateChangedMessage>(PlayJiggleAnimation);
         }
@@ -76,7 +76,7 @@ namespace ProjectBorderland.Core.FreeRoam
                 jiggleTween.Kill();
                 jiggleTween = null;
 
-                transform.rotation = originalRotation;
+                transform.localRotation = originalRotation;
             }
         }
         #endregion

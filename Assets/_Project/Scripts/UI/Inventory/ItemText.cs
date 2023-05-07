@@ -2,6 +2,7 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using ProjectBorderland.DeveloperTools.PublishSubscribe;
+using ProjectBorderland.InventorySystem;
 using ProjectBorderland.Core.FreeRoam;
 using ProjectBorderland.UI.Fade;
 
@@ -17,6 +18,7 @@ namespace ProjectBorderland.UI.Inventory
         //==============================================================================
         private TextMeshProUGUI textMeshProUGUI;
         private Coroutine fadeCoroutine;
+        private bool isShowingText;
 
         [Header("Attribute Configurations")]
         [SerializeField] private float textShowTime = 2f;
@@ -32,6 +34,7 @@ namespace ProjectBorderland.UI.Inventory
             textMeshProUGUI = GetComponent<TextMeshProUGUI>();
             textMeshProUGUI.alpha = 0f;
             PublishSubscribe.Instance.Subscribe<OnEquipItemMessage>(ShowItemText);
+            PublishSubscribe.Instance.Subscribe<EquippedChangedMessage>(HideText);
         }
 
 
@@ -39,6 +42,7 @@ namespace ProjectBorderland.UI.Inventory
         private void OnDisable()
         {
             PublishSubscribe.Instance.Unsubscribe<OnEquipItemMessage>(ShowItemText);
+            PublishSubscribe.Instance.Unsubscribe<EquippedChangedMessage>(HideText);
         }
         #endregion
 
@@ -53,10 +57,10 @@ namespace ProjectBorderland.UI.Inventory
         {
             textMeshProUGUI.text = message.Item.name;
 
-            if(fadeCoroutine == null) 
+            if(!isShowingText) 
             {
                 fadeCoroutine = StartCoroutine(FadeInFadeOut());
-            }
+            } 
 
             else 
             {
@@ -68,14 +72,31 @@ namespace ProjectBorderland.UI.Inventory
 
 
         /// <summary>
+        /// Hides text instaneously.
+        /// </summary>
+        private void HideText(EquippedChangedMessage message)
+        {
+            if (isShowingText)
+            {
+                StopCoroutine(fadeCoroutine);
+                FadeAnimation.TextAlphaZero(textMeshProUGUI);
+                isShowingText = false;
+            }
+        }
+
+
+
+        /// <summary>
         /// Fades in text and briefly fades out.
         /// </summary>
         /// <returns></returns>
         private IEnumerator FadeInFadeOut()
         {
+            isShowingText = true;
             StartCoroutine(FadeAnimation.FadeInText(textMeshProUGUI, 2f));
             yield return new WaitForSecondsRealtime(textShowTime);
             StartCoroutine(FadeAnimation.FadeOutText(textMeshProUGUI, 2f));
+            isShowingText = false;
         }
         #endregion
     }
