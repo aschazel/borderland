@@ -1,5 +1,4 @@
 using UnityEngine;
-using ProjectBorderland.Core.Manager;
 
 namespace ProjectBorderland.Core.PointAndClick
 {
@@ -24,6 +23,7 @@ namespace ProjectBorderland.Core.PointAndClick
         [SerializeField] private float bottomBoundaryThickness = 5f;
         [SerializeField] private float rightBoundaryThickness = 5f;
         [SerializeField] private float leftBoundaryThickness = 5f;
+        [SerializeField] private float screenBoundary = 10f;
         [SerializeField] private float cameraMoveSpeed = 10f;
 
 
@@ -41,7 +41,7 @@ namespace ProjectBorderland.Core.PointAndClick
 
         private void Update()
         {
-            GetInput();
+            CheckMouseBoundary();
             MoveCamera();
         }
         #endregion
@@ -49,21 +49,20 @@ namespace ProjectBorderland.Core.PointAndClick
 
 
         #region ProjectBorderland methods
-        /// <summary>
-        /// Get input from Unity Input Manager.
-        /// </summary>
-        private void GetInput()
+        private void CheckMouseBoundary()
         {
-            if (Input.GetKey(InputController.Instance.Forward)) verticalAxis = 1f;
+            Vector3 mousePosition = Input.mousePosition;
 
-            else if (Input.GetKey(InputController.Instance.Backward)) verticalAxis = -1f; 
-            
+            if (mousePosition.y > Screen.height - screenBoundary) verticalAxis = 1f;
+
+            else if (mousePosition.y < screenBoundary) verticalAxis = -1f;
+
             else verticalAxis = 0f;
 
-            if (Input.GetKey(InputController.Instance.Right)) horizontalAxis = 1f;
+            if (mousePosition.x > Screen.width - screenBoundary) horizontalAxis = 1f;
 
-            else if (Input.GetKey(InputController.Instance.Left)) horizontalAxis = -1f; 
-            
+            else if (mousePosition.x < screenBoundary) horizontalAxis = -1f;
+
             else horizontalAxis = 0f;
         }
 
