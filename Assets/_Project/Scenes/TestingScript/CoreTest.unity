@@ -12228,6 +12228,10 @@ PrefabInstance:
       propertyPath: shadow
       value: 
       objectReference: {fileID: 1353354194}
+    - target: {fileID: 3357342191899041233, guid: 17de329238a82024dbd7156e8975c3be, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4583045272993327771, guid: 17de329238a82024dbd7156e8975c3be, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -23751,7 +23755,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4206873529054783053, guid: 388ad02b29a92294d9e80aee95e81e56, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -5.19
       objectReference: {fileID: 0}
     - target: {fileID: 4206873529054783053, guid: 388ad02b29a92294d9e80aee95e81e56, type: 3}
       propertyPath: m_LocalRotation.w
