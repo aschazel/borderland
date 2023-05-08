@@ -31,14 +31,14 @@ namespace ProjectBorderland.Dialogue
 
 
         #region IInteractable
-        public void Interact()
+        public virtual void Interact()
         {
             DisplayDialogue();
         }
 
 
 
-        public void Interact(GameObject _object)
+        public virtual void Interact(GameObject _object)
         {}
         #endregion
         #endregion

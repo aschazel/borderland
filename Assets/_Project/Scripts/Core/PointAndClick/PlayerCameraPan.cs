@@ -75,7 +75,7 @@ namespace ProjectBorderland.Core.PointAndClick
         {
             ClampCamera();
 
-            Vector3 targetPosition = playerCamera.position + new Vector3(horizontalAxis, verticalAxis, 0f) * cameraMoveSpeed * Time.deltaTime;
+            Vector3 targetPosition = playerCamera.position + new Vector3(0f, verticalAxis, -horizontalAxis) * cameraMoveSpeed * Time.deltaTime;
             playerCamera.position = Vector3.SmoothDamp(playerCamera.position, targetPosition, ref smoothDampVelocity, 0.3f);
         }
 

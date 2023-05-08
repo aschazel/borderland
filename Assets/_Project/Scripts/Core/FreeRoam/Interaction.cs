@@ -1,5 +1,6 @@
 using UnityEngine;
 using ProjectBorderland.Interaction;
+using ProjectBorderland.InventorySystem;
 
 namespace ProjectBorderland.Core.FreeRoam
 {
@@ -55,7 +56,14 @@ namespace ProjectBorderland.Core.FreeRoam
                 
             if (item != null)
             {
-                item.Interact();
+                ItemSO heldItem = InventoryManager.GetCurrentIndex();
+
+                if (!heldItem.IsNullItem)
+                {
+                    item.Interact(heldItem.Prefab);
+                }
+
+                else item.Interact();
             }
         }
 

@@ -1,6 +1,7 @@
 using UnityEngine;
 using ProjectBorderland.Interaction;
 using ProjectBorderland.Core.Manager;
+using ProjectBorderland.InventorySystem;
 
 namespace ProjectBorderland.Gameplay.ACT1.Puzzle
 {
@@ -12,12 +13,15 @@ namespace ProjectBorderland.Gameplay.ACT1.Puzzle
         //==============================================================================
         // Variables
         //==============================================================================
+        private bool isAlreadyCompleted;
+
         [Header("Object References")]
         [SerializeField] private LockNumber lockNumber1;
         [SerializeField] private LockNumber lockNumber2;
         [SerializeField] private LockNumber lockNumber3;
         [SerializeField] private LockNumber lockNumber4;
         [SerializeField] private Transform cameraPosition;
+        [SerializeField] private ItemSO item;
 
         [Header("Attribute Configurations")]
         [SerializeField] private int passcode1;
@@ -49,7 +53,12 @@ namespace ProjectBorderland.Gameplay.ACT1.Puzzle
                 && lockNumber4.CurrentNumber == passcode4
             )
             {
-                Debug.Log("COPLETED");
+                if (!isAlreadyCompleted)
+                {
+                    InventoryManager.AddCurrentIndex(item);
+                    GameManager.SwitchGamestate(GameState.FreeRoam);
+                    isAlreadyCompleted = true;
+                }
             }
         }
 
