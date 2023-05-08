@@ -34,6 +34,9 @@ namespace ProjectBorderland.Core.Manager
         }
         #endregion
 
+        private Camera mainCamera;
+        public Camera MainCamera { get { return mainCamera; } }
+
         [Header("Object References")]
         [SerializeField] private GameObject freeRoamPlayer;
         [SerializeField] private Camera freeRoamCamera;
@@ -52,7 +55,7 @@ namespace ProjectBorderland.Core.Manager
         private Inspection.Inspection freeRoamInspection;
 
         private GameState currentGameState;
-        public List<ActionState> currentActionStates = new List<ActionState>();
+        private List<ActionState> currentActionStates = new List<ActionState>();
 
         
         
@@ -105,6 +108,7 @@ namespace ProjectBorderland.Core.Manager
             {
                 instance.currentGameState = GameState.FreeRoam;
                 Cursor.lockState = CursorLockMode.Locked;
+                instance.mainCamera = instance.freeRoamCamera;
 
                 EnableFreeRoam();
                 DisablePointAndClick();
@@ -114,6 +118,7 @@ namespace ProjectBorderland.Core.Manager
             {
                 instance.currentGameState = GameState.PointAndClick;
                 Cursor.lockState = CursorLockMode.None;
+                instance.mainCamera = instance.pointAndClickCamera;
 
                 EnablePointAndClick();
                 DisableFreeRoam();
@@ -206,6 +211,19 @@ namespace ProjectBorderland.Core.Manager
 
 
         /// <summary>
+        /// Sets up point and click camera position.
+        /// </summary>
+        /// <param name="cameraPosition"></param>
+        public static void SetUpPointAndClickCamera(Transform cameraPosition)
+        {
+            instance.pointAndClickPlayerCameraPan.AnchoredPosition = cameraPosition.position;
+            instance.pointAndClickPlayerCameraPan.transform.position = cameraPosition.position;
+            instance.pointAndClickPlayerCameraPan.transform.rotation = cameraPosition.rotation;
+        }
+
+
+
+        /// <summary>
         /// Enters dialogue mode.
         /// </summary>
         public static void EnterDialogue()
@@ -221,6 +239,7 @@ namespace ProjectBorderland.Core.Manager
 
                     instance.freeRoamPlayerMovement.Stop();
                     DisableFreeRoam();
+                    instance.freeRoamCamera.gameObject.SetActive(true);
                 }
 
                 else

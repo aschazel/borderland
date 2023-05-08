@@ -1,16 +1,21 @@
+using System.Collections;
 using UnityEngine;
-using ProjectBorderland.Core.Manager;
+using ProjectBorderland.Dialogue;
+using ProjectBorderland.UI.Dialogue;
+using ProjectBorderland.Progression;
 
-namespace ProjectBorderland.Miscellaneous
+namespace ProjectBorderland.Gameplay.ACT1.Dialogue
 {
     /// <summary>
     /// Rotates object to always face main camera.
     /// </summary>
-    public class FaceCamera : MonoBehaviour
+    public class FirstEncounter : Objective
     {
         //==============================================================================
         // Variables
         //==============================================================================
+        [Header("Object References")]
+        [SerializeField] private DialogueSO dialogue;
 
 
 
@@ -18,19 +23,20 @@ namespace ProjectBorderland.Miscellaneous
         // Functions
         //==============================================================================
         #region MonoBehaviour methods
-        private void Update()
+        private void Start()
         {
-            LookAtCamera();
+            StartCoroutine(InitiateDialogue());
+            StartObjective();
         }
         #endregion
 
 
 
         #region ProjectBorderland methods
-        private void LookAtCamera()
+        private IEnumerator InitiateDialogue()
         {
-            transform.LookAt(GameManager.Instance.MainCamera.transform);
-            transform.rotation = Quaternion.Euler(0f, transform.rotation.eulerAngles.y, transform.rotation.eulerAngles.z);
+            yield return new WaitForSecondsRealtime(2f);
+            DialogueWindowController.Display(dialogue);
         }
         #endregion
     }

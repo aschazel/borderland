@@ -72,7 +72,7 @@ namespace ProjectBorderland.UI.Dialogue
             if (Input.GetKeyDown(KeyCode.Mouse0) && isDialogueActive)
             {
                 if (isReadyToContinue) NextSentence();
-                if (!isReadyToContinue && currentlyTyping != null) SkipTypingAnimation();
+                else if (!isReadyToContinue && currentlyTyping != null) SkipTypingAnimation(); 
             }
         }
 
