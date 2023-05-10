@@ -1,15 +1,8 @@
 fileFormatVersion: 2
-<<<<<<<< HEAD:Assets/_Project/Scenes/MergeScene/OcclusionCullingData.asset.meta
-guid: 3ab7f64a87337d14d8e101832d22f469
-NativeFormatImporter:
-  externalObjects: {}
-  mainObjectFileID: 36300000
-========
-guid: baeb07a67cb78164498e5c7bd6c6e440
+guid: d913fadd078c75c46a2a4c93cf00a1fe
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 112000000
->>>>>>>> origin/3D-ANJAY:Assets/_Project/Scenes/FreeRoam/LightingData.asset.meta
   userData: 
   assetBundleName: 
   assetBundleVariant: 
