@@ -34,7 +34,7 @@ namespace ProjectBorderland.Core.FreeRoam
         #region MonoBehaviour methods
         private void Awake()
         {
-            InventoryManager.Instance.OnEquippedChanged += Refresh;
+            InventoryManager.OnEquippedChanged += Refresh;
         }
 
 
@@ -68,7 +68,7 @@ namespace ProjectBorderland.Core.FreeRoam
 
         private void OnDestroy()
         {
-            InventoryManager.Instance.OnEquippedChanged -= Refresh;
+            InventoryManager.OnEquippedChanged -= Refresh;
         }
         #endregion
 

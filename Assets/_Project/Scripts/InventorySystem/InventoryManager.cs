@@ -38,7 +38,7 @@ namespace ProjectBorderland.InventorySystem
         }
         #endregion
 
-        public Action OnEquippedChanged;
+        public static Action OnEquippedChanged;
         private static int slotIndex;
         public static int SlotIndex { get { return slotIndex; } }
         private static List<ItemSO> items = new List<ItemSO>();
