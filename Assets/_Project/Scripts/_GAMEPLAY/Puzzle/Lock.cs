@@ -67,7 +67,7 @@ namespace ProjectBorderland.Gameplay.ACT1.Puzzle
         public void Interact()
         {
             GameManager.SwitchGamestate(GameState.PointAndClick);
-            GameManager.SetUpPointAndClickCamera(cameraPosition);
+            GameManager.SetUpPointAndClickCamera(cameraPosition, false);
         }
 
 

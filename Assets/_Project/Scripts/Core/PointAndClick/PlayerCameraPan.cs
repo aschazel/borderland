@@ -10,7 +10,11 @@ namespace ProjectBorderland.Core.PointAndClick
         //==============================================================================
         // Variables
         //==============================================================================
-        public Vector3 AnchoredPosition;
+        [HideInInspector] public Vector3 AnchoredPosition;
+        [HideInInspector] public float TopCameraBoundary = 5f;
+        [HideInInspector] public float BottomCameraBoundary = 5f;
+        [HideInInspector] public float RightCameraBoundary = 5f;
+        [HideInInspector] public float LeftCameraBoundary = 5f;
         private float horizontalAxis;
         private float verticalAxis;
         private Vector3 smoothDampVelocity = Vector3.zero;
@@ -19,11 +23,7 @@ namespace ProjectBorderland.Core.PointAndClick
         [SerializeField] private Transform playerCamera;
 
         [Header("Attribute Configurations")]
-        [SerializeField] private float topBoundaryThickness = 5f;
-        [SerializeField] private float bottomBoundaryThickness = 5f;
-        [SerializeField] private float rightBoundaryThickness = 5f;
-        [SerializeField] private float leftBoundaryThickness = 5f;
-        [SerializeField] private float screenBoundary = 10f;
+        [SerializeField] private float cursorBoundary = 10f;
         [SerializeField] private float cameraMoveSpeed = 10f;
 
 
@@ -53,15 +53,15 @@ namespace ProjectBorderland.Core.PointAndClick
         {
             Vector3 mousePosition = Input.mousePosition;
 
-            if (mousePosition.y > Screen.height - screenBoundary) verticalAxis = 1f;
+            if (mousePosition.y > Screen.height - cursorBoundary) verticalAxis = 1f;
 
-            else if (mousePosition.y < screenBoundary) verticalAxis = -1f;
+            else if (mousePosition.y < cursorBoundary) verticalAxis = -1f;
 
             else verticalAxis = 0f;
 
-            if (mousePosition.x > Screen.width - screenBoundary) horizontalAxis = 1f;
+            if (mousePosition.x > Screen.width - cursorBoundary) horizontalAxis = 1f;
 
-            else if (mousePosition.x < screenBoundary) horizontalAxis = -1f;
+            else if (mousePosition.x < cursorBoundary) horizontalAxis = -1f;
 
             else horizontalAxis = 0f;
         }
@@ -103,22 +103,22 @@ namespace ProjectBorderland.Core.PointAndClick
         /// </summary>
         private void ClampCamera()
         {
-            if (horizontalAxis > 0f && playerCamera.position.x >= GetBoundaryPosition(AnchoredPosition.x, rightBoundaryThickness))
+            if (horizontalAxis > 0f && playerCamera.position.x >= GetBoundaryPosition(AnchoredPosition.x, RightCameraBoundary))
             {
                 horizontalAxis = 0f;
             }
 
-            else if (horizontalAxis < 0f && playerCamera.position.x <= GetBoundaryPosition(AnchoredPosition.x, -leftBoundaryThickness))
+            else if (horizontalAxis < 0f && playerCamera.position.x <= GetBoundaryPosition(AnchoredPosition.x, -LeftCameraBoundary))
             {
                 horizontalAxis = 0f;
             }
 
-            if (verticalAxis > 0f && playerCamera.position.y >= GetBoundaryPosition(AnchoredPosition.y, topBoundaryThickness))
+            if (verticalAxis > 0f && playerCamera.position.y >= GetBoundaryPosition(AnchoredPosition.y, TopCameraBoundary))
             {
                 verticalAxis = 0f;
             }
 
-            else if (verticalAxis < 0f && playerCamera.position.y <= GetBoundaryPosition(AnchoredPosition.y, -bottomBoundaryThickness))
+            else if (verticalAxis < 0f && playerCamera.position.y <= GetBoundaryPosition(AnchoredPosition.y, -BottomCameraBoundary))
             {
                 verticalAxis = 0f;
             }

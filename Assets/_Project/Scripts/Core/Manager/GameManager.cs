@@ -51,6 +51,7 @@ namespace ProjectBorderland.Core.Manager
 
         private PointAndClick.Interaction pointAndClickInteraction;
         private PointAndClick.PlayerCameraPan pointAndClickPlayerCameraPan;
+        private PointAndClick.PlayerCameraRotate pointAndClickPlayerCameraRotate;
 
         private Inspection.Inspection freeRoamInspection;
 
@@ -85,6 +86,7 @@ namespace ProjectBorderland.Core.Manager
 
             pointAndClickInteraction = pointAndClickPlayer.GetComponentInChildren<PointAndClick.Interaction>();
             pointAndClickPlayerCameraPan = pointAndClickPlayer.GetComponentInChildren<PointAndClick.PlayerCameraPan>();
+            pointAndClickPlayerCameraRotate = pointAndClickPlayer.GetComponentInChildren<PointAndClick.PlayerCameraRotate>();
         }
 
 
@@ -192,7 +194,6 @@ namespace ProjectBorderland.Core.Manager
         private static void EnablePointAndClick()
         {
             instance.pointAndClickCamera.gameObject.SetActive(true);
-            instance.pointAndClickPlayerCameraPan.enabled = true;
             instance.pointAndClickInteraction.enabled = true;
         }
 
@@ -204,7 +205,6 @@ namespace ProjectBorderland.Core.Manager
         private static void DisablePointAndClick()
         {
             instance.pointAndClickCamera.gameObject.SetActive(false);
-            instance.pointAndClickPlayerCameraPan.enabled = false;
             instance.pointAndClickInteraction.enabled = false;
         }
 
@@ -214,11 +214,23 @@ namespace ProjectBorderland.Core.Manager
         /// Sets up point and click camera position.
         /// </summary>
         /// <param name="cameraPosition"></param>
-        public static void SetUpPointAndClickCamera(Transform cameraPosition)
+        public static void SetUpPointAndClickCamera(Transform cameraPosition, bool isRotatingCamera)
         {
             instance.pointAndClickPlayerCameraPan.AnchoredPosition = cameraPosition.position;
             instance.pointAndClickPlayerCameraPan.transform.position = cameraPosition.position;
             instance.pointAndClickPlayerCameraPan.transform.rotation = cameraPosition.rotation;
+
+            if (isRotatingCamera)
+            {
+                instance.pointAndClickPlayerCameraPan.enabled = false;
+                instance.pointAndClickPlayerCameraRotate.enabled = true;
+            }
+
+            else
+            {
+                instance.pointAndClickPlayerCameraPan.enabled = true;
+                instance.pointAndClickPlayerCameraRotate.enabled = false;
+            }
         }
 
 

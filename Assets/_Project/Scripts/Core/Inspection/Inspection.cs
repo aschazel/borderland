@@ -112,7 +112,7 @@ namespace ProjectBorderland.Core.Inspection
 
             AssignNoClipLayer(_objects);
 
-            inspectedObject.transform.forward = Camera.main.transform.forward;
+            inspectedObject.transform.forward = GameManager.Instance.MainCamera.transform.forward;
             inspectedObject.TryGetComponent<BoxCollider>(out BoxCollider collider);
             collider.enabled = false;
         }

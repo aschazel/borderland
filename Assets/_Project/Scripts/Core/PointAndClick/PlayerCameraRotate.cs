@@ -10,6 +10,10 @@ namespace ProjectBorderland.Core.PointAndClick
         //==============================================================================
         // Variables
         //==============================================================================
+        [HideInInspector] public float TopRotationLimit = 5f;
+        [HideInInspector] public float BottomRotationLimit = 5f;
+        [HideInInspector] public float RightRotationLimit = 5f;
+        [HideInInspector] public float LeftRotationLimit = 5f;
         private float horizontalAxis;
         private float verticalAxis;
         private Vector3 smoothDampVelocity = Vector3.zero;
@@ -18,11 +22,7 @@ namespace ProjectBorderland.Core.PointAndClick
         [SerializeField] private Transform playerCamera;
 
         [Header("Attribute Configurations")]
-        [SerializeField] private float topRotateLimit = 5f;
-        [SerializeField] private float bottomRotateLimit = 5f;
-        [SerializeField] private float rightRotateLimit = 5f;
-        [SerializeField] private float leftRotateLimit = 5f;
-        [SerializeField] private float screenBoundary = 10f;
+        [SerializeField] private float cursorBoundary = 10f;
 
 
 
@@ -44,15 +44,15 @@ namespace ProjectBorderland.Core.PointAndClick
         {
             Vector3 mousePosition = Input.mousePosition;
 
-            if (mousePosition.y > Screen.height - screenBoundary) verticalAxis = 1f;
+            if (mousePosition.y > Screen.height - cursorBoundary) verticalAxis = 1f;
 
-            else if (mousePosition.y < screenBoundary) verticalAxis = -1f;
+            else if (mousePosition.y < cursorBoundary) verticalAxis = -1f;
 
             else verticalAxis = 0f;
 
-            if (mousePosition.x > Screen.width - screenBoundary) horizontalAxis = 1f;
+            if (mousePosition.x > Screen.width - cursorBoundary) horizontalAxis = 1f;
 
-            else if (mousePosition.x < screenBoundary) horizontalAxis = -1f;
+            else if (mousePosition.x < cursorBoundary) horizontalAxis = -1f;
 
             else horizontalAxis = 0f;
         }
@@ -75,22 +75,22 @@ namespace ProjectBorderland.Core.PointAndClick
         /// </summary>
         private void ClampCamera()
         {
-            if (horizontalAxis > 0f && playerCamera.eulerAngles.x >= rightRotateLimit)
+            if (horizontalAxis > 0f && playerCamera.eulerAngles.x >= RightRotationLimit)
             {
                 horizontalAxis = 0f;
             }
 
-            else if (horizontalAxis < 0f && playerCamera.eulerAngles.x <= leftRotateLimit)
+            else if (horizontalAxis < 0f && playerCamera.eulerAngles.x <= LeftRotationLimit)
             {
                 horizontalAxis = 0f;
             }
 
-            if (verticalAxis > 0f && playerCamera.eulerAngles.y >= topRotateLimit)
+            if (verticalAxis > 0f && playerCamera.eulerAngles.y >= TopRotationLimit)
             {
                 verticalAxis = 0f;
             }
 
-            else if (verticalAxis < 0f && playerCamera.eulerAngles.y <= bottomRotateLimit)
+            else if (verticalAxis < 0f && playerCamera.eulerAngles.y <= BottomRotationLimit)
             {
                 verticalAxis = 0f;
             }
