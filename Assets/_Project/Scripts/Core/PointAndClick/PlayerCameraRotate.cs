@@ -3,14 +3,13 @@ using UnityEngine;
 namespace ProjectBorderland.Core.PointAndClick
 {
     /// <summary>
-    /// Handles player camera panning movement in point and click mode.
+    /// Handles player camera rotating movement in point and click mode.
     /// </summary>
-    public class PlayerCameraPan : MonoBehaviour
+    public class PlayerCameraRotate : MonoBehaviour
     {
         //==============================================================================
         // Variables
         //==============================================================================
-        public Vector3 AnchoredPosition;
         private float horizontalAxis;
         private float verticalAxis;
         private Vector3 smoothDampVelocity = Vector3.zero;
@@ -19,12 +18,11 @@ namespace ProjectBorderland.Core.PointAndClick
         [SerializeField] private Transform playerCamera;
 
         [Header("Attribute Configurations")]
-        [SerializeField] private float topBoundaryThickness = 5f;
-        [SerializeField] private float bottomBoundaryThickness = 5f;
-        [SerializeField] private float rightBoundaryThickness = 5f;
-        [SerializeField] private float leftBoundaryThickness = 5f;
+        [SerializeField] private float topRotateLimit = 5f;
+        [SerializeField] private float bottomRotateLimit = 5f;
+        [SerializeField] private float rightRotateLimit = 5f;
+        [SerializeField] private float leftRotateLimit = 5f;
         [SerializeField] private float screenBoundary = 10f;
-        [SerializeField] private float cameraMoveSpeed = 10f;
 
 
 
@@ -32,17 +30,10 @@ namespace ProjectBorderland.Core.PointAndClick
         // Functions
         //==============================================================================
         #region MonoBehaviour methods
-        private void Start()
-        {
-            AnchoredPosition = playerCamera.position;
-        }
-
-
-
         private void Update()
         {
             CheckMouseBoundary();
-            MoveCamera();
+            RotateCamera();
         }
         #endregion
 
@@ -71,31 +62,12 @@ namespace ProjectBorderland.Core.PointAndClick
         /// <summary>
         /// Moves camera to input axes direction.
         /// </summary>
-        private void MoveCamera()
+        private void RotateCamera()
         {
             ClampCamera();
-
-            float moveX = horizontalAxis * cameraMoveSpeed * Time.deltaTime;
-            float moveY = verticalAxis * cameraMoveSpeed * Time.deltaTime;
-
-            Vector3 targetPosition = playerCamera.position + playerCamera.right * moveX;
-            targetPosition += playerCamera.up * moveY;
-
-            playerCamera.position = Vector3.SmoothDamp(playerCamera.position, targetPosition, ref smoothDampVelocity, 0.3f);
+            playerCamera.localRotation = Quaternion.Euler(playerCamera.eulerAngles.x - verticalAxis, playerCamera.eulerAngles.y + horizontalAxis, 0f);
         }
-
-
-
-        /// <summary>
-        /// Gets boundary position related to camera position.
-        /// </summary>
-        /// <param name="anchor"></param>
-        /// <param name="boundary"></param>
-        private float GetBoundaryPosition(float anchor, float boundary)
-        {
-            return anchor + boundary;
-        }
-
+ 
 
 
         /// <summary>
@@ -103,22 +75,22 @@ namespace ProjectBorderland.Core.PointAndClick
         /// </summary>
         private void ClampCamera()
         {
-            if (horizontalAxis > 0f && playerCamera.position.x >= GetBoundaryPosition(AnchoredPosition.x, rightBoundaryThickness))
+            if (horizontalAxis > 0f && playerCamera.eulerAngles.x >= rightRotateLimit)
             {
                 horizontalAxis = 0f;
             }
 
-            else if (horizontalAxis < 0f && playerCamera.position.x <= GetBoundaryPosition(AnchoredPosition.x, -leftBoundaryThickness))
+            else if (horizontalAxis < 0f && playerCamera.eulerAngles.x <= leftRotateLimit)
             {
                 horizontalAxis = 0f;
             }
 
-            if (verticalAxis > 0f && playerCamera.position.y >= GetBoundaryPosition(AnchoredPosition.y, topBoundaryThickness))
+            if (verticalAxis > 0f && playerCamera.eulerAngles.y >= topRotateLimit)
             {
                 verticalAxis = 0f;
             }
 
-            else if (verticalAxis < 0f && playerCamera.position.y <= GetBoundaryPosition(AnchoredPosition.y, -bottomBoundaryThickness))
+            else if (verticalAxis < 0f && playerCamera.eulerAngles.y <= bottomRotateLimit)
             {
                 verticalAxis = 0f;
             }
