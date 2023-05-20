@@ -21,7 +21,7 @@ public class Demonstration_MeshProcessing : MonoBehaviour {
 
             f.AddComponent<MeshFilter>().mesh = r;
             f.AddComponent<MeshRenderer>().material = mat;
-            f.GetComponent<MeshRenderer>().material.SetFloat("_Width", 0.05f / o.transform.localScale.x);
+            f.GetComponent<MeshRenderer>().material.SetFloat("_Width", 0.01f / o.transform.localScale.x);
         }
 	}
 }
