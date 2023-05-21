@@ -45,7 +45,7 @@ namespace ProjectBorderland.InventorySystem
         public static List<ItemSO> Items { get { return items; } }
         
         [Header("Attribute Configurations")]
-        [SerializeField] private int maxCapacity = 8;
+        [SerializeField] private int maxCapacity = 6;
         
 
 
