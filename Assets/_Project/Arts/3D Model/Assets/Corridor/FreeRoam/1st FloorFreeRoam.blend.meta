@@ -22,8 +22,18 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Glass Windows.001
+    second: {fileID: 2100000, guid: 2a25a78924e6b754d8760fc090643cce, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Glass Windows.003
     second: {fileID: 2100000, guid: 791f37a3762448644a70ab08a3c6c75b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Label
+    second: {fileID: 2100000, guid: 129a26ef6adad3845997c6b7ae32e935, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -39,6 +49,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: White concrete
     second: {fileID: 2100000, guid: b43f58c57765e0742acf7f10adb53922, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Windows UP.001
+    second: {fileID: 2100000, guid: 9939877ed42ec0c439adafd42151d73e, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -64,6 +79,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: plaster white irregular.001
     second: {fileID: 2100000, guid: fe03aae03ff8397418f992ec184a03b8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: plaster white irregular.002
+    second: {fileID: 2100000, guid: c4f2d7da1f8560f41864c438d3030fc1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
