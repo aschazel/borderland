@@ -4,7 +4,7 @@ using ProjectBorderland.Core.Manager;
 namespace ProjectBorderland.Save
 {
     /// <summary>
-    /// Handles initial scene loading.
+    /// Represents a scene with its properties.
     /// </summary>
     public class SceneDataSO : ScriptableObject
     {
@@ -13,6 +13,7 @@ namespace ProjectBorderland.Save
         //==============================================================================
         public string Name;
         public string SceneIndex;
+        public Vector3 PlayerSpawnLocation;
 
 
 

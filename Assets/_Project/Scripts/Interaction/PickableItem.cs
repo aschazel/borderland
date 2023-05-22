@@ -1,17 +1,20 @@
 using UnityEngine;
 using ProjectBorderland.InventorySystem;
+using ProjectBorderland.Save;
 
 namespace ProjectBorderland.Interaction
 {
     /// <summary>
     /// Represents a pickable item.
     /// </summary>
-    public class PickableItem : MonoBehaviour, IInteractable
+    public class PickableItem : DynamicObject, IInteractable
     {
         //==============================================================================
         // Variables
         //==============================================================================
         public ItemSO ItemSO;
+        private Vector3 lastPosition;
+        private Quaternion lastRotation;
 
 
 
@@ -34,7 +37,15 @@ namespace ProjectBorderland.Interaction
         public void PickUp()
         {
             InventoryManager.AddCurrentIndex(ItemSO);
+            SaveManager.RemovePickableItem(this);
             Destroy(gameObject);
+        }
+
+
+
+        public override void SaveState()
+        {
+            //lastPosition =
         }
 
 

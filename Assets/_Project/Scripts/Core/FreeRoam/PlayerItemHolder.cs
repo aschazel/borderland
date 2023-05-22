@@ -2,6 +2,7 @@ using UnityEngine;
 using ProjectBorderland.InventorySystem;
 using ProjectBorderland.Interaction;
 using ProjectBorderland.DeveloperTools.PublishSubscribe;
+using ProjectBorderland.Save;
 
 namespace ProjectBorderland.Core.FreeRoam
 {
@@ -209,6 +210,7 @@ namespace ProjectBorderland.Core.FreeRoam
 
             instantiatedItem.AddComponent<Rigidbody>();
             instantiatedItem.AddComponent<PickableItem>().ItemSO = itemSO;
+            SaveManager.AddPickableItem(instantiatedItem.GetComponent<PickableItem>());
             
             return instantiatedItem;
         }
