@@ -35,7 +35,11 @@ namespace ProjectBorderland.Gameplay.ACT1.Puzzle
         }
 
 
-
+                public string InteractUIText
+        {
+            get { return null;}
+            set {  }
+        }
         public void Interact(GameObject _object)
         {}
         #endregion

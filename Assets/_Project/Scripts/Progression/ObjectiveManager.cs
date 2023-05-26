@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using ProjectBorderland.DeveloperTools.PublishSubscribe;
 
@@ -36,6 +37,8 @@ namespace ProjectBorderland.Progression
 
         private Objective currentObjective;
         public Objective CurrentObjective { get { return currentObjective; } }
+        private static List<Objective> objectives = new List<Objective>();
+        public static List<Objective> Objectives { get { return objectives; } }
 
 
 
@@ -70,6 +73,7 @@ namespace ProjectBorderland.Progression
         {
             instance.currentObjective = objective;
             PublishSubscribe.Instance.Publish<ObjectiveStartedMessage>(new ObjectiveStartedMessage(objective));
+            objectives.Add(objective);
         }
         #endregion
     }

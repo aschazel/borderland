@@ -53,6 +53,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48d51adc11c5510489d60dcbcaca83f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  objectiveTitle: {fileID: 6460763592470988853}
   objectiveDescription: {fileID: 623485657934422292}
 --- !u!1 &2439279997084251699
 GameObject:
@@ -401,7 +402,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1a55ceb8ea473ee44acf6276f2905e2f, type: 2}
   m_sharedMaterial: {fileID: 3559055202310698474, guid: 1a55ceb8ea473ee44acf6276f2905e2f, type: 2}
@@ -435,7 +436,7 @@ MonoBehaviour:
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 1
   m_VerticalAlignment: 256
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -627,7 +628,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 1a55ceb8ea473ee44acf6276f2905e2f, type: 2}
   m_sharedMaterial: {fileID: 3559055202310698474, guid: 1a55ceb8ea473ee44acf6276f2905e2f, type: 2}

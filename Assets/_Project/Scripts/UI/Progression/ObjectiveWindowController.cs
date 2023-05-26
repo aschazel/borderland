@@ -13,6 +13,7 @@ namespace ProjectBorderland.UI.Progression
         //==============================================================================
         // Variables
         //==============================================================================
+        [SerializeField] private TextMeshProUGUI objectiveTitle;
         [SerializeField] private TextMeshProUGUI objectiveDescription;
 
 
@@ -42,6 +43,7 @@ namespace ProjectBorderland.UI.Progression
         /// </summary>
         private void UpdateText(ObjectiveStartedMessage message)
         {
+            objectiveTitle.text = message.objective.Title;
             objectiveDescription.text = message.objective.Description;
         }
         #endregion

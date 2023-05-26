@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using ProjectBorderland.Dialogue;
 using ProjectBorderland.Core.Manager;
+using ProjectBorderland.DeveloperTools.PublishSubscribe;
 
 namespace ProjectBorderland.UI.Dialogue
 {
@@ -149,6 +150,7 @@ namespace ProjectBorderland.UI.Dialogue
             shadow.SetActive(false);
 
             isDialogueActive = false;
+            PublishSubscribe.Instance.Publish(new DialogueCompleteMessage(dialogue));
         }
 
 
@@ -307,5 +309,15 @@ namespace ProjectBorderland.UI.Dialogue
             }
         }
         #endregion
+    }
+
+    public struct DialogueCompleteMessage
+    {
+        public DialogueSO dialogue;
+
+        public DialogueCompleteMessage(DialogueSO dialogue)
+        {
+            this.dialogue = dialogue;
+        }
     }
 }

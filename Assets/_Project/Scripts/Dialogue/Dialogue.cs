@@ -12,6 +12,7 @@ namespace ProjectBorderland.Dialogue
         //==============================================================================
         // Variables
         //==============================================================================
+        [SerializeField] private string interactUIText;
         public DialogueSO DialogueSO;
 
         
@@ -31,6 +32,14 @@ namespace ProjectBorderland.Dialogue
 
 
         #region IInteractable
+        public string InteractUIText
+        {
+            get { return interactUIText; }
+            set { interactUIText = value; }
+        }
+
+
+
         public virtual void Interact()
         {
             DisplayDialogue();

@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/_Project/Scenes/Core/FreeRoam/Corridor1F.unity
+    guid: 02dc1d0ce201f0445a8fa26bc3e2b5c4
   m_configObjects: {}

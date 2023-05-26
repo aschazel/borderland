@@ -210,7 +210,7 @@ namespace ProjectBorderland.Core.FreeRoam
 
             instantiatedItem.AddComponent<Rigidbody>();
             instantiatedItem.AddComponent<PickableItem>().ItemSO = itemSO;
-            SaveManager.AddPickableItem(instantiatedItem.GetComponent<PickableItem>());
+            //SaveManager.AddPickableItem(instantiatedItem.GetComponent<PickableItem>());
             
             return instantiatedItem;
         }

@@ -1,6 +1,7 @@
 using UnityEngine;
 using ProjectBorderland.Interaction;
 using ProjectBorderland.InventorySystem;
+using ProjectBorderland.DeveloperTools.PublishSubscribe;
 
 namespace ProjectBorderland.Core.FreeRoam
 {
@@ -12,7 +13,8 @@ namespace ProjectBorderland.Core.FreeRoam
         //==============================================================================
         // Variables
         //==============================================================================
-        
+        private IInteractable item;
+
         [Header("Object References")]
         [SerializeField] private Transform freeRoamCamera;
 
@@ -28,6 +30,7 @@ namespace ProjectBorderland.Core.FreeRoam
         private void Update()
         {
             GetInput();
+            item = DetectInteractable();
         }
         #endregion
 
@@ -51,9 +54,7 @@ namespace ProjectBorderland.Core.FreeRoam
         /// Tries to interact with item in sight.
         /// </summary>
         private void Interact()
-        {
-            IInteractable item = DetectInteractable();
-                
+        {  
             if (item != null)
             {
                 ItemSO heldItem = InventoryManager.GetCurrentIndex();
@@ -83,12 +84,12 @@ namespace ProjectBorderland.Core.FreeRoam
                 if(hit.collider.gameObject.GetComponent<IInteractable>() != null)
                 {
                     IInteractable item = hit.collider.gameObject.GetComponent<IInteractable>();
+                    PublishSubscribe.Instance.Publish(new ShowHoverTextMessage(item.InteractUIText));
                     return item;
                 }
-
-                return null;
             }
 
+            PublishSubscribe.Instance.Publish(new HideHoverTextMessage());
             return null;
         }
         #endregion

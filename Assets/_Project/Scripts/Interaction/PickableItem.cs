@@ -13,6 +13,7 @@ namespace ProjectBorderland.Interaction
         // Variables
         //==============================================================================
         public ItemSO ItemSO;
+        private string interactUIText;
         private Vector3 lastPosition;
         private Quaternion lastRotation;
 
@@ -25,6 +26,7 @@ namespace ProjectBorderland.Interaction
         private void Start()
         {
             GetComponent<BoxCollider>().enabled = true;
+            interactUIText = $"Ambil {ItemSO.name}";
         }
         #endregion
 
@@ -37,7 +39,7 @@ namespace ProjectBorderland.Interaction
         public void PickUp()
         {
             InventoryManager.AddCurrentIndex(ItemSO);
-            SaveManager.RemovePickableItem(this);
+            //SaveManager.RemovePickableItem(this);
             Destroy(gameObject);
         }
 
@@ -51,6 +53,14 @@ namespace ProjectBorderland.Interaction
 
 
         #region IInteractable
+        public string InteractUIText
+        {
+            get { return interactUIText; }
+            set { interactUIText = value; }
+        }
+
+
+
         public void Interact()
         {
             PickUp();
