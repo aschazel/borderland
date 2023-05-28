@@ -7,6 +7,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Alu. Powder Coat.001
+    second: {fileID: 2100000, guid: 90d6d60feccf49345b363599662d22b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Concrete
     second: {fileID: 2100000, guid: 64750408888d4424db168623b47eceb7, type: 2}
   - first:
@@ -22,13 +27,23 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Gasket Rubber
+    second: {fileID: 2100000, guid: 404da82af1766fb4cb33501f1eee1fc5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass
+    second: {fileID: 2100000, guid: a709732a644dfe449a0875f7e07e641f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Glass Windows.001
-    second: {fileID: 2100000, guid: 2a25a78924e6b754d8760fc090643cce, type: 2}
+    second: {fileID: 2100000, guid: a709732a644dfe449a0875f7e07e641f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Glass Windows.003
-    second: {fileID: 2100000, guid: 791f37a3762448644a70ab08a3c6c75b, type: 2}
+    second: {fileID: 2100000, guid: a709732a644dfe449a0875f7e07e641f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -37,8 +52,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Marble
+    second: {fileID: 2100000, guid: 87f39d4838d86ae49aa6f5446df4767d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Office Ceiling
     second: {fileID: 2100000, guid: f3b51f27da3ae3e47b6cbfcaddbf482a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: PVC
+    second: {fileID: 2100000, guid: 2a3a531b97c19754c8ba2f59359b05e2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Plastic
+    second: {fileID: 2100000, guid: ebd1a0fc1dac75847b5255f301008ee2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Stainless Steel
+    second: {fileID: 2100000, guid: e8504446fe445d542973e6a5920f0fdf, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -49,6 +84,11 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: White concrete
     second: {fileID: 2100000, guid: b43f58c57765e0742acf7f10adb53922, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Window Glass.001
+    second: {fileID: 2100000, guid: a709732a644dfe449a0875f7e07e641f, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -67,13 +107,28 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: black.001
+    second: {fileID: 2100000, guid: f7defa62b4dce9d4ab94d32356cfdd45, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: glass dvere
     second: {fileID: 2100000, guid: cf5adf671becb8e46bb03f43f5d482ae, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: glass dvere.001
+    second: {fileID: 2100000, guid: 4e6e837eaf9672b4385272bcf9946b75, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: grey
     second: {fileID: 2100000, guid: 6d2745946ebbf224c8f770094d2fe7eb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: hidden_material
+    second: {fileID: 2100000, guid: 47e457e44484cac4e82f70febae3e2b1, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
@@ -87,6 +142,11 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: prah.001
+    second: {fileID: 2100000, guid: 157a7be55b926594a8e90324785daf59, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: prah.002
     second: {fileID: 2100000, guid: 617fb3bc54883274e89914b3fa0d3974, type: 2}
   - first:
@@ -94,6 +154,16 @@ ModelImporter:
       assembly: UnityEngine.CoreModule
       name: stainless
     second: {fileID: 2100000, guid: db54e4b7f9d502f4388331bc5de12fb8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: stainless.001
+    second: {fileID: 2100000, guid: 28a0962b61e607d459c3d3f6eea57a59, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: wood
+    second: {fileID: 2100000, guid: aa93c4cbb7cd1574b848c41abf049a43, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0
