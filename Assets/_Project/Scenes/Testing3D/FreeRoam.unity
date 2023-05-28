@@ -443,7 +443,7 @@ Light:
   m_RenderingLayerMask: 1
   m_Lightmapping: 2
   m_LightShadowCasterMode: 0
-  m_AreaSize: {x: 20.75359, y: 81.91636}
+  m_AreaSize: {x: 24.58802, y: 84.91845}
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
@@ -1011,6 +1011,18 @@ PrefabInstance:
     - target: {fileID: -318509024236840502, guid: 819019e6d97efc8479ee72c9eee320e5, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: -215882532355388927, guid: 819019e6d97efc8479ee72c9eee320e5, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -215882532355388927, guid: 819019e6d97efc8479ee72c9eee320e5, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: -215882532355388927, guid: 819019e6d97efc8479ee72c9eee320e5, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: -174535146235173211, guid: 819019e6d97efc8479ee72c9eee320e5, type: 3}
       propertyPath: m_StaticEditorFlags
