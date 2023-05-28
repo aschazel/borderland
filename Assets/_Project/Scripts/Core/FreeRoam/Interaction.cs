@@ -61,8 +61,7 @@ namespace ProjectBorderland.Core.FreeRoam
 
                 if (!heldItem.IsNullItem)
                 {
-                    item.Interact(heldItem.Prefab);
-                    InventoryManager.RemoveCurrentIndex();
+                    item.Interact(heldItem);
                 }
 
                 else item.Interact();

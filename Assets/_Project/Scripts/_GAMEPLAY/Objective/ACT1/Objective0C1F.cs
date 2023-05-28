@@ -4,9 +4,10 @@ using ProjectBorderland.Dialogue;
 using ProjectBorderland.UI.Dialogue;
 using ProjectBorderland.Progression;
 using ProjectBorderland.Interaction;
+using ProjectBorderland.InventorySystem;
 using ProjectBorderland.DeveloperTools.PublishSubscribe;
 
-namespace ProjectBorderland.Gameplay.ACT1.Dialogue
+namespace ProjectBorderland.Gameplay.ACT1.Objectives
 {
     /// <summary>
     /// Script for objective 0 in scene Corridor 1F.
@@ -79,12 +80,12 @@ namespace ProjectBorderland.Gameplay.ACT1.Dialogue
         public void Interact()
         {
             MarkAsComplete();
-            nextObjective.StartObjective();
+            nextObjective.ActivateObjective();
         }
 
 
 
-        public void Interact(GameObject _object)
+        public void Interact(ItemSO item)
         {}
         #endregion
         #endregion

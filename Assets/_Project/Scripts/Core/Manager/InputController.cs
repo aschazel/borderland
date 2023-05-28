@@ -45,8 +45,6 @@ namespace ProjectBorderland.Core.Manager
         public KeyCode Slot3;
         public KeyCode Slot4;
         public KeyCode Slot5;
-        public KeyCode Slot6;
-        public KeyCode Slot7;
 
 
 
@@ -92,8 +90,6 @@ namespace ProjectBorderland.Core.Manager
             Slot3 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot4Key", "Alpha4"));
             Slot4 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot5Key", "Alpha5"));
             Slot5 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot6Key", "Alpha6"));
-            Slot6 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot7Key", "Alpha7"));
-            Slot7 = (KeyCode) System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("slot8Key", "Alpha8"));
         }
         #endregion
     }

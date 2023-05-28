@@ -26,7 +26,7 @@ namespace ProjectBorderland.Interaction
         private void Start()
         {
             GetComponent<BoxCollider>().enabled = true;
-            interactUIText = $"Ambil {ItemSO.name}";
+            interactUIText = $"Ambil {ItemSO.Name}";
         }
         #endregion
 
@@ -68,7 +68,7 @@ namespace ProjectBorderland.Interaction
 
 
 
-        public void Interact(GameObject _object)
+        public void Interact(ItemSO item)
         {}
         #endregion
         #endregion

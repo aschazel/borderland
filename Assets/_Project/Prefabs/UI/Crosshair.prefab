@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 2888433684633394486}
   - component: {fileID: 2888433684633394489}
   - component: {fileID: 2422883476015687902}
+  - component: {fileID: 1911517196548597431}
   m_Layer: 5
   m_Name: Crosshair
   m_TagString: Untagged
@@ -91,6 +92,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hoverText: {fileID: 6695607225690462698}
+--- !u!114 &1911517196548597431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2888433684633394491}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7eba438754aa7324081be3e49b98dd91, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hoverText: {fileID: 2422883476015687902}
 --- !u!1 &5447134330070421918
 GameObject:
   m_ObjectHideFlags: 0
@@ -126,8 +140,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -72}
-  m_SizeDelta: {x: 346.2104, y: 50}
+  m_AnchoredPosition: {x: 0, y: -101.4039}
+  m_SizeDelta: {x: 2217.0396, y: 108.808}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2414858815975738051
 CanvasRenderer:

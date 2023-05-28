@@ -158,7 +158,7 @@ namespace ProjectBorderland.UI.Dialogue
         /// <summary>
         /// Advances to next sentence in dialogue.
         /// </summary>
-        public void NextSentence()
+        private void NextSentence()
         {
             if (currentDialogueIndex < dialogue.Sentences.Count - 1)
             {

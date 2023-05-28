@@ -1,5 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
+using ProjectBorderland.DeveloperTools.PublishSubscribe;
+using ProjectBorderland.Core.FreeRoam;
+using ProjectBorderland.Core.PointAndClick;
 
 namespace ProjectBorderland.Core.Manager
 {
@@ -34,15 +37,16 @@ namespace ProjectBorderland.Core.Manager
         }
         #endregion
 
+        [Header("Attribute Configurations")]
+        [SerializeField] private string freeRoamPlayerTag = "FreeRoamPlayer";
+        [SerializeField] private string pointAndClickPlayerTag = "PointAndClickPlayer";
+
         private Camera mainCamera;
         public Camera MainCamera { get { return mainCamera; } }
-
-        [Header("Object References")]
-        [SerializeField] private GameObject freeRoamPlayer;
-        [SerializeField] private Camera freeRoamCamera;
-        [SerializeField] private GameObject pointAndClickPlayer;
-        [SerializeField] private Camera pointAndClickCamera;
-        [SerializeField] private GameObject crosshair;
+        private FreeRoamPlayer freeRoamPlayer;
+        private Camera freeRoamCamera;
+        private PointAndClickPlayer pointAndClickPlayer;
+        private Camera pointAndClickCamera;
 
         private FreeRoam.PlayerMovement freeRoamPlayerMovement;
         private FreeRoam.PlayerCamera freeRoamPlayerCamera;
@@ -77,6 +81,11 @@ namespace ProjectBorderland.Core.Manager
                 Destroy(gameObject);
             }
             #endregion
+
+            freeRoamPlayer = GameObject.FindGameObjectWithTag(instance.freeRoamPlayerTag).GetComponent<FreeRoamPlayer>();
+            freeRoamCamera = freeRoamPlayer.FreeRoamCamera;
+            pointAndClickPlayer = GameObject.FindGameObjectWithTag(instance.pointAndClickPlayerTag).GetComponent<PointAndClickPlayer>();
+            pointAndClickCamera = pointAndClickPlayer.PointAndClickCamera;
 
             freeRoamPlayerMovement = freeRoamPlayer.GetComponentInChildren<FreeRoam.PlayerMovement>();
             freeRoamPlayerCamera = freeRoamPlayer.GetComponentInChildren<FreeRoam.PlayerCamera>();
@@ -247,7 +256,7 @@ namespace ProjectBorderland.Core.Manager
                 if (!instance.CheckActionState(ActionState.Inspection))
                 {
                     Cursor.lockState = CursorLockMode.None;
-                    instance.crosshair.SetActive(false);
+                    HideCrosshair();
 
                     instance.freeRoamPlayerMovement.Stop();
                     DisableFreeRoam();
@@ -289,7 +298,7 @@ namespace ProjectBorderland.Core.Manager
                 if (!instance.CheckActionState(ActionState.Inspection))
                 {
                     Cursor.lockState = CursorLockMode.Locked;
-                    instance.crosshair.SetActive(true);
+                    ShowCrosshair();
 
                     EnableFreeRoam();
                 }
@@ -327,7 +336,7 @@ namespace ProjectBorderland.Core.Manager
             if (instance.currentGameState == GameState.FreeRoam)
             {
                 Cursor.lockState = CursorLockMode.None;
-                instance.crosshair.SetActive(false);
+                HideCrosshair();
 
                 instance.pointAndClickInteraction.enabled = true;
                 instance.pointAndClickInteraction.PointAndClickCamera = instance.freeRoamCamera;
@@ -351,13 +360,47 @@ namespace ProjectBorderland.Core.Manager
             if (instance.currentGameState == GameState.FreeRoam)
             {
                 Cursor.lockState = CursorLockMode.Locked;
-                instance.crosshair.SetActive(true);
+                ShowCrosshair();
 
                 instance.pointAndClickInteraction.enabled = false;
 
                 EnableFreeRoam();
             }
         }
+
+
+
+        /// <summary>
+        /// Hides crosshair UI.
+        /// </summary>
+        public static void HideCrosshair()
+        {
+            PublishSubscribe.Instance.Publish<HideCrosshairMessage>(new HideCrosshairMessage(false)); 
+        }
+
+
+
+        /// <summary>
+        /// Shows crosshair UI.
+        /// </summary>
+        public static void ShowCrosshair()
+        {
+            PublishSubscribe.Instance.Publish<HideCrosshairMessage>(new HideCrosshairMessage(true));
+        }
         #endregion
     }
+
+
+
+    #region PublishSubscribe
+    public struct HideCrosshairMessage
+    {
+        public bool isHiding;
+
+        public HideCrosshairMessage(bool isHiding)
+        {
+            this.isHiding = isHiding;
+        }
+    }
+    #endregion
 }

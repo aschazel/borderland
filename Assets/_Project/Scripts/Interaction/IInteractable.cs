@@ -1,4 +1,5 @@
 using UnityEngine;
+using ProjectBorderland.InventorySystem;
 
 namespace ProjectBorderland.Interaction
 {
@@ -22,7 +23,7 @@ namespace ProjectBorderland.Interaction
         /// <summary>
         /// Interacts with object using another object.
         /// </summary>
-        void Interact(GameObject _object);
+        void Interact(ItemSO item);
     }
 
     public struct ShowHoverTextMessage

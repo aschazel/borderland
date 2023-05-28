@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f6d1f82411f1e77469a42d1830565eb4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxCapacity: 8
+  maxCapacity: 6

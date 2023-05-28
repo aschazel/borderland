@@ -17,7 +17,7 @@ namespace ProjectBorderland.Dialogue
         [SerializeField] private List<Sentence> sentences = new List<Sentence>();
         public List<Sentence> Sentences { get { return sentences; } }
 
-        [SerializeField] private float speed = 0.05f;
+        [SerializeField] private float speed = 0.025f;
         public float Speed { get { return speed; } }
 
         [System.Serializable]

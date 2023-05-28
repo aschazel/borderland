@@ -1,5 +1,6 @@
 using UnityEngine;
 using ProjectBorderland.UI.Dialogue;
+using ProjectBorderland.InventorySystem;
 using ProjectBorderland.Interaction;
 
 namespace ProjectBorderland.Dialogue
@@ -47,7 +48,7 @@ namespace ProjectBorderland.Dialogue
 
 
 
-        public virtual void Interact(GameObject _object)
+        public virtual void Interact(ItemSO item)
         {}
         #endregion
         #endregion

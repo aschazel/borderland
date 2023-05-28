@@ -57,11 +57,31 @@ namespace ProjectBorderland.Progression
 
 
         /// <summary>
-        /// Mark this as complete.
+        /// Enables this objective.
+        /// </summary>
+        public void ActivateObjective()
+        {
+            gameObject.SetActive(true);
+        }
+
+
+
+        /// <summary>
+        /// Mark this objective as complete.
         /// </summary>
         public void MarkAsComplete()
         {
             isCompleted = true;
+        }
+
+
+
+        /// <summary>
+        /// Updates this objective description.
+        /// </summary>
+        public void UpdateDescription(string updatedDescription)
+        {
+            description = updatedDescription;
         }
 
 

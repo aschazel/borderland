@@ -125,22 +125,10 @@ namespace ProjectBorderland.InventorySystem
                 slotIndex = 4;
                 NotifyOnEquippedChanged();
             }
-
+            
             if (Input.GetKeyDown(InputController.Instance.Slot5))
             {
                 slotIndex = 5;
-                NotifyOnEquippedChanged();
-            }
-
-            if (Input.GetKeyDown(InputController.Instance.Slot6))
-            {
-                slotIndex = 6;
-                NotifyOnEquippedChanged();
-            }
-
-            if (Input.GetKeyDown(InputController.Instance.Slot7))
-            {
-                slotIndex = 7;
                 NotifyOnEquippedChanged();
             }
         }

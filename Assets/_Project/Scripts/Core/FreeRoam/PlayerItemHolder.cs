@@ -122,7 +122,7 @@ namespace ProjectBorderland.Core.FreeRoam
             if (item != null)
             {
                 DestroyHeldItem();
-                heldItem = Instantiate(item, itemHolderTransform.position, itemHolderTransform.rotation, itemHolderTransform);
+                heldItem = Instantiate(item, itemHolderTransform.position, Quaternion.identity, itemHolderTransform);
 
                 heldItem.layer = LayerMask.NameToLayer(noClipWallLayer);
                 heldItem.TryGetComponent<BoxCollider>(out BoxCollider collider);

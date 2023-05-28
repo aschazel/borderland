@@ -44,9 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 94d3b938cf7b9d34e8e8ad66d274782d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  freeRoamPlayerTag: FreeRoamPlayer
+  pointAndClickPlayerTag: PointAndClickPlayer
   freeRoamPlayer: {fileID: 0}
-  freeRoamCamera: {fileID: 0}
-  pointAndClickPlayer: {fileID: 0}
-  pointAndClickCamera: {fileID: 0}
-  crosshair: {fileID: 0}
-  currentActionStates: 
