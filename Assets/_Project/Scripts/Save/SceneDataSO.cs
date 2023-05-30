@@ -3,6 +3,7 @@ using ProjectBorderland.Core.Manager;
 
 namespace ProjectBorderland.Save
 {
+    [CreateAssetMenu(menuName = "SceneData/Create new Scene Data")]
     /// <summary>
     /// Represents a scene with its properties.
     /// </summary>
@@ -12,8 +13,9 @@ namespace ProjectBorderland.Save
         // Variables
         //==============================================================================
         public string Name;
-        public string SceneIndex;
+        public int SceneIndex;
         public Vector3 PlayerSpawnLocation;
+        public GameState GameState;
 
 
 

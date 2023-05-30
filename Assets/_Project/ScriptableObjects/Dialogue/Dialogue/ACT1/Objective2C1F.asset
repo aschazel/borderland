@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: Objective2C1F
   m_EditorClassIdentifier: 
   sentences:
-  - author: {fileID: 11400000, guid: 4a24ebd73ec0e874382efa5d7a05235e, type: 2}
-    say: Oke, sekarang angkat kardus-kardus di depan itu yah
   - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
-    say: Bangsat jadi babu
+    say: Jadi apa yang bisa saya bantu bu?
   - author: {fileID: 11400000, guid: 4a24ebd73ec0e874382efa5d7a05235e, type: 2}
-    say: Apa kamu bilang tadi?
+    say: Jadi Ibu meminta bantuan untuk membawakan 3 kotak kardus ini ke depan perpustakaan
   - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
-    say: Eh, enggak kok bu
+    say: Oke, siap Bu
+  - author: {fileID: 11400000, guid: 4a24ebd73ec0e874382efa5d7a05235e, type: 2}
+    say: Baik, ibu tunggu didepan perpustakaan ya nak
   speed: 0.025

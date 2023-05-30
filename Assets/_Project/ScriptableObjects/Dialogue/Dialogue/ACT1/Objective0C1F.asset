@@ -14,5 +14,78 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sentences:
   - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
-    say: Wutduhellll............. sepertinya aku harus pergi ke ruang guru...
+    say: "Hari ini\u2026"
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Adalah hari dimana aku memijakkan langkah pertamaku di sebuah sekolah SMA
+      swasta bernama Samewani.
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Sekolah ini memang tidak terlalu terkenal dibanding sekolah swasta lainnya
+      di kota Surabaya..
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Walaupun memiliki ukuran yang lumayan besar yang bisa terbilang megah untuk
+      sekolah SMA
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Sepengetahuan ku, sekolah ini dulunya adalah sekolah yang didirikan oleh
+      pemerintah Jepang pada masa penjajahan.
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Namun sejak tahun 1988 diberikan pada seorang pengusaha konglomerat Indonesia
+      yang merupakan sahabat seorang pemimpin sekolah pada saat itu.
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Walaupun sejak saat itu sudah dipimpin oleh orang Indonesia, mereka masih
+      menjaga struktur bangunan serta atribut-atribut sekolah yang memiliki ciri
+      khas negara Jepang.
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Mereka juga masih menerapkan kurikulum yang sama sejak awal didirikan yang
+      dimana memiliki 3 aspek utama yang meliputi Subjects, Moral Education, dan
+      Extracurricular.
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Siswa kelas 1 dan 2 hanya akan belajar selama 7 jam perharinya dan dilanjutkan
+      dengan kegiatan estracurricular dengan rentang waktu 3-4 Jam sesuai dengan
+      estracurricular apa yang mereka masuki.
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Selain itu, mereka juga memiliki sistem penjurusan pada kelas 3 dan kegiatan
+      diluar sekolah secara berkala.
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Tentu saja, sistem sekolah ini juga sedikit ditambahkan agar sesuai dengan
+      sistem pendidikan yang ada di Indonesia.
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Sebelum terlalu jauh kalian mendengarkanku bermonolog seperti ini, mari
+      kuperkenalkan diriku.
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: "Namaku Andi Adilakasana\u2026"
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Seorang pelajar biasa yang tidak memiliki bakat apapun maupun persiapan
+      yang matang untuk masa depanku dan berakhir di sekolah SMA swasta ini.
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: "Salahku juga karena selama 1 1/2 tahun aku tidak mempersiapkan diri untuk
+      masuk ke SMA Negeri karena Covid-19 yang melanda\u2026"
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Selama 1 1/2 aku hanya menyalurkan hobi-hobi yang aku pikir sendiri sekarang
+      mungkin tidak berguna bagi masa depanku.
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Aku hanya menonton film, membaca buku dan bermain game selama masa lockdown
+      dirumahku..
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: kebanyakan genre dari Buku, Film dan Game yang kumainkan semuanya memiliki
+      genre misteri detektif yang mungkin hanya beberapa orang yang suka atau paham
+      genre ini.
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: "Karena hal itulah aku berakhir di sekolah ini, SMA Samewani yaitu SMA Swasta
+      yang merupakan sekolah asrama\u2026"
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: "Ya, benar\u2026\r\n\r\nAku akan bersekolah sekaligus tinggal di asrama
+      yang disediakan sekolah ini selama kurang lebih 2 1/2 tahun."
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: 'Dan..
+
+      
+
+      Persiapan yang aku lakukan??'
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: "Tidak ada\u2026."
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: "Bahkan aku lupa membawa lembar informasi yang diberikan pihak sekolah kepadaku\u2026"
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: "Jadi tujuanku sekarang adalah menuju ke ruang guru mungkin akan ada seseorang
+      yang bisa membantuku disana\u2026"
   speed: 0.025

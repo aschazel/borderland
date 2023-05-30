@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6480076be4c1de448a30c7905f250b17, type: 3}
+  m_Name: RuangLayananTerpadu
+  m_EditorClassIdentifier: 
+  Name: Ruang Layanan Terpadu
+  SceneIndex: 2
+  PlayerSpawnLocation: {x: 61.384, y: 2.08, z: -11.922}
+  GameState: 1

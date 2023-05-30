@@ -22,7 +22,6 @@ namespace ProjectBorderland.Gameplay.ACT1.Objectives
 
         [Header("Object References")]
         [SerializeField] private DialogueSO dialogue;
-        [SerializeField] Objective nextObjective;
         [SerializeField] List<ItemSO> requiredItem = new List<ItemSO>();
 
 
@@ -72,6 +71,13 @@ namespace ProjectBorderland.Gameplay.ACT1.Objectives
         {
             UpdateDescription($"Angkat kardus-kardus ke depan pintu perpustakaan ({progress}/4)");
             interactUIText = $"Letakkan kardus ({progress}/4)";
+
+            if (progress >= 4)
+            {
+                nextObjective.ActivateObjective();
+                nextObjective.StartObjective();
+                MarkAsComplete();
+            }
         }
 
 

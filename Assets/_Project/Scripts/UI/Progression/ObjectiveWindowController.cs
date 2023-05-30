@@ -1,6 +1,5 @@
 using TMPro;
 using UnityEngine;
-using ProjectBorderland.DeveloperTools.PublishSubscribe;
 using ProjectBorderland.Progression;
 
 namespace ProjectBorderland.UI.Progression
@@ -22,16 +21,9 @@ namespace ProjectBorderland.UI.Progression
         // Functions
         //==============================================================================
         #region MonoBehaviour methods
-        private void Awake()
+        private void Update()
         {
-            PublishSubscribe.Instance.Subscribe<ObjectiveStartedMessage>(UpdateText);
-        }
-
-
-
-        private void OnDisable()
-        {
-            PublishSubscribe.Instance.Unsubscribe<ObjectiveStartedMessage>(UpdateText);
+            UpdateText();
         }
         #endregion
 
@@ -41,10 +33,18 @@ namespace ProjectBorderland.UI.Progression
         /// <summary>
         /// Updates the objective title and description text.
         /// </summary>
-        private void UpdateText(ObjectiveStartedMessage message)
+        private void UpdateText()
         {
-            objectiveTitle.text = message.objective.Title;
-            objectiveDescription.text = message.objective.Description;
+            try
+            {
+                objectiveTitle.text = ObjectiveManager.Instance.CurrentObjective.Title;
+                objectiveDescription.text = ObjectiveManager.Instance.CurrentObjective.Description;
+            }
+
+            catch (System.NullReferenceException)
+            {
+                
+            }
         }
         #endregion
     }

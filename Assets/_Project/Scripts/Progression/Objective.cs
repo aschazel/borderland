@@ -3,6 +3,7 @@ using UnityEngine;
 
 namespace ProjectBorderland.Progression
 {
+    [Serializable]
     /// <summary>
     /// Represents an objective.
     /// </summary>
@@ -11,16 +12,17 @@ namespace ProjectBorderland.Progression
         //==============================================================================
         // Variables
         //==============================================================================
-        private bool isInitiated;
-        public bool IsInitiated { get { return isInitiated; } }
+        public bool IsInitiated;
         private bool isCompleted;
         public bool IsCompleted { get { return isCompleted; } }
 
         [Header("Attribute Configurations")]
+        public int Id;
         [SerializeField] [TextArea(0, 19)] private string title;
-        public string Title { get { return title; } }
+        public string Title { get { return title; } set {} }
         [SerializeField] [TextArea(0, 128)] private string description;
-        public string Description { get { return description; } }
+        public string Description { get { return description; } set {} }
+        public Objective nextObjective;
 
 
 
@@ -49,7 +51,7 @@ namespace ProjectBorderland.Progression
         /// </summary>
         public void StartObjective()
         {
-            isInitiated = true;
+            IsInitiated = true;
             gameObject.SetActive(true);
             ObjectiveManager.StartObjective(this);
         }
@@ -102,17 +104,33 @@ namespace ProjectBorderland.Progression
         /// <summary>
         /// Gets saved objective states from ObjectiveManager.
         /// </summary>
-        private void ReturnObjectiveState()
+        public bool ReturnObjectiveState()
         {
-            Objective savedObjective = ObjectiveManager.Objectives.Find(obj => this);
-
-            if (savedObjective != null)
+            try
             {
+                Objective savedObjective = ObjectiveManager.Objectives[Id];
+
                 isCompleted = savedObjective.IsCompleted;
-                isInitiated = savedObjective.IsInitiated;
+                IsInitiated = savedObjective.IsInitiated;
                 title = savedObjective.Title;
                 description = savedObjective.Description;
+
+                if (isCompleted)
+                {
+                    nextObjective.gameObject.SetActive(true);
+                    nextObjective.IsInitiated = true;
+                }
+                
+                return true;
             }
+
+            catch (ArgumentOutOfRangeException)
+            {}
+
+            catch (NullReferenceException)
+            {}
+
+            return false;
         }
         #endregion
     }

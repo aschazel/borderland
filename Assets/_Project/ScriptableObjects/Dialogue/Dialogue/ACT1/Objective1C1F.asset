@@ -14,11 +14,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sentences:
   - author: {fileID: 11400000, guid: 4a24ebd73ec0e874382efa5d7a05235e, type: 2}
-    say: Heii... Andi!
+    say: "Permisi nak\u2026"
   - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
-    say: Iya bu?
+    say: Ah iya bu.. ada yang bisa saya bantu?
   - author: {fileID: 11400000, guid: 4a24ebd73ec0e874382efa5d7a05235e, type: 2}
-    say: Habis ini ke ruangan ibu yah (slurp)
+    say: Kamu anak kelas 1 tahun ajaran baru ya? Karena ibu belum sama sekali pernah
+      melihat wajah kalian
   - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
-    say: Waduh...
+    say: Iya bu benar
+  - author: {fileID: 11400000, guid: 4a24ebd73ec0e874382efa5d7a05235e, type: 2}
+    say: Bisakah kamu membantu ibu?
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Oh tentu saja bu, apa yang bisa saya bantu ya?
+  - author: {fileID: 11400000, guid: 4a24ebd73ec0e874382efa5d7a05235e, type: 2}
+    say: Bisa ikut ibu ke hall sekolah?
+  - author: {fileID: 11400000, guid: 4a24ebd73ec0e874382efa5d7a05235e, type: 2}
+    say: Baik bu
   speed: 0.025

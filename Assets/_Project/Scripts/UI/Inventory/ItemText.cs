@@ -55,7 +55,7 @@ namespace ProjectBorderland.UI.Inventory
         /// <param name="message"></param>
         private void ShowItemText(OnEquipItemMessage message)
         {
-            textMeshProUGUI.text = message.Item.name;
+            textMeshProUGUI.text = message.Item.Name;
 
             if(!isShowingText) 
             {

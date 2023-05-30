@@ -3,6 +3,7 @@ using ProjectBorderland.InventorySystem;
 using ProjectBorderland.UI.Dialogue;
 using ProjectBorderland.Dialogue;
 using ProjectBorderland.Interaction;
+using ProjectBorderland.Save;
 
 namespace ProjectBorderland.Progression
 {
@@ -20,6 +21,7 @@ namespace ProjectBorderland.Progression
         [SerializeField] private string interactUIText;
 
         [Header("Object References")]
+        [SerializeField] private SceneDataSO sceneDataSO;
         [SerializeField] private Objective objectiveToAccess;
         [SerializeField] private DialogueSO restrictedDialogue;
 
@@ -67,7 +69,7 @@ namespace ProjectBorderland.Progression
         {
             if (isNotRestricted)
             {
-
+                SceneLoadManager.LoadScene(sceneDataSO);
             }
 
             else

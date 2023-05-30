@@ -1,0 +1,39 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c23d1936dda41d4fad49e996676c5a4, type: 3}
+  m_Name: Objective3CF1
+  m_EditorClassIdentifier: 
+  sentences:
+  - author: {fileID: 11400000, guid: 4a24ebd73ec0e874382efa5d7a05235e, type: 2}
+    say: Terimakasih ya nak
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Iya bu Sama-sama
+  - author: {fileID: 11400000, guid: 4a24ebd73ec0e874382efa5d7a05235e, type: 2}
+    say: Oh iya maaf ibu sedang terburu-buru jadi belum sempat memperkenalkan diri,
+      nama saya Meli. Kamu bisa panggil Ibu Meli
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Nama saya Andi Adilaksana bu
+  - author: {fileID: 11400000, guid: 4a24ebd73ec0e874382efa5d7a05235e, type: 2}
+    say: "Ohh.. Nak Andi, maaf sudah ngerepotin kamu\u2026"
+  - author: {fileID: 11400000, guid: 4a24ebd73ec0e874382efa5d7a05235e, type: 2}
+    say: Kira-kira ada yang bisa ibu bantu untuk kamu?
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Saya hanya ingin bertanya, mungkin ada orang yang bisa memberikkan saya
+      Lembar Informasi yang baru bu? Karena yang saya miliki hilang
+  - author: {fileID: 11400000, guid: 4a24ebd73ec0e874382efa5d7a05235e, type: 2}
+    say: Wah, kebetulan sekali ibu salah satu staff administrasi disekolah ini. Ibu
+      bisa membantu kamu dengan komputer yang ada di Ruangan Post Layanan Terpadu
+  - author: {fileID: 11400000, guid: dd4225c78e7947e4cb207d9431505650, type: 2}
+    say: Wah kebetulan sekali bu, kalau gitu saya mohon bantuannya bu
+  - author: {fileID: 11400000, guid: 4a24ebd73ec0e874382efa5d7a05235e, type: 2}
+    say: Baik, Ikuti ibu nak
+  speed: 0.025

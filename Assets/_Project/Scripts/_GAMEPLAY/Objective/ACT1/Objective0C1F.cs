@@ -19,7 +19,6 @@ namespace ProjectBorderland.Gameplay.ACT1.Objectives
         //==============================================================================
         [Header("Object References")]
         [SerializeField] private DialogueSO dialogue;
-        [SerializeField] Objective nextObjective;
 
         [Header("Attribute Configurations")]
         [SerializeField] private string interactUIText;
@@ -32,7 +31,15 @@ namespace ProjectBorderland.Gameplay.ACT1.Objectives
         #region MonoBehaviour methods
         private void Start()
         {
-            StartCoroutine(InitiateDialogue());
+            if (ReturnObjectiveState())
+            {
+                
+            }
+
+            else
+            {
+                StartCoroutine(InitiateDialogue());
+            }
         }
         
 

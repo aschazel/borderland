@@ -22,14 +22,14 @@ namespace ProjectBorderland.Save
         #region MonoBehaviour methods
         private void Awake()
         {
-            SceneLoadManager.OnLoadScene += SaveState;
+            //SceneLoadManager.OnLoadScene += SaveState;
         }
 
 
 
         private void OnDisable()
         {
-            SceneLoadManager.OnLoadScene -= SaveState;
+            //SceneLoadManager.OnLoadScene -= SaveState;
         }
         #endregion
 

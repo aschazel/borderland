@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using ProjectBorderland.DeveloperTools.PublishSubscribe;
+using ProjectBorderland.Save;
 
 namespace ProjectBorderland.Progression
 {
@@ -59,6 +60,15 @@ namespace ProjectBorderland.Progression
                 Destroy(gameObject);
             }
             #endregion
+
+            PublishSubscribe.Instance.Subscribe<SceneLoadedMessage>(OnNewSceneLoaded);
+        }
+
+
+
+        private void OnDisable()
+        {
+            PublishSubscribe.Instance.Unsubscribe<SceneLoadedMessage>(OnNewSceneLoaded);
         }
         #endregion
 
@@ -74,6 +84,13 @@ namespace ProjectBorderland.Progression
             instance.currentObjective = objective;
             PublishSubscribe.Instance.Publish<ObjectiveStartedMessage>(new ObjectiveStartedMessage(objective));
             objectives.Add(objective);
+        }
+
+
+
+        private void OnNewSceneLoaded(SceneLoadedMessage message)
+        {
+            PublishSubscribe.Instance.Publish<ObjectiveStartedMessage>(new ObjectiveStartedMessage(currentObjective));
         }
         #endregion
     }

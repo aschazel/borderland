@@ -3,6 +3,7 @@ using UnityEngine;
 using ProjectBorderland.DeveloperTools.PublishSubscribe;
 using ProjectBorderland.Core.FreeRoam;
 using ProjectBorderland.Core.PointAndClick;
+using ProjectBorderland.Save;
 
 namespace ProjectBorderland.Core.Manager
 {
@@ -82,20 +83,9 @@ namespace ProjectBorderland.Core.Manager
             }
             #endregion
 
-            freeRoamPlayer = GameObject.FindGameObjectWithTag(instance.freeRoamPlayerTag).GetComponent<FreeRoamPlayer>();
-            freeRoamCamera = freeRoamPlayer.FreeRoamCamera;
-            pointAndClickPlayer = GameObject.FindGameObjectWithTag(instance.pointAndClickPlayerTag).GetComponent<PointAndClickPlayer>();
-            pointAndClickCamera = pointAndClickPlayer.PointAndClickCamera;
+            instance.SetUpPlayers();
 
-            freeRoamPlayerMovement = freeRoamPlayer.GetComponentInChildren<FreeRoam.PlayerMovement>();
-            freeRoamPlayerCamera = freeRoamPlayer.GetComponentInChildren<FreeRoam.PlayerCamera>();
-            freeRoamInteraction = freeRoamPlayer.GetComponentInChildren<FreeRoam.Interaction>();
-            freeRoamPlayerItemHolder = freeRoamPlayer.GetComponentInChildren<FreeRoam.PlayerItemHolder>();
-            freeRoamInspection = freeRoamPlayer.GetComponentInChildren<Inspection.Inspection>();
-
-            pointAndClickInteraction = pointAndClickPlayer.GetComponentInChildren<PointAndClick.Interaction>();
-            pointAndClickPlayerCameraPan = pointAndClickPlayer.GetComponentInChildren<PointAndClick.PlayerCameraPan>();
-            pointAndClickPlayerCameraRotate = pointAndClickPlayer.GetComponentInChildren<PointAndClick.PlayerCameraRotate>();
+            PublishSubscribe.Instance.Subscribe<SceneLoadedMessage>(OnNewSceneLoaded);
         }
 
 
@@ -133,6 +123,7 @@ namespace ProjectBorderland.Core.Manager
 
                 EnablePointAndClick();
                 DisableFreeRoam();
+                SetUpPointAndClickCamera(instance.pointAndClickCamera.transform, false);
             }
         }
 
@@ -386,6 +377,41 @@ namespace ProjectBorderland.Core.Manager
         public static void ShowCrosshair()
         {
             PublishSubscribe.Instance.Publish<HideCrosshairMessage>(new HideCrosshairMessage(true));
+        }
+
+
+
+        /// <summary>
+        /// Notifies if a new scene is loaded.
+        /// </summary>
+        /// <param name="sceneIndex"></param>
+        public static void OnNewSceneLoaded(SceneLoadedMessage message)
+        {
+            instance.SetUpPlayers();
+            SwitchGamestate(message.scene.GameState);
+        }
+
+
+
+        /// <summary>
+        /// Sets up players.
+        /// </summary>
+        private void SetUpPlayers()
+        {
+            freeRoamPlayer = GameObject.FindGameObjectWithTag(instance.freeRoamPlayerTag).GetComponent<FreeRoamPlayer>();
+            freeRoamCamera = freeRoamPlayer.FreeRoamCamera;
+            pointAndClickPlayer = GameObject.FindGameObjectWithTag(instance.pointAndClickPlayerTag).GetComponent<PointAndClickPlayer>();
+            pointAndClickCamera = pointAndClickPlayer.PointAndClickCamera;
+
+            freeRoamPlayerMovement = freeRoamPlayer.GetComponentInChildren<FreeRoam.PlayerMovement>();
+            freeRoamPlayerCamera = freeRoamPlayer.GetComponentInChildren<FreeRoam.PlayerCamera>();
+            freeRoamInteraction = freeRoamPlayer.GetComponentInChildren<FreeRoam.Interaction>();
+            freeRoamPlayerItemHolder = freeRoamPlayer.GetComponentInChildren<FreeRoam.PlayerItemHolder>();
+            freeRoamInspection = freeRoamPlayer.GetComponentInChildren<Inspection.Inspection>();
+
+            pointAndClickInteraction = pointAndClickPlayer.GetComponentInChildren<PointAndClick.Interaction>();
+            pointAndClickPlayerCameraPan = pointAndClickPlayer.GetComponentInChildren<PointAndClick.PlayerCameraPan>();
+            pointAndClickPlayerCameraRotate = pointAndClickPlayer.GetComponentInChildren<PointAndClick.PlayerCameraRotate>();
         }
         #endregion
     }

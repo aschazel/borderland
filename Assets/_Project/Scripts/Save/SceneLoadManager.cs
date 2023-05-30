@@ -1,6 +1,6 @@
-using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using ProjectBorderland.DeveloperTools.PublishSubscribe;
 
 namespace ProjectBorderland.Save
 {
@@ -35,8 +35,6 @@ namespace ProjectBorderland.Save
         }
         #endregion
 
-        public static Action OnLoadScene;
-
 
 
         //==============================================================================
@@ -68,8 +66,21 @@ namespace ProjectBorderland.Save
         /// <param name="sceneDataSO"></param>
         public static void LoadScene(SceneDataSO sceneDataSO)
         {
-            OnLoadScene.Invoke();
+            SceneManager.LoadScene(sceneDataSO.SceneIndex);
+            PublishSubscribe.Instance.Publish<SceneLoadedMessage>(new SceneLoadedMessage(sceneDataSO));
         }
         #endregion
+    }
+
+
+
+    public struct SceneLoadedMessage
+    {
+        public SceneDataSO scene;
+
+        public SceneLoadedMessage(SceneDataSO scene)
+        {
+            this.scene = scene;
+        }
     }
 }

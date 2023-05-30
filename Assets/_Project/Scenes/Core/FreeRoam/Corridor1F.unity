@@ -197,7 +197,8 @@ Transform:
   m_LocalPosition: {x: 36.433, y: 3.54, z: 11.313}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1307961486}
   m_Father: {fileID: 1897950893}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -226,11 +227,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 09a5718cdb62d8a4eb62eb2a44337098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Menjadi babu
+  IsInitiated: 0
+  Id: 2
+  title: Bantu Bu Meli
   description: Angkat kardus-kardus di dekat pintu masuk ke depan pintu perpustakaan
     (0/4)
+  nextObjective: {fileID: 1411517161}
   dialogue: {fileID: 11400000, guid: d516115b6930bf740b6ef8221af52446, type: 2}
-  nextObjective: {fileID: 0}
   requiredItem:
   - {fileID: 11400000, guid: 53ffb2729fafc574cbbceea91a583b77, type: 2}
   - {fileID: 11400000, guid: 5344e4405ed4d4543a6925befc0e88cb, type: 2}
@@ -481,7 +484,8 @@ Transform:
   m_LocalPosition: {x: 29.756, y: 4.71, z: -28.758}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 520887339}
   m_Father: {fileID: 1897950893}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -496,8 +500,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.241787, y: 1.7142196, z: 1.3352242}
-  m_Center: {x: -0.019233704, y: 0.81110835, z: -0.56993484}
+  m_Size: {x: 1.6407471, y: 3.3054829, z: 2.1305885}
+  m_Center: {x: -0.18764687, y: 0.015476942, z: -0.17225266}
 --- !u!114 &56858830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -510,10 +514,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1b0b79d2a6c06874682a2f49162f3381, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Aku Juga Mw
-  description: Pergi ke dekat jendela Post Layanan Terpadu
-  dialogue: {fileID: 11400000, guid: bcab42c3a81f26d409b2892d0519a0de, type: 2}
+  IsInitiated: 0
+  Id: 1
+  title: Pergi ke Hall
+  description: Bicara dengan Bu Meli di dekat jendela Post Layanan Terpadu
   nextObjective: {fileID: 33504010}
+  dialogue: {fileID: 11400000, guid: bcab42c3a81f26d409b2892d0519a0de, type: 2}
   interactUIText: Bicara dengan Bu Meli
 --- !u!1001 &62825158
 PrefabInstance:
@@ -525,6 +531,10 @@ PrefabInstance:
     - target: {fileID: 1812183695944244923, guid: 17de329238a82024dbd7156e8975c3be, type: 3}
       propertyPath: m_TagString
       value: MainCamera
+      objectReference: {fileID: 0}
+    - target: {fileID: 4583045272993327749, guid: 17de329238a82024dbd7156e8975c3be, type: 3}
+      propertyPath: sprintSpeed
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4583045272993327771, guid: 17de329238a82024dbd7156e8975c3be, type: 3}
       propertyPath: m_RootOrder
@@ -988,6 +998,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNotRestricted: 0
   interactUIText: Pergi ke lantai dua
+  sceneDataSO: {fileID: 0}
   objectiveToAccess: {fileID: 0}
   restrictedDialogue: {fileID: 11400000, guid: 058ac42215982fb499e03a8c0e612b41, type: 2}
 --- !u!65 &195569309
@@ -1144,6 +1155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNotRestricted: 0
   interactUIText: Masuk ke Post Layanan Terpadu
+  sceneDataSO: {fileID: 0}
   objectiveToAccess: {fileID: 0}
   restrictedDialogue: {fileID: 11400000, guid: 058ac42215982fb499e03a8c0e612b41, type: 2}
 --- !u!65 &250528887
@@ -1440,6 +1452,103 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1030235, y: 1, z: 0.26713264}
   m_Center: {x: 0.051511765, y: 0, z: 0.33692282}
+--- !u!1 &445497468
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 445497469}
+  - component: {fileID: 445497470}
+  - component: {fileID: 445497471}
+  m_Layer: 0
+  m_Name: Square
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &445497469
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445497468}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.084999084, y: 1.1700001, z: -4.047}
+  m_LocalScale: {x: 0.32, y: 0.32, z: 0.32}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 1411517158}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &445497470
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445497468}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: dd2155ea35fbffd43b8d571c537392e5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
+--- !u!114 &445497471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 445497468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94384aee43d1e2f429c42db892e8ab56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &482360220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1475,6 +1584,103 @@ Transform:
   m_Father: {fileID: 543450653216237122}
   m_RootOrder: 22
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &520887338
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 520887339}
+  - component: {fileID: 520887341}
+  - component: {fileID: 520887340}
+  m_Layer: 0
+  m_Name: Square (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &520887339
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520887338}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.182, y: 0, z: 0.636}
+  m_LocalScale: {x: 0.32, y: 0.32, z: 0.32}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 56858828}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &520887340
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520887338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94384aee43d1e2f429c42db892e8ab56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!212 &520887341
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 520887338}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: dd2155ea35fbffd43b8d571c537392e5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &559764861
 GameObject:
   m_ObjectHideFlags: 0
@@ -1559,6 +1765,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNotRestricted: 0
   interactUIText: Pergi ke lantai dua
+  sceneDataSO: {fileID: 0}
   objectiveToAccess: {fileID: 0}
   restrictedDialogue: {fileID: 11400000, guid: 058ac42215982fb499e03a8c0e612b41, type: 2}
 --- !u!65 &585339574
@@ -1844,6 +2051,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNotRestricted: 0
   interactUIText: Masuk ke kelas 1A
+  sceneDataSO: {fileID: 0}
   objectiveToAccess: {fileID: 0}
   restrictedDialogue: {fileID: 11400000, guid: 058ac42215982fb499e03a8c0e612b41, type: 2}
 --- !u!65 &885426272
@@ -1974,6 +2182,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNotRestricted: 0
   interactUIText: Masuk ke kelas 1A
+  sceneDataSO: {fileID: 0}
   objectiveToAccess: {fileID: 0}
   restrictedDialogue: {fileID: 11400000, guid: 058ac42215982fb499e03a8c0e612b41, type: 2}
 --- !u!65 &1101141118
@@ -2036,6 +2245,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNotRestricted: 0
   interactUIText: Masuk ke kelas 1B
+  sceneDataSO: {fileID: 0}
   objectiveToAccess: {fileID: 0}
   restrictedDialogue: {fileID: 11400000, guid: 058ac42215982fb499e03a8c0e612b41, type: 2}
 --- !u!65 &1177339213
@@ -2098,6 +2308,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNotRestricted: 0
   interactUIText: Masuk ke kelas 1C
+  sceneDataSO: {fileID: 0}
   objectiveToAccess: {fileID: 0}
   restrictedDialogue: {fileID: 11400000, guid: 058ac42215982fb499e03a8c0e612b41, type: 2}
 --- !u!65 &1185425845
@@ -2160,6 +2371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNotRestricted: 0
   interactUIText: Masuk ke kelas 1C
+  sceneDataSO: {fileID: 0}
   objectiveToAccess: {fileID: 0}
   restrictedDialogue: {fileID: 11400000, guid: 058ac42215982fb499e03a8c0e612b41, type: 2}
 --- !u!65 &1237367508
@@ -2222,6 +2434,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNotRestricted: 0
   interactUIText: Masuk ke Perpustakaan
+  sceneDataSO: {fileID: 0}
   objectiveToAccess: {fileID: 0}
   restrictedDialogue: {fileID: 11400000, guid: 058ac42215982fb499e03a8c0e612b41, type: 2}
 --- !u!65 &1242809901
@@ -2363,6 +2576,103 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: a531e606b25aff94dbf4c9476434f331, type: 3}
   m_PrefabInstance: {fileID: 1246646963}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1307961485
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1307961486}
+  - component: {fileID: 1307961488}
+  - component: {fileID: 1307961487}
+  m_Layer: 0
+  m_Name: Square (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1307961486
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307961485}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.084999084, y: 1.1700001, z: -4.047}
+  m_LocalScale: {x: 0.32, y: 0.32, z: 0.32}
+  m_ConstrainProportionsScale: 1
+  m_Children: []
+  m_Father: {fileID: 33504007}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1307961487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307961485}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 94384aee43d1e2f429c42db892e8ab56, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!212 &1307961488
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1307961485}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RayTraceProcedural: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: dd2155ea35fbffd43b8d571c537392e5, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &1319755905
 GameObject:
   m_ObjectHideFlags: 0
@@ -2408,6 +2718,73 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 0.6957729}
   m_Center: {x: 0, y: 0, z: -0.15211263}
+--- !u!1 &1411517157
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1411517158}
+  - component: {fileID: 1411517160}
+  - component: {fileID: 1411517161}
+  m_Layer: 0
+  m_Name: Objective3C1F
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1411517158
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411517157}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 36.433, y: 3.54, z: 11.313}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 445497469}
+  m_Father: {fileID: 1897950893}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1411517160
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411517157}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0231934, y: 2.267778, z: 0.42246628}
+  m_Center: {x: 0.01537323, y: 1.0878875, z: -4.100025}
+--- !u!114 &1411517161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1411517157}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca89114afcbffef409cf4854d89030bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsInitiated: 0
+  Id: 3
+  title: Bu Meli
+  description: Bicara dengan Bu Meli
+  nextObjective: {fileID: 0}
+  dialogue: {fileID: 11400000, guid: 2789b3696c6a34e47862b29b41b3e55d, type: 2}
+  person: {fileID: 445497468}
+  interactUIText: Bicara dengan Bu Meli
 --- !u!1001 &1417192072
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2657,6 +3034,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 1783405089}
     m_Modifications:
     - target: {fileID: 2844229538596022469, guid: 388ad02b29a92294d9e80aee95e81e56, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2844229538596022469, guid: 388ad02b29a92294d9e80aee95e81e56, type: 3}
       propertyPath: m_TagString
       value: MainCamera
       objectReference: {fileID: 0}
@@ -2797,8 +3178,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1494892390}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 33.8, y: 4.71, z: 5.187}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 33.8, y: 4.71, z: 5.1870003}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2817,10 +3198,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3f09429983c83f4fb62fc6528468210, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  title: Anies Ngapain Sih
+  IsInitiated: 0
+  Id: 0
+  title: Minta Lembar Informasi
   description: Pergi ke ruang guru di lantai 2
-  dialogue: {fileID: 11400000, guid: bdbe960e7f6519c4897f833af8803bdb, type: 2}
   nextObjective: {fileID: 56858830}
+  dialogue: {fileID: 11400000, guid: bdbe960e7f6519c4897f833af8803bdb, type: 2}
   interactUIText: Pergi ke lantai dua
 --- !u!65 &1494892393
 BoxCollider:
@@ -3515,6 +3898,7 @@ Transform:
   - {fileID: 1494892391}
   - {fileID: 56858828}
   - {fileID: 33504007}
+  - {fileID: 1411517158}
   m_Father: {fileID: 1783405089}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4113,8 +4497,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 57670cbe265c5f64d8fc24289fa3812d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isNotRestricted: 0
+  isNotRestricted: 1
   interactUIText: Masuk ke Post Layanan Terpadu
+  sceneDataSO: {fileID: 11400000, guid: 99baf8017a25e974398b6b6f67b34959, type: 2}
   objectiveToAccess: {fileID: 0}
   restrictedDialogue: {fileID: 11400000, guid: 058ac42215982fb499e03a8c0e612b41, type: 2}
 --- !u!65 &1984864071
@@ -4177,6 +4562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNotRestricted: 0
   interactUIText: Masuk ke kelas 1B
+  sceneDataSO: {fileID: 0}
   objectiveToAccess: {fileID: 0}
   restrictedDialogue: {fileID: 11400000, guid: 058ac42215982fb499e03a8c0e612b41, type: 2}
 --- !u!65 &1997769656
@@ -4365,6 +4751,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNotRestricted: 0
   interactUIText: Masuk ke Toilet Wanita
+  sceneDataSO: {fileID: 0}
   objectiveToAccess: {fileID: 0}
   restrictedDialogue: {fileID: 11400000, guid: 3c3d2f80673ff984d9b63808ddff5f13, type: 2}
 --- !u!65 &2080294269
